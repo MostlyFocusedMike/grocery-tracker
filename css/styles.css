@@ -17,7 +17,7 @@ div#content {
 	width: 400px;
 	padding: 5px;
 	margin: 0 auto;
-	background-color: darkgray
+	background-color: darkgray;
 }
 
 div.popUp {
@@ -31,8 +31,7 @@ div.wrapper {
     text-align: center;
 		margin: 5px auto;
 		padding: 5px;
-		border: solid 2px #000;
-	  
+		border: solid 2px #000; 
 }
 
 ul, li {

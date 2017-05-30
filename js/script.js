@@ -166,6 +166,27 @@
 		//removes the <li> from the cart
 		rejects.removeChild(item);
 	}
+	
+	function switchCartRejects(visible) {
+		var cart = document.getElementById("shoppingCart"),
+			rejects = document.getElementById("rejects");
+		if (visible === "cart") {
+			visible = "rejects";
+		} else {
+			visible = "cart";
+		}
+		
+		if (visible === "cart") {
+			cart.style.display = "block";
+			rejects.style.display = "none";
+		} else {
+			cart.style.display = "none";
+			rejects.style.display = "block";
+		}
+		return visible;	
+		
+			
+	}
 //^ functions   v events////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////
 	
@@ -181,7 +202,9 @@
 		rejectsObj = {
 			names: ["rejects"],
 			prices: [1.66]
-		};
+		},
+		visible = "cart",
+		switchVisibility = document.getElementById('switchButton');
 	
 	body.addEventListener("click", function (e) {
 		if (e.target.type === "text") {
@@ -225,6 +248,10 @@
 				calculateTotal(groceryListObj);
 			}
 		}
+	}, false);
+	
+	switchVisibility.addEventListener("click", function () {
+		visible = switchCartRejects(visible);
 	}, false);
 	
 }());

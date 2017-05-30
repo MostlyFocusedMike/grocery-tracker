@@ -17,11 +17,7 @@
     <div id="header" class="wrapper">
         <h1>Grocery Tracker</h1>    
     </div>
-    <div id="info" class="wrapper">
-        <h2 id="total">Total: $0.00</h2>
-        <h3>Now Viewing:</h3>
-        <h3 id="viewer">List/Cart/Rejects</h3>
-    </div>
+    
 		
 		<div id="mainInput" class="wrapper">
 			<input type="text" id="inputName" value="Type item name here">
@@ -33,7 +29,13 @@
 				<li class="groceryItem">list</li>
 			</ul>
     </div>
-	
+		
+		<div id="info" class="wrapper">
+        <h2 id="total">Total: $0.00</h2>
+        <h3>Now Viewing:</h3>
+        <h3 id="viewer">Cart/Rejects</h3>
+    </div>
+		
 		<div id="cartWrapper" class="wrapper">
 			<ul id="shoppingCart">
 				<li class="cartItem">cart: $1.33</li>
@@ -46,6 +48,7 @@
 			</ul>
     </div>
 		
+		<button id="switchButton">View rejected items</button>
 		<p id="troubleShoot">TroubleShoot</p>
 	</div>
   <script src="js/script.js"></script>
