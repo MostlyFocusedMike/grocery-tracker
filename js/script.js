@@ -93,7 +93,7 @@
 		for (i = 0; i < groceryListObj.prices.length; i++) {
 			total += parseFloat(groceryListObj.prices[i]);
 		}
-		document.getElementById("total").textContent = "Total: $" + total.toFixed(2);
+		document.getElementById("total").textContent = "Cart Total: $" + total.toFixed(2);
 	}
 	
 	function cartToRejects(e, rejects, groceryListObj, rejectsObj) {
