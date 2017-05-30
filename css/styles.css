@@ -1,0 +1,106 @@
+
+body {
+		font-family: Helvetica;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+}
+
+Div {
+	border-radius: 25px;
+	border-color: red;
+}
+
+div#content {
+	width: 400px;
+	padding: 5px;
+	margin: 0 auto;
+	background-color: darkgray
+}
+
+div.popUp {
+	background-color: darkslategrey;
+	padding: 3px;
+}
+
+div.wrapper {
+    width: 380px;
+    background-color: lightgray;
+    text-align: center;
+		margin: 5px auto;
+		padding: 5px;
+		border: solid 2px #000;
+	  
+}
+
+ul, li {
+	border-radius: 20px;
+}
+
+ul {
+	list-style-type: none;
+	width: 360px;
+	margin: 10px auto;
+	padding: 5px;
+}
+
+ul#groceryList {
+	background-color: steelblue;
+	
+}
+
+li.groceryItem {
+	background-color: skyblue;
+	margin: 5px auto;
+	width: 300px;
+	padding: 5px;
+	display: block;
+	
+}
+
+ul#shoppingCart {
+	background-color: green;
+	
+}
+
+ul#shoppingCart li {
+	background-color: lightgreen;
+	margin: 5px auto;
+	width: 300px;
+	padding: 5px;
+	display: block;
+	
+}
+
+ul#rejects {
+	background-color: crimson;
+}
+
+ul#rejects li {
+	background-color: lightcoral;
+	margin: 5px auto;
+	width: 300px;
+	padding: 5px;
+	display: block;
+	
+}
+
+input {
+	width: 200px;
+	margin: 10px auto;
+	display: block;
+	text-align: center;
+}
+
+button {
+	width: 160px;
+	margin: 10px auto;
+	display: block;
+	text-align: center;
+}
+
+button#x {
+	width: 20px;
+}
