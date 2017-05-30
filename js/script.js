@@ -169,7 +169,8 @@
 	
 	function switchCartRejects(visible) {
 		var cart = document.getElementById("cartWrapper"),
-			rejects = document.getElementById("rejectsWrapper");
+			rejects = document.getElementById("rejectsWrapper"),
+			switchButton = document.getElementById("switchButton");
 		if (visible === "cart") {
 			visible = "rejects";
 		} else {
@@ -179,9 +180,11 @@
 		if (visible === "cart") {
 			cart.style.display = "block";
 			rejects.style.display = "none";
+			switchButton.textContent = "View Rejected Items";
 		} else {
 			cart.style.display = "none";
 			rejects.style.display = "block";
+			switchButton.textContent = "View Shopping Cart";
 		}
 		return visible;	
 		
