@@ -34,6 +34,10 @@ div.wrapper {
 		border: solid 2px #000; 
 }
 
+div#rejectsWrapper {
+	display: none;
+}
+
 ul, li {
 	border-radius: 20px;
 }
@@ -103,3 +107,4 @@ button {
 button#x {
 	width: 20px;
 }
+

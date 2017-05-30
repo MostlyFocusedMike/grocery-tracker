@@ -168,8 +168,8 @@
 	}
 	
 	function switchCartRejects(visible) {
-		var cart = document.getElementById("shoppingCart"),
-			rejects = document.getElementById("rejects");
+		var cart = document.getElementById("cartWrapper"),
+			rejects = document.getElementById("rejectsWrapper");
 		if (visible === "cart") {
 			visible = "rejects";
 		} else {
