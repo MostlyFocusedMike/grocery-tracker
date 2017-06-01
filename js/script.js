@@ -26,8 +26,9 @@
 		
 		//formatting liText to remove the "add item x" from its textContent
 		arr = Array.prototype.slice.call(liItems);
+		
 		formatter = arr.indexOf("xAdd Item To Cart");
-		if (formatter !== -1) {
+		if (liText.includes("xAdd"))  {
 			liText = liText.slice(0, -17);
 		}
 	
