@@ -17,12 +17,7 @@ div#content {
 	width: 400px;
 	padding: 5px;
 	margin: 0 auto;
-	background-color: darkgray;
-}
-
-div.popUp {
-	background-color: darkslategrey;
-	padding: 3px;
+	background-color: #444;
 }
 
 div.wrapper {
@@ -31,11 +26,15 @@ div.wrapper {
     text-align: center;
 		margin: 5px auto;
 		padding: 5px;
-		border: solid 2px #000; 
 }
 
 div#rejectsWrapper {
 	display: none;
+}
+
+h1, h2 {
+	color: white;
+	margin: 2px;
 }
 
 ul, li {
@@ -49,18 +48,29 @@ ul {
 	padding: 5px;
 }
 
+div#listWrapper {
+	background-color: #444;
+}
+
 ul#groceryList {
-	background-color: steelblue;
+	background-color: #0D47A1;
+	min-height: 35px;
 	
 }
 
 li.groceryItem {
-	background-color: skyblue;
+	background-color: #BBDEFB;
 	margin: 5px auto;
 	width: 300px;
 	padding: 5px;
-	display: block;
-	
+	display: block;	
+}
+
+div.popUp {
+	background-color: #90CAF9;
+	padding: 3px;
+	width: 250px;
+	margin: 0 auto;
 }
 
 ul#shoppingCart {
@@ -73,8 +83,7 @@ ul#shoppingCart li {
 	margin: 5px auto;
 	width: 300px;
 	padding: 5px;
-	display: block;
-	
+	display: block;	
 }
 
 ul#rejects {
