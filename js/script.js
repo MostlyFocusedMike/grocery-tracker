@@ -34,9 +34,7 @@
 		li.innerHTML = liText + inputs;
 		
 		//converts node list to an array, so pop up menu is always removed from non event targets
-		for (i = 0; i < liItems.length; i++) {
-			arrayItems[i] = liItems[i];
-		}
+		arrayItems = Array.prototype.slice.call(liItems);
 		
 		for (i = 0; i < liItems.length; i++) {
 			el = arrayItems[i];
