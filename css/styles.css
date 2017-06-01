@@ -14,7 +14,8 @@ Div {
 }
 
 div#content {
-	width: 400px;
+	width: 750px;
+	height: 1330px;
 	padding: 5px;
 	margin: 0 auto;
 	background-color: #444;
