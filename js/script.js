@@ -22,12 +22,12 @@
 			liItems = document.getElementsByClassName("groceryItem"),
 			arrayItems = [],
 			inputs = '<div class="popUp"><button id="x">x</button><input type="text" value="0.00" id="itemPrice"><input type="text" value="1" id="itemAmount"><input type="text" value="0" id="itemSale"><button id="addToCart">Add Item To Cart</button></div>',
-			formatter, i, el, elText, arr;
+			i, el, elText, arr;
 		
 		//formatting liText to remove the "add item x" from its textContent
 		arr = Array.prototype.slice.call(liItems);
 		
-		formatter = arr.indexOf("xAdd Item To Cart");
+		
 		if (liText.includes("xAdd"))  {
 			liText = liText.slice(0, -17);
 		}
