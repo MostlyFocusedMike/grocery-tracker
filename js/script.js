@@ -28,8 +28,8 @@
 		arr = Array.prototype.slice.call(liItems);
 		
 		
-		if (liText.includes("xAdd"))  {
-			liText = liText.slice(0, -17);
+		if (liText.includes("xPrice"))  {
+			liText = liText.slice(0, -34);
 		}
 	
 		li.innerHTML = liText + inputs;
@@ -40,9 +40,8 @@
 		for (i = 0; i < liItems.length; i++) {
 			el = arrayItems[i];
 			elText = el.textContent;
-			formatter = elText.indexOf("xAdd Item To Cart");
-			if (formatter !== -1) {
-				elText = elText.slice(0, -17);
+			if (elText.includes("xPrice")) {
+				elText = elText.slice(0, -34);
 			}
 			
 			if (elText !== liText) {
@@ -54,7 +53,7 @@
 	
 	function xMenu(e) {
 		var li = e.target.parentElement.parentElement,
-			liText = li.textContent.slice(0, -17);
+			liText = li.textContent.slice(0, -34);
 		li.innerHTML = liText;
 	}
 
