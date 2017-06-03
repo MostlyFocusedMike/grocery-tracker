@@ -9,7 +9,7 @@ html {
 }
 
 Div {
-	border-radius: 25px;
+	border-radius: 3px;
 	border-color: red;
 }
 
@@ -22,12 +22,61 @@ div#content {
 }
 
 div.wrapper {
-    width: 350px;
-    background-color: lightgray;
+    width: 300px;
     text-align: center;
 		margin: 5px auto;
 		padding: 5px;
 }
+
+div#header {
+	width: 280px;
+	height: 50px;
+	padding-top: 11px;
+	margin-bottom: 20px;
+	background-color: lightgray;
+}
+
+div#mainInput {
+	width: 200px;
+	background-color: lightgray;
+}
+
+input {
+	width: 150px;
+	margin: 10px auto;
+	display: block;
+	text-align: center;
+}
+
+button#addItem {
+	width: auto;
+	margin: 10px auto;
+	display: block;
+	text-align: center;
+}
+
+
+ul, li {
+	border-radius: inherit;
+}
+
+ul {
+	list-style-type: none;
+	margin: 10px auto;
+	padding: 5px;
+	min-height: 35px;
+}
+
+li {
+	width: 230px;
+	font-size: 25px;	
+	margin: 20px auto;
+}
+
+
+
+
+
 
 div#rejectsWrapper {
 	display: none;
@@ -39,15 +88,9 @@ h1, h2 {
 	text-shadow: 2px 3px 10px #000;
 }
 
-ul, li {
-	border-radius: 20px;
-}
 
-ul {
-	list-style-type: none;
-	margin: 10px auto;
-	padding: 5px;
-}
+
+
 
 div#listWrapper {
 	background-color: #444;
@@ -55,13 +98,13 @@ div#listWrapper {
 
 ul#groceryList {
 	background-color: #0D47A1;
-	min-height: 35px;
+
 	
 }
 
 li.groceryItem {
 	background-color: #BBDEFB;
-	margin: 5px auto;
+
 	padding: 5px;
 	display: block;	
 }
@@ -80,9 +123,6 @@ ul#shoppingCart {
 
 ul#shoppingCart li {
 	background-color: lightgreen;
-	margin: 5px auto;
-	width: 300px;
-	padding: 5px;
 	display: block;	
 }
 
@@ -92,15 +132,12 @@ ul#rejects {
 
 ul#rejects li {
 	background-color: lightcoral;
-	margin: 5px auto;
-	width: 300px;
-	padding: 5px;
 	display: block;
 	
 }
 
 input {
-	width: 200px;
+	width: 150px;
 	margin: 10px auto;
 	display: block;
 	text-align: center;
