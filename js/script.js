@@ -21,7 +21,7 @@
 			liText = li.textContent,
 			liItems = document.getElementsByClassName("groceryItem"),
 			arrayItems = [],
-			inputs = '<div class="popUp"><button id="x">x</button><input type="text" value="0.00" id="itemPrice"><input type="text" value="1" id="itemAmount"><input type="text" value="0" id="itemSale"><button id="addToCart">Add Item To Cart</button></div>',
+			inputs = '<div class="popUp"><button id="x">x</button><p>Price</p><div><p class="sign">$</p><input type="text" value="0.00" id="itemPrice"></div><p>Sale</p><div><p class="sign">%</p><input type="text" value="0" id="itemSale"></div><p>Amount</p><div><input type="text" value="1" id="itemAmount"></div><button id="addToCart">Add Item To Cart</button></div>',
 			i, el, elText, arr;
 		
 		//formatting liText to remove the "add item x" from its textContent
