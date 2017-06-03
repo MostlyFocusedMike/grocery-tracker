@@ -14,14 +14,15 @@ Div {
 }
 
 div#content {
-	width: 400px;
+	width: 375px;
+	height: 667px;
 	padding: 5px;
 	margin: 0 auto;
 	background-color: #444;
 }
 
 div.wrapper {
-    width: 380px;
+    width: 350px;
     background-color: lightgray;
     text-align: center;
 		margin: 5px auto;
@@ -44,7 +45,6 @@ ul, li {
 
 ul {
 	list-style-type: none;
-	width: 360px;
 	margin: 10px auto;
 	padding: 5px;
 }
@@ -62,7 +62,6 @@ ul#groceryList {
 li.groceryItem {
 	background-color: #BBDEFB;
 	margin: 5px auto;
-	width: 300px;
 	padding: 5px;
 	display: block;	
 }
