@@ -136,24 +136,35 @@ input#itemAmount, input#itemSale {
 	text-align: center;	
 }
 
-input#itemAmount {
-	clear: left;
-}
+
 button#x {
 	position: absolute;
-	margin: -5px 10px 10px 185px;
+	margin: -5px 10px 10px 145px;
 	width: 20px;
 	border-radius: 20px;
 }
 li p {
+	text-align: center;
 	font-size: 20px;
 	margin: 0;
-	margin-top: 15px;
-}
-p.sign {
-	float: left;
-	clear: left;
 	
+}
+li div {
+	width: 90px;
+	margin-left: 27px;
+	text-align: center;
+}
+p#percent, p#dollar {
+	float: left;
+	padding: 6px 5px 5px 5px;
+}
+
+p#percent {
+	padding-left: 10px;
+}
+
+input#itemAmount {
+	margin-left: 32px;
 }
 
 /*Main lists start////////////////////////////////////*/
