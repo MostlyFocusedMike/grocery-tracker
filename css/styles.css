@@ -55,12 +55,18 @@ button#addItem {
 	text-align: center;
 }
 
+div#cartAndRejects {
+	width: 300px;
+	margin: 10px auto;
+	background-color: lightgray;
+}
 
 ul, li {
 	border-radius: inherit;
 }
 
 ul {
+	width: 260px;
 	list-style-type: none;
 	margin: 10px auto;
 	padding: 5px;
@@ -70,7 +76,7 @@ ul {
 li {
 	width: 230px;
 	font-size: 25px;	
-	margin: 20px auto;
+	margin: 20px auto 20px auto;
 }
 
 
