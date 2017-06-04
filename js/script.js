@@ -12,7 +12,7 @@
 			newLi.appendChild(newLiText);
 			newLi.className = "groceryItem";
 			document.getElementById("groceryList").appendChild(newLi);
-			nameInput.value = "";
+			nameInput.value = "Type item name here";
 		}
 	}
 	
