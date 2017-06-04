@@ -90,10 +90,6 @@ button#addItem {
 	border-radius: 50px;
 }
 
-
-
-
-
 div#listWrapper {
 	background-color: dodgerblue;
 }
@@ -133,7 +129,7 @@ input#itemAmount, input#itemSale {
 
 button#x {
 	position: absolute;
-	margin: -5px 10px 10px 145px;
+	margin: -5px 10px 10px -15px;
 	width: 20px;
 	border-radius: 20px;
 }
