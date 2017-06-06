@@ -9,8 +9,6 @@ html {
 }
 
 Div {
-	border-radius: 3px;
-	border-color: red;
 }
 
 div#content {
@@ -18,7 +16,7 @@ div#content {
 	height: 667px;
 	padding: 5px;
 	margin: 0 auto;
-	background-color: #444;
+	border: solid 2px black;
 }
 
 div.wrapper {
