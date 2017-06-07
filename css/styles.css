@@ -57,41 +57,48 @@ div#mainInput {
 }
 
 div#mainInput input {
-	width: 195px;
+	width: 190px;
 	font-size: 20px;
 	padding: 5px;
 	margin: 0;
 	position: absolute;
 	border: solid 2px black;
+	font-family: Avenir;
+	color: gray;
 }
 
 div#mainInput button {
-	width: 100px;
+	width: 110px;
 	font-size: 20px;
 	padding: 5px;
 	margin: 0;
 	position: absolute;
-	left: 262px;
+	left: 257px;
 	background-color: #67ADFF;
 	color: white;
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
 	border: solid 2px black;
+	font-family: Avenir;
 }
 
 #listWrapper ul {
 	list-style: none;
-	width: inherit;
+	width: 360px;
 	padding: 0;
 	border-bottom: solid 2px #0077C6;
+	margin: 10px auto;
 }
 
 #listWrapper li {
 	border-top: solid 2px #0077C6;
-	width: inherit;
-	margin: 0;
+	width: 330px;
+	margin: 0 auto;
 	padding: 10px;
 	padding-left: 20px;
 	font-size: 20px;
 	font-family: Avenir;
+	font-style: italic;
+
 }
+
