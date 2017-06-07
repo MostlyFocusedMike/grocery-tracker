@@ -35,18 +35,18 @@ h1 {
 	margin: 0 auto;
 	padding: 0;
 }
+
+h2 {
+	padding-left: 10px;
+	padding-top: 0;
+	margin-top: 10px;
+	font-family: Avenir;
+}
 /* Grocerl list ///////////////////////////////////////////// */
 div#listWrapper {
 	border-top: solid 5px #0077C6;
 	margin-top: 10px;
 	padding-top: 0px;
-}
-
-div#listWrapper h2 {
-	padding-left: 10px;
-	padding-top: 0;
-	margin-top: 10px;
-	font-family: Avenir;
 }
 
 div#mainInput {
@@ -65,6 +65,7 @@ div#mainInput input {
 	border: solid 2px black;
 	font-family: Avenir;
 	color: gray;
+	text-align: center;
 }
 
 div#mainInput button {
