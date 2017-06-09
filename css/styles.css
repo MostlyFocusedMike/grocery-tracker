@@ -1,9 +1,7 @@
 html, body {
     margin: 0;
     padding: 0;
-}
-
-Div {
+		font-family: Avenir;
 }
 
 div#content {
@@ -13,17 +11,6 @@ div#content {
 	margin: 0 auto;
 	border: solid 2px black;
 	position: absolute;
-}
-
-div#header {
-	height: 60px;
-	padding: 0px;
-	background-color: black;
-	color: white;
-	margin-top: 10px;
-	font-family: Verdana;
-	text-align: center;
-	padding-top: 10px;
 }
 
 h1 {
@@ -38,7 +25,49 @@ h2 {
 	margin-top: 10px;
 	font-family: Avenir;
 }
-/* Grocerl list ///////////////////////////////////////////// */
+
+ul {
+	list-style: none;
+	width: 360px;
+	padding: 0;
+	border-bottom: solid 2px black;
+	margin: 10px auto;
+}
+li {
+	border-top: solid 2px black;
+	width: 320px;
+	margin: 0 auto;
+	padding: 10px 20px;
+	padding-left: 20px;
+	font-size: 20px;
+	font-family: Avenir;
+	font-style: italic;
+}
+button {
+	width: 200px;
+	font-size: 20px;
+	padding: 5px;
+	margin: 10px;
+	background-color: #67ADFF;
+	color: white;
+	border-radius: 10px;
+	border: solid 2px black;
+	font-family: Avenir;
+}
+
+/*Header /////////////////////////////////////////////////////*/
+div#header {
+	height: 60px;
+	padding: 0px;
+	background-color: black;
+	color: white;
+	margin-top: 10px;
+	font-family: Verdana;
+	text-align: center;
+	padding-top: 10px;
+}
+
+/* Grocery list ///////////////////////////////////////////// */
 div#listWrapper {
 	border-top: solid 5px #0077C6;
 	margin-top: 10px;
@@ -51,7 +80,6 @@ div#mainInput {
 	margin: 0 auto;
 	padding: 0px;
 }
-
 div#mainInput input {
 	width: 190px;
 	font-size: 20px;
@@ -63,7 +91,6 @@ div#mainInput input {
 	color: gray;
 	text-align: center;
 }
-
 div#mainInput button {
 	width: 110px;
 	font-size: 20px;
@@ -74,7 +101,9 @@ div#mainInput button {
 	background-color: #67ADFF;
 	color: white;
 	border-top-right-radius: 10px;
+	border-top-left-radius: 0px;
 	border-bottom-right-radius: 10px;
+	border-bottom-left-radius: 0px;
 	border: solid 2px black;
 	font-family: Avenir;
 }
@@ -86,7 +115,6 @@ div#mainInput button {
 	border-bottom: solid 2px #0077C6;
 	margin: 10px auto;
 }
-
 #listWrapper li {
 	border-top: solid 2px #0077C6;
 	width: 320px;
@@ -96,9 +124,9 @@ div#mainInput button {
 	font-size: 20px;
 	font-family: Avenir;
 	font-style: italic;
-
 }
 
+/*Pop up section*/
 .popUp {
 	padding: 5px 10px;
 	text-align: center;
@@ -108,45 +136,12 @@ div#mainInput button {
 	height: 147px;
 	border: solid 2px black;
 }
-
 .popUp div {
-/*	border: solid 2px red;*/
 	display: block;
 	width: 180px;
 	margin: 10px auto;
 	text-align: left;
-	
 }
-
-li p {
-	margin: 10px;
-	display: inline;
-}
-
-li input {
-	display: inline;
-	font-size: 20px;
-	width: 60px;
-	padding: 5px;
-	text-align: center;
-}
-
-input#itemAmount {
-	width: 28px;
-}
-
-li button {
-	font-size: 20px;
-	padding: 5px;
-	width: 180px;
-	margin: 10px;
-	background-color: #0077C6;
-	color: white;
-	border-radius: 10px;
-	border: solid 2px black;
-	font-family: Avenir;
-}
-
 button#x {
 	background-color: #0077C6;
 	color: white;
@@ -160,12 +155,37 @@ button#x {
 	margin-left: 75px;
 	margin-top: -5px;
 }
-
-p {
+li p {
+	margin: 10px;
+	display: inline;
 	color: white;
 }
-
 p#percent {
 	font-size: 17px;
 	margin-right: 7px;
 }
+li input {
+	display: inline;
+	font-size: 20px;
+	width: 60px;
+	padding: 5px;
+	text-align: center;
+}
+input#itemAmount {
+	width: 28px;
+}
+li button#addToCart {
+	font-size: 20px;
+	padding: 5px;
+	width: 180px;
+	margin: 10px;
+	background-color: #0077C6;
+	color: white;
+	border-radius: 10px;
+	border: solid 2px black;
+	font-family: Avenir;
+}
+
+/*Shopping cart and reject list section*/
+
+
