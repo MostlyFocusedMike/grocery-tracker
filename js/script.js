@@ -21,15 +21,15 @@
 			liText = li.textContent,
 			liItems = document.getElementsByClassName("groceryItem"),
 			arrayItems = [],
-			inputs = '<div class="popUp"><button id="x">x</button><p>Price</p><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"></div><p>Sale</p><div><p id="percent">%</p><input type="text" value="0" id="itemSale"></div><p>Amount</p><div><input type="text" value="1" id="itemAmount"></div><button id="addToCart">Add Item To Cart</button></div>',
+			inputs = '<div class="popUp"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="0" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="1" id="itemAmount"><p>Amount</p></div><button id="addToCart">Add Item To Cart</button></div>',
 			i, el, elText, arr;
 		
 		//formatting liText to remove the "add item x" from its textContent
 		arr = Array.prototype.slice.call(liItems);
 		
 		
-		if (liText.includes("xPrice"))  {
-			liText = liText.slice(0, -34);
+		if (liText.includes("x$Price"))  {
+			liText = liText.slice(0, -35);
 		}
 	
 		li.innerHTML = liText + inputs;
@@ -40,8 +40,8 @@
 		for (i = 0; i < liItems.length; i++) {
 			el = arrayItems[i];
 			elText = el.textContent;
-			if (elText.includes("xPrice")) {
-				elText = elText.slice(0, -34);
+			if (elText.includes("x$Price")) {
+				elText = elText.slice(0, -35);
 			}
 			
 			if (elText !== liText) {
@@ -53,7 +53,7 @@
 	
 	function xMenu(e) {
 		var li = e.target.parentElement.parentElement,
-			liText = li.textContent.slice(0, -34);
+			liText = li.textContent.slice(0, -35);
 		li.innerHTML = liText;
 	}
 
