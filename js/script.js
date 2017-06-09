@@ -71,7 +71,7 @@
 	
 	function addToCart(e, finalPrice, groceryListObj) {
 		var item = e.target.parentElement.parentElement,
-			name = item.textContent.slice(0, -34),
+			name = item.textContent.slice(0, -35),
 			price = finalPrice,
 			groceryList = document.getElementById("groceryList"),
 			cart = document.getElementById("shoppingCart"),
