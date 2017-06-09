@@ -12,6 +12,7 @@ div#content {
 	padding: 0px;
 	margin: 0 auto;
 	border: solid 2px black;
+	position: absolute;
 }
 
 div#header {
