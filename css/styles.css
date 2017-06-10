@@ -90,6 +90,7 @@ div#mainInput input {
 	font-family: Avenir, Helvetica, sans-serif;
 	color: gray;
 	text-align: center;
+	border-radius: 0px;
 }
 div#mainInput button {
 	width: 110px;
@@ -167,8 +168,10 @@ li input {
 	display: inline;
 	font-size: 20px;
 	width: 60px;
+	height: 24px;
 	padding: 5px;
 	text-align: center;
+	border-radius: 0px;
 }
 input#itemAmount {
 	width: 28px;
