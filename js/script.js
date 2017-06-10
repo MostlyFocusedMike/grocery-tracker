@@ -179,10 +179,12 @@
 			cart.style.display = "block";
 			rejects.style.display = "none";
 			switchButton.textContent = "View Rejected Items";
+			switchButton.style.backgroundColor = "#f66";
 		} else {
 			cart.style.display = "none";
 			rejects.style.display = "block";
 			switchButton.textContent = "View Shopping Cart";
+			switchButton.style.backgroundColor = "forestgreen";
 		}
 		return visible;	
 		
