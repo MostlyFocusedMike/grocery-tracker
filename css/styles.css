@@ -198,11 +198,14 @@ li button#addToCart {
 }
 
 ul#rejects {
+	border-top: solid 2px red;
 	border-bottom: solid 2px red;
+	min-height: 45px;
 }
 
 .rejectsItem {
 	border-top-color: red;
+	margin: -2px 0px;
 }
 
 #cartTitle {
@@ -210,6 +213,9 @@ ul#rejects {
 }
 
 #shoppingCart {
+	border-top: solid 2px red;
+	border-bottom: solid 2px red;
+	min-height: 45px;
 	border-color: darkgreen;
 }
 
@@ -219,6 +225,7 @@ ul#rejects {
 
 .cartItem {
 	border-color: darkgreen;
+	margin: -2px 0px;
 }
 
 #rejectsWrapper p {
