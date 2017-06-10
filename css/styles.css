@@ -34,11 +34,10 @@ ul {
 	margin: 10px auto;
 }
 li {
-	border-top: solid 2px black;
-	width: 320px;
-	margin: 0 auto;
-	padding: 10px 20px;
-	padding-left: 20px;
+	border-top: solid 1px black;
+	width: 300px;
+	margin: -2px auto;
+	padding: 10px 20px 10px 20px;
 	font-size: 20px;
 	font-family: Avenir, Helvetica, sans-serif;
 	font-style: italic;
@@ -115,15 +114,12 @@ div#mainInput button {
 	padding: 0;
 	border-bottom: solid 2px #0077C6;
 	margin: 10px auto;
+	border-top: solid 2px #0077C6;
+	border-bottom: solid 2px #0077C6;
+	min-height: 45px;
 }
 #listWrapper li {
-	border-top: solid 2px #0077C6;
-	width: 320px;
-	margin: 0 auto;
-	padding: 10px 20px;
-	font-size: 20px;
-	font-family: Avenir, Helvetica, sans-serif;
-	font-style: italic;
+	border-color: #0077C6;
 }
 
 /*Pop up section*/
@@ -228,7 +224,6 @@ ul#shoppingCart {
 }
 li.cartItem {
 	border-color: forestgreen;
-	margin: -2px 0px;
 }
 
 #rejectsWrapper {
@@ -248,7 +243,6 @@ ul#rejects {
 }
 li.rejectsItem {
 	border-top-color: #ff6666;
-	margin: -2px 0px;
 }
 button#switchButton {
 	background-color: #ff6666;
