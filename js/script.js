@@ -21,7 +21,7 @@
 			liText = li.textContent,
 			liItems = document.getElementsByClassName("groceryItem"),
 			arrayItems = [],
-			inputs = '<div class="popUp"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="0" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="1" id="itemAmount"><p>Amount</p></div><button id="addToCart">Add Item To Cart</button></div>',
+			inputs = '<div class="popUp"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="0" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="1" id="itemAmount"><p>Amount</p></div></div><button id="addToCart">Add Item To Cart</button>',
 			i, el, elText, arr;
 		
 		//formatting liText to remove the "add item x" from its textContent
@@ -70,7 +70,7 @@
 	}
 	
 	function addToCart(e, finalPrice, groceryListObj) {
-		var item = e.target.parentElement.parentElement,
+		var item = e.target.parentElement,
 			name = item.textContent.slice(0, -35),
 			price = finalPrice,
 			groceryList = document.getElementById("groceryList"),

@@ -120,7 +120,6 @@ div#mainInput button {
 	width: 320px;
 	margin: 0 auto;
 	padding: 10px 20px;
-	padding-left: 20px;
 	font-size: 20px;
 	font-family: Avenir, Helvetica, sans-serif;
 	font-style: italic;
@@ -131,7 +130,7 @@ div#mainInput button {
 	padding: 5px 10px;
 	text-align: center;
 	width: 190px;
-	margin: 10px auto 50px;
+	margin: 10px auto;
 	background-color: #0077C6;
 	height: 147px;
 	border: solid 2px black;
@@ -148,7 +147,7 @@ button#x {
 	border: none;
 	width: 30px;
 	margin: 0px;
-	padding: 0;
+	padding: 0px;
 	font-size: 25px;
 	font-style: bold;
 	position: absolute;
@@ -176,14 +175,15 @@ input#itemAmount {
 }
 li button#addToCart {
 	font-size: 20px;
+	margin: 10px auto;
 	padding: 5px;
-	width: 180px;
-	margin: 10px;
+	width: 190px;
 	background-color: #0077C6;
 	color: white;
 	border-radius: 10px;
 	border: solid 2px black;
 	font-family: Avenir, Helvetica, sans-serif;
+	display: block;
 }
 
 /*Shopping cart and reject list section ////////////////////////////////////*/
