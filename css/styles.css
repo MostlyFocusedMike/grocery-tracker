@@ -189,8 +189,7 @@ li button#addToCart {
 /*Shopping cart and reject list section ////////////////////////////////////*/
 
 #cartAndRejects {
-	background-color: lightgray;
-	border-top: solid 5px yellow;
+	border-top: solid 10px black;
 }
 
 #rejectsWrapper {
@@ -242,4 +241,10 @@ ul#rejects {
 button#switchButton {
 	width: 215px;
 	margin-left: 80px;
+}
+
+#total {
+	text-align: right;
+	margin-right: 10px;
+	margin-bottom: 0px;
 }
