@@ -188,12 +188,6 @@ li button#addToCart {
 
 /*Shopping cart and reject list section*/
 
-
-
-div {
-	
-}
-
 #cartAndRejects {
 	background-color: lightgray;
 	border-top: solid 5px yellow;
@@ -203,10 +197,34 @@ div {
 	display: none;
 }
 
-#rejects {
+ul#rejects {
 	border-bottom: solid 2px red;
 }
 
 .rejectsItem {
 	border-top-color: red;
+}
+
+#cartTitle {
+	color: darkgreen;
+}
+
+#shoppingCart {
+	border-color: darkgreen;
+}
+
+#cartWrapper p {
+	color: darkgreen;
+}
+
+.cartItem {
+	border-color: darkgreen;
+}
+
+#rejectsWrapper p {
+	color: darkred;
+}
+
+#rejectsTitle {
+	color: darkred;
 }
