@@ -75,13 +75,13 @@ div#listWrapper {
 }
 
 div#mainInput {
-	width: 310px;
+	width: 322px;
 	height: 40px;
 	margin: 0 auto;
 	padding: 0px;
 }
 div#mainInput input {
-	width: 190px;
+	width: 200px;
 	font-size: 20px;
 	padding: 5px;
 	margin: 0;
@@ -98,7 +98,7 @@ div#mainInput button {
 	padding: 5px;
 	margin: 0;
 	position: absolute;
-	margin-left: 200px;
+	margin-left: 212px;
 	background-color: #67ADFF;
 	color: white;
 	border-top-right-radius: 10px;
