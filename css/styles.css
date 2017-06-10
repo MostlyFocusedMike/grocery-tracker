@@ -191,60 +191,50 @@ li button#addToCart {
 #cartAndRejects {
 	border-top: solid 10px black;
 }
-
-#rejectsWrapper {
-	display: none;
+#total {
+	text-align: right;
+	margin-right: 10px;
+	margin-bottom: 0px;
 }
-
-ul#rejects {
-	border-top: solid 2px red;
-	border-bottom: solid 2px red;
-	min-height: 45px;
-}
-
-.rejectsItem {
-	border-top-color: red;
-	margin: -2px 0px;
-}
-
 #cartTitle, #rejectsTitle {
 	color: darkgreen;
 	margin: 10px 0px;
 }
-
-#shoppingCart {
-	border-top: solid 2px red;
-	border-bottom: solid 2px red;
-	min-height: 45px;
-	border-color: darkgreen;
-}
-
 #cartAndRejects p {
 	color: darkgreen;
 	margin: 0px;
 	text-align: center;
 }
-
-.cartItem {
+ul#shoppingCart {
+	border-top: solid 2px red;
+	border-bottom: solid 2px red;
+	min-height: 45px;
+	border-color: darkgreen;
+}
+li.cartItem {
 	border-color: darkgreen;
 	margin: -2px 0px;
 }
 
-#rejectsWrapper p {
-	color: darkred;
+#rejectsWrapper {
+	display: none;
 }
-
 #rejectsTitle {
 	color: darkred;
 }
-
+#rejectsWrapper p {
+	color: darkred;
+}
+ul#rejects {
+	border-top: solid 2px red;
+	border-bottom: solid 2px red;
+	min-height: 45px;
+}
+li.rejectsItem {
+	border-top-color: red;
+	margin: -2px 0px;
+}
 button#switchButton {
 	width: 215px;
 	margin-left: 80px;
-}
-
-#total {
-	text-align: right;
-	margin-right: 10px;
-	margin-bottom: 0px;
 }
