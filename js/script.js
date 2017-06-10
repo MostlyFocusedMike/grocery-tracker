@@ -28,7 +28,7 @@
 		arr = Array.prototype.slice.call(liItems);
 		
 		
-		if (liText.includes("x$Price"))  {
+		if (liText.includes("x$Price")) {
 			liText = liText.slice(0, -35);
 		}
 	
@@ -186,9 +186,30 @@
 			switchButton.textContent = "View Shopping Cart";
 			switchButton.style.backgroundColor = "forestgreen";
 		}
-		return visible;	
+		return visible;
+	}
+	
+	function emptyListFill() {
+		var glItems = document.getElementsByClassName("groceryItem"),
+			scItems = document.getElementsByClassName("cartItem"),
+			rItems = document.getElementsByClassName("rejectsItem");
 		
-			
+		if (glItems.length === 0) {
+			document.getElementById("groceryWarning").style.display = "block";
+		} else {
+			document.getElementById("groceryWarning").style.display = "none";
+		}
+		if (scItems.length === 0) {
+			document.getElementById("cartWarning").style.display = "block";
+		} else {
+			document.getElementById("cartWarning").style.display = "none";
+		}
+		if (rItems.length === 0) {
+			document.getElementById("rejectsWarning").style.display = "block";
+		} else {
+			document.getElementById("rejectsWarning").style.display = "none";
+		}
+
 	}
 //^ functions   v events////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////
@@ -209,6 +230,9 @@
 		visible = "cart",
 		switchVisibility = document.getElementById('switchButton');
 	
+	(function(){
+		emptyListFill();
+	}());
 	body.addEventListener("click", function (e) {
 		if (e.target.type === "text") {
 			e.target.value = "";
@@ -232,7 +256,7 @@
 			addToCart(e, finalPrice, groceryListObj);
 			calculateTotal(groceryListObj);
 		}
-		
+		emptyListFill();
 	}, false);
 	
 	cart.addEventListener("click", function (e) {
@@ -242,6 +266,7 @@
 				calculateTotal(groceryListObj);
 			}
 		}
+		emptyListFill();
 	}, false);
 	
 	rejects.addEventListener("click", function (e) {
@@ -251,6 +276,7 @@
 				calculateTotal(groceryListObj);
 			}
 		}
+		emptyListFill();
 	}, false);
 	
 	switchVisibility.addEventListener("click", function () {
