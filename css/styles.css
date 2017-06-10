@@ -189,3 +189,24 @@ li button#addToCart {
 /*Shopping cart and reject list section*/
 
 
+
+div {
+	
+}
+
+#cartAndRejects {
+	background-color: lightgray;
+	border-top: solid 5px yellow;
+}
+
+#rejectsWrapper {
+	display: none;
+}
+
+#rejects {
+	border-bottom: solid 2px red;
+}
+
+.rejectsItem {
+	border-top-color: red;
+}
