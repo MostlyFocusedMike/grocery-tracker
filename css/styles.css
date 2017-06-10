@@ -9,7 +9,7 @@ div#content {
 	height: 667px;
 	padding: 0px;
 	margin: 0 auto;
-	border: solid 2px black;
+
 	position: absolute;
 }
 
@@ -194,47 +194,52 @@ li button#addToCart {
 #total {
 	text-align: right;
 	margin-right: 10px;
-	margin-bottom: 0px;
+	margin-bottom: 10px;
 }
 #cartTitle, #rejectsTitle {
-	color: darkgreen;
+	color: forestgreen;
 	margin: 10px 0px;
 }
 #cartAndRejects p {
-	color: darkgreen;
+	color: forestgreen;
 	margin: 0px;
 	text-align: center;
 }
+#cartWrapper {
+	border-top: solid 5px forestgreen;
+}
 ul#shoppingCart {
-	border-top: solid 2px red;
-	border-bottom: solid 2px red;
+	border-top: solid 2px forestgreen;
+	border-bottom: solid 2px forestgreen;
 	min-height: 45px;
-	border-color: darkgreen;
+	border-color: forestgreen;
 }
 li.cartItem {
-	border-color: darkgreen;
+	border-color: forestgreen;
 	margin: -2px 0px;
 }
 
 #rejectsWrapper {
+	border-top: solid 5px #f66;
 	display: none;
 }
 #rejectsTitle {
-	color: darkred;
+	color: #ff6666;
 }
 #rejectsWrapper p {
-	color: darkred;
+	color: #ff6666;
 }
 ul#rejects {
-	border-top: solid 2px red;
-	border-bottom: solid 2px red;
+	border-top: solid 2px #ff6666;
+	border-bottom: solid 2px #ff6666;
 	min-height: 45px;
 }
 li.rejectsItem {
-	border-top-color: red;
+	border-top-color: #ff6666;
 	margin: -2px 0px;
 }
 button#switchButton {
+	background-color: #ff6666;
 	width: 215px;
 	margin-left: 80px;
 }
