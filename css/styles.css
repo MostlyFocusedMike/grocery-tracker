@@ -186,7 +186,7 @@ li button#addToCart {
 	font-family: Avenir;
 }
 
-/*Shopping cart and reject list section*/
+/*Shopping cart and reject list section ////////////////////////////////////*/
 
 #cartAndRejects {
 	background-color: lightgray;
@@ -208,8 +208,9 @@ ul#rejects {
 	margin: -2px 0px;
 }
 
-#cartTitle {
+#cartTitle, #rejectsTitle {
 	color: darkgreen;
+	margin: 10px 0px;
 }
 
 #shoppingCart {
@@ -219,8 +220,10 @@ ul#rejects {
 	border-color: darkgreen;
 }
 
-#cartWrapper p {
+#cartAndRejects p {
 	color: darkgreen;
+	margin: 0px;
+	text-align: center;
 }
 
 .cartItem {
@@ -234,4 +237,9 @@ ul#rejects {
 
 #rejectsTitle {
 	color: darkred;
+}
+
+button#switchButton {
+	width: 215px;
+	margin-left: 80px;
 }
