@@ -203,7 +203,9 @@ li button#addToCart {
 	width: 130px;
 	text-align: center;
 	float: right;
-	background-color: #444;
+	background-color: #111;
+	border-bottom-left-radius: 60px;
+	border-bottom-right-radius: 60px;
 	color: white;
 }
 #cartTitle, #rejectsTitle {
