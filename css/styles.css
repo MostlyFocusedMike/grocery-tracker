@@ -192,20 +192,27 @@ li button#addToCart {
 /*Shopping cart and reject list section ////////////////////////////////////*/
 
 #cartAndRejects {
-	border-top: solid 10px black;
+	
 }
 #total {
 	text-align: right;
-	margin-right: 10px;
-	margin-bottom: 10px;
+	margin: 5px 20px 5px 10px;
+	padding: 5px;
+	line-height: 20px;
+	font-size: 20px;
+	width: 130px;
+	text-align: center;
+	float: right;
+	background-color: #444;
+	color: white;
 }
 #cartTitle, #rejectsTitle {
 	color: forestgreen;
-	margin: 10px 0px;
+	margin: 10px 0px 10px 10px;
 }
 #cartAndRejects p {
 	color: forestgreen;
-	margin: 0px;
+	margin: 15px;
 	text-align: center;
 }
 #cartWrapper {
