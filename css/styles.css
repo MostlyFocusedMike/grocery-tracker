@@ -50,7 +50,7 @@ button {
 	background-color: #67ADFF;
 	color: white;
 	border-radius: 10px;
-	border: solid 2px black;
+	border: none;
 	font-family: Avenir, Helvetica, sans-serif;
 }
 
@@ -94,17 +94,17 @@ div#mainInput input {
 div#mainInput button {
 	width: 110px;
 	font-size: 20px;
-	padding: 5px;
+	padding: 7px;
 	margin: 0;
 	position: absolute;
 	margin-left: 212px;
-	background-color: #67ADFF;
+	background-color: #0077C6;
 	color: white;
 	border-top-right-radius: 10px;
 	border-top-left-radius: 0px;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 0px;
-	border: solid 2px black;
+	border: none;
 	font-family: Avenir, Helvetica, sans-serif;
 }
 
@@ -130,7 +130,6 @@ div#mainInput button {
 	margin: 10px auto;
 	background-color: #0077C6;
 	height: 150px;
-	border: solid 2px black;
 }
 .popUp div {
 	display: block;
@@ -180,7 +179,6 @@ li button#addToCart {
 	background-color: #0077C6;
 	color: white;
 	border-radius: 10px;
-	border: solid 2px black;
 	font-family: Avenir, Helvetica, sans-serif;
 	display: block;
 }
