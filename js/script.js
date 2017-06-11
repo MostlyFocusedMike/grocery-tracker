@@ -66,13 +66,13 @@
 	function addToCart(e, finalPrice, groceryListObj) {
 		var item = e.target.parentElement,
 			name = item.textContent.slice(0, -35),
-			price = finalPrice,
+			price = document.getElementById("itemPrice").value,
 			sale = document.getElementById("itemSale").value,
 			amount = document.getElementById("itemAmount").value,
 			groceryList = document.getElementById("groceryList"),
 			cart = document.getElementById("shoppingCart"),
 			newLi = document.createElement("li"),
-			text = document.createTextNode(name + ": $" + price);
+			text = document.createTextNode(name + ": $" + finalPrice);
 		newLi.appendChild(text);
 		newLi.className = "cartItem";
 		cart.appendChild(newLi);
