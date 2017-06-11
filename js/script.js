@@ -179,7 +179,7 @@
 		cart.removeChild(item);
 	}
 	
-	function updateItemPrice(e, groceryListObj) {
+	function updateItemPrice(e, rejects, groceryListObj, rejectsObj) {
 		var button = e.target,
 			item = button.parentElement,
 			itemPrice = document.getElementById("itemPriceCart").value,
@@ -190,17 +190,21 @@
 			arrayItems = [],
 			i, indexNum, name, price, sale, amount;
 			
-		
-		//finds the index of the item that was clicked
-		arrayItems = Array.prototype.slice.call(cartItems);
-		indexNum = arrayItems.indexOf(item);
+		if (itemAmount === "0") {
+			cartToRejects(e, rejects, groceryListObj, rejectsObj);
+		} else {
+			//finds the index of the item that was clicked
+			arrayItems = Array.prototype.slice.call(cartItems);
+			indexNum = arrayItems.indexOf(item);
 
-		//copies the values from grocerlylistobj into the rejects obj
-		name = groceryListObj.names[indexNum];
-		groceryListObj.prices[indexNum] = finalPrice;
-		groceryListObj.sales[indexNum] = itemSale;
-		groceryListObj.amounts[indexNum] = itemAmount;
-		item.textContent = name + ': $' + finalPrice; 
+			//copies the values from grocerlylistobj into the rejects obj
+			name = groceryListObj.names[indexNum];
+			groceryListObj.prices[indexNum] = finalPrice;
+			groceryListObj.sales[indexNum] = itemSale;
+			groceryListObj.amounts[indexNum] = itemAmount;
+			item.textContent = name + ': $' + finalPrice;
+		}
+		
 	}
 	
 	
@@ -363,7 +367,7 @@
 			calculateTotal(groceryListObj);
 		} else if (e.target.id === "updateButton") {
 		
-			updateItemPrice(e, groceryListObj);
+			updateItemPrice(e, rejects, groceryListObj, rejectsObj);
 			
 		}
 
