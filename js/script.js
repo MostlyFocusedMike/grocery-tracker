@@ -97,7 +97,7 @@
 		sale = groceryListObj.sales[index];
 		amount = groceryListObj.amounts[index];
 		
-		inputs = '<div id="popUpCart"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="' + price + '" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="' + sale + '" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="' + amount + '" id="itemAmount"><p>Amount</p></div></div><button id="updateButton">Update Item</button><button id="removalButton">Remove Item</button>'
+		inputs = '<div id="popUpCart"><button id="xCart">x</button><div><p id="dollarCart">$</p><input type="text" value="' + price + '" id="itemPriceCart"><p>Price</p></div><div><p id="percentCart">%</p><input type="text" value="' + sale + '" id="itemSaleCart"><p>Sale</p></div><div><p id="hashCart">#</p><input type="text" value="' + amount + '" id="itemAmountCart"><p>Amount</p></div></div><button id="updateButton">Update Item</button><button id="removalButton">Remove Item</button>'
 		
 		//formatting liText to remove the "add item x" from its textContent		
 		if (liText.includes("x$Price")) {
@@ -179,48 +179,16 @@
 		cart.removeChild(item);
 	}
 	
-	function updateCartPrice(e, rejects, groceryListObj, rejectsObj) {
+	function calculateItemPrice(e) {
 		var button = e.target,
-			item = button.parentElement,
-			cart = document.getElementById("shoppingCart"),
-			cartItems = document.getElementsByClassName("cartItem"),
-			arrayItems = [],
-			i, indexNum, name, price, textNode, newLi, sale, amount;
-			
-		
-		//finds the index of the item that was clicked
-		arrayItems = Array.prototype.slice.call(cartItems);
-		indexNum = arrayItems.indexOf(item);
-
-		//copies the values from grocerlylistobj into the rejects obj
-		name = groceryListObj.names[indexNum];
-		price = groceryListObj.prices[indexNum];
-		sale = groceryListObj.sales[indexNum];
-		amount = groceryListObj.amounts[indexNum];
-		rejectsObj.names.push(name);
-		rejectsObj.prices.push(price);
-		rejectsObj.sales.push(sale);
-		rejectsObj.amounts.push(amount);
-		
-
-		
-		//deletes the item from the grocerylist obj
-		groceryListObj.names.splice(indexNum, 1);
-		groceryListObj.prices.splice(indexNum, 1);
-		groceryListObj.sales.splice(indexNum, 1);
-		groceryListObj.amounts.splice(indexNum, 1);
-		
-		//adds a <li> to the rejects list
-		
-		textNode = document.createTextNode(name + ": $" + price);
-		newLi = document.createElement("li");
-		newLi.appendChild(textNode);
-		newLi.className = "rejectsItem";
-		rejects.appendChild(newLi);
-		
-		//removes the <li> from the cart
-		cart.removeChild(item);
+			item = button.parentElement.parentElement,
+			itemPrice = document.getElementById("itemPriceCart").value,
+			itemAmount = document.getElementById("itemAmountCart").value,
+			itemSale = document.getElementById("itemSaleCart").value / 100,
+			finalPrice = ((parseFloat(itemPrice) - (parseFloat(itemPrice) * parseFloat(itemSale))) * parseFloat(itemAmount)).toFixed(2);
+		return finalPrice;
 	}
+	
 	
 	function rejectsToCart(e, rejects, groceryListObj, rejectsObj) {
 		var item = e.target,
@@ -373,7 +341,7 @@
 
 				calculateTotal(groceryListObj);
 			}
-		} else if (e.target.id === "x") {
+		} else if (e.target.id === "xCart") {
 			xMenuCart(e);
 		} else if (e.target.id === "cartButton") {
 			visible = switchCartRejects(visible);

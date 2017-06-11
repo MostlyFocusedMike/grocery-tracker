@@ -304,7 +304,7 @@ button#cartButton, #rejectsButton {
 	margin: 10px auto;
 	text-align: left;
 }
-#popUpCart button#x {
+#popUpCart button#xCart {
 	background-color: #0077C6;
 	background-color: rgba(0, 0, 0, 0.0);
 	color: white;
@@ -323,7 +323,7 @@ button#cartButton, #rejectsButton {
 	display: inline;
 	color: white;
 }
-p#percent {
+p#percentCart {
 	font-size: 17px;
 	margin-right: 7px;
 }
@@ -336,7 +336,7 @@ p#percent {
 	text-align: center;
 	border-radius: 0px;
 }
-#popUpCart input#itemAmount {
+#popUpCart input#itemAmountCart {
 	width: 28px;
 }
 button#removalButton {
