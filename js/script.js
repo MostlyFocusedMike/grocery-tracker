@@ -138,28 +138,40 @@
 	}
 	
 	function cartToRejects(e, rejects, groceryListObj, rejectsObj) {
-		var item = e.target,
-			groceryList = item.parentElement,
+		var button = e.target,
+			item = button.parentElement,
 			cart = document.getElementById("shoppingCart"),
 			cartItems = document.getElementsByClassName("cartItem"),
 			arrayItems = [],
-			i, indexNum, name, price, textNode, newLi;
+			i, indexNum, name, price, textNode, newLi, sale, amount;
 			
 		
 		//finds the index of the item that was clicked
-		
 		arrayItems = Array.prototype.slice.call(cartItems);
 		indexNum = arrayItems.indexOf(item);
-		
+
 		//copies the values from grocerlylistobj into the rejects obj
 		name = groceryListObj.names[indexNum];
 		price = groceryListObj.prices[indexNum];
+		sale = groceryListObj.sales[indexNum];
+		amount = groceryListObj.amounts[indexNum];
+
+	
 		rejectsObj.names.push(name);
+
 		rejectsObj.prices.push(price);
+
+		rejectsObj.sales.push(sale);
+
+		rejectsObj.amounts.push(amount);
+		
+
 		
 		//deletes the item from the grocerylist obj
 		groceryListObj.names.splice(indexNum, 1);
 		groceryListObj.prices.splice(indexNum, 1);
+		groceryListObj.sales.splice(indexNum, 1);
+		groceryListObj.amounts.splice(indexNum, 1);
 		
 		//adds a <li> to the rejects list
 		
@@ -274,7 +286,7 @@
 			names: ["rejects"],
 			prices: [1.66],
 			sales: [0],
-			ammounts: [1]
+			amounts: [1]
 		},
 		visible = "cart",
 		switchVisibility = document.getElementById('switchButton');
@@ -313,13 +325,16 @@
 		if (e.target.className === "cartItem") {
 			if (groceryListObj.names.length > 0) {
 				addInputsCart(e, groceryListObj);
-//				cartToRejects(e, rejects, groceryListObj, rejectsObj);
+
 				calculateTotal(groceryListObj);
 			}
 		} else if (e.target.id === "x") {
 			xMenuCart(e);
 		} else if (e.target.id === "cartButton") {
 			visible = switchCartRejects(visible);
+		} else if (e.target.id === "removalButton") {
+			cartToRejects(e, rejects, groceryListObj, rejectsObj);
+			
 		}
 		var troubleShoot = document.getElementById("troubleShoot");
 		troubleShoot.textContent = visible;
