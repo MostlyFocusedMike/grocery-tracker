@@ -122,6 +122,12 @@
 		}
 	}
 	
+	function xMenuCart(e) {
+		var li = e.target.parentElement.parentElement,
+			liText = li.textContent.slice(0, -41);
+		li.innerHTML = liText;
+	}
+	
 	function calculateTotal(groceryListObj) {
 		var i,
 			total = 0;
@@ -310,6 +316,8 @@
 //				cartToRejects(e, rejects, groceryListObj, rejectsObj);
 				calculateTotal(groceryListObj);
 			}
+		} else if (e.target.id === "x") {
+			xMenuCart(e);
 		} else if (e.target.id === "cartButton") {
 			visible = switchCartRejects(visible);
 		}
