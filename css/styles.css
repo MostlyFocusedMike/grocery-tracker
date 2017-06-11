@@ -278,3 +278,80 @@ button#cartButton, #rejectsButton {
 	width: 215px;
 	margin-left: 80px;
 }
+
+
+
+
+
+
+#popUpCart {
+	padding: 5px 10px;
+	text-align: center;
+	width: 190px;
+	margin: 10px auto;
+	background-color: #0077C6;
+	background: -webkit-linear-gradient(#008ae6, #004d80); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#008ae6, #004d80); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#008ae6, #004d80); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#008ae6, #004d80); /* Standard syntax */
+	background-color: #0077C6;
+	height: 150px;
+	border: solid 2px #cce5ff;
+}
+#popUpCart div {
+	display: block;
+	width: 180px;
+	margin: 10px auto;
+	text-align: left;
+}
+#popUpCart button#x {
+	background-color: #0077C6;
+	background-color: rgba(0, 0, 0, 0.0);
+	color: white;
+	border: none;
+	width: 30px;
+	margin: 0px;
+	padding: 0px;
+	font-size: 25px;
+	font-style: bold;
+	position: absolute;
+	margin-left: 75px;
+	margin-top: -5px;
+}
+#popUpCart p {
+	margin: 10px;
+	display: inline;
+	color: white;
+}
+p#percent {
+	font-size: 17px;
+	margin-right: 7px;
+}
+#popUpCart input {
+	display: inline;
+	font-size: 20px;
+	width: 60px;
+	height: 24px;
+	padding: 5px;
+	text-align: center;
+	border-radius: 0px;
+}
+#popUpCart input#itemAmount {
+	width: 28px;
+}
+button#removalButton {
+	font-size: 20px;
+	margin: 10px auto;
+	padding: 5px;
+	width: 190px;
+	background-color: #0077C6;
+ 	background: -webkit-linear-gradient(#008ae6, #004d80); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#008ae6, #004d80); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#008ae6, #004d80); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#008ae6, #004d80); /* Standard syntax */
+	color: white;
+	border-radius: 10px;
+	border: solid 2px #cce5ff;
+	font-family: Avenir, Helvetica, sans-serif;
+	display: block;
+}
