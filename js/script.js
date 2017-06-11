@@ -179,14 +179,28 @@
 		cart.removeChild(item);
 	}
 	
-	function calculateItemPrice(e) {
+	function updateItemPrice(e, groceryListObj) {
 		var button = e.target,
-			item = button.parentElement.parentElement,
+			item = button.parentElement,
 			itemPrice = document.getElementById("itemPriceCart").value,
 			itemAmount = document.getElementById("itemAmountCart").value,
 			itemSale = document.getElementById("itemSaleCart").value / 100,
-			finalPrice = ((parseFloat(itemPrice) - (parseFloat(itemPrice) * parseFloat(itemSale))) * parseFloat(itemAmount)).toFixed(2);
-		return finalPrice;
+			finalPrice = ((parseFloat(itemPrice) - (parseFloat(itemPrice) * parseFloat(itemSale))) * parseFloat(itemAmount)).toFixed(2),
+			cartItems = document.getElementsByClassName("cartItem"),
+			arrayItems = [],
+			i, indexNum, name, price, sale, amount;
+			
+		
+		//finds the index of the item that was clicked
+		arrayItems = Array.prototype.slice.call(cartItems);
+		indexNum = arrayItems.indexOf(item);
+
+		//copies the values from grocerlylistobj into the rejects obj
+		name = groceryListObj.names[indexNum];
+		groceryListObj.prices[indexNum] = finalPrice;
+		groceryListObj.sales[indexNum] = itemSale;
+		groceryListObj.amounts[indexNum] = itemAmount;
+		item.textContent = name + ': $' + finalPrice; 
 	}
 	
 	
@@ -338,7 +352,6 @@
 		if (e.target.className === "cartItem") {
 			if (groceryListObj.names.length > 0) {
 				addInputsCart(e, groceryListObj);
-
 				calculateTotal(groceryListObj);
 			}
 		} else if (e.target.id === "xCart") {
@@ -348,9 +361,12 @@
 		} else if (e.target.id === "removalButton") {
 			cartToRejects(e, rejects, groceryListObj, rejectsObj);
 			calculateTotal(groceryListObj);
+		} else if (e.target.id === "updateButton") {
+		
+			updateItemPrice(e, groceryListObj);
+			
 		}
-		var troubleShoot = document.getElementById("troubleShoot");
-		troubleShoot.textContent = visible;
+
 		emptyListFill();
 	}, false);
 	
