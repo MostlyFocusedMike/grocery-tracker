@@ -126,7 +126,7 @@ div#mainInput button {
 	border-bottom: solid 2px #0077C6;
 	min-height: 45px;
 }
-#listWrapper li {
+li.groceryItem {
 	background-color: dodgerblue;
 	background: -webkit-linear-gradient(dodgerblue, #0077C6); /* Safari 5.1 to 6.0 */
   background: -o-linear-gradient(dodgerblue, #0077C6); /* Opera 11.1 to 12.0 */
