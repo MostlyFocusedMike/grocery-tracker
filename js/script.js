@@ -98,11 +98,11 @@
 		sale = groceryListObj.sales[index];
 		amount = groceryListObj.amounts[index];
 		
-		inputs = '<div id="popUpCart"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="' + price + '" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="' + sale + '" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="' + amount + '" id="itemAmount"><p>Amount</p></div></div><button id="removalButton">Remove Item</button>'
+		inputs = '<div id="popUpCart"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="' + price + '" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="' + sale + '" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="' + amount + '" id="itemAmount"><p>Amount</p></div></div><button id="updateButton">Update Item</button><button id="removalButton">Remove Item</button>'
 		
 		//formatting liText to remove the "add item x" from its textContent		
 		if (liText.includes("x$Price")) {
-			liText = liText.slice(0, -30);
+			liText = liText.slice(0, -41);
 		}
 		li.innerHTML = liText + inputs;
 		
@@ -113,7 +113,7 @@
 			el = arrayItems[i];
 			elText = el.textContent;
 			if (elText.includes("x$Price")) { //finds the actual text of the grocery item 
-				elText = elText.slice(0, -30);  //
+				elText = elText.slice(0, -41);  //
 			}
 			if (elText !== liText) {  //if the text of the grocery item does not match
 				el.innerHTML = elText;  //the text of the event object text, then the popup
