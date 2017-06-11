@@ -167,8 +167,8 @@
 	
 	function switchCartRejects(visible) {
 		var cart = document.getElementById("cartWrapper"),
-			rejects = document.getElementById("rejectsWrapper"),
-			switchButton = document.getElementById("switchButton");
+			rejects = document.getElementById("rejectsWrapper");
+//			switchButton = document.getElementById("switchButton");
 		if (visible === "cart") {
 			visible = "rejects";
 		} else {
@@ -178,13 +178,13 @@
 		if (visible === "cart") {
 			cart.style.display = "block";
 			rejects.style.display = "none";
-			switchButton.textContent = "View Rejected Items";
-			switchButton.style.backgroundColor = "#f66";
+//			switchButton.textContent = "View Rejected Items";
+//			switchButton.style.backgroundColor = "#f66";
 		} else {
 			cart.style.display = "none";
 			rejects.style.display = "block";
-			switchButton.textContent = "View Shopping Cart";
-			switchButton.style.backgroundColor = "forestgreen";
+//			switchButton.textContent = "View Shopping Cart";
+//			switchButton.style.backgroundColor = "forestgreen";
 		}
 		return visible;
 	}
@@ -217,8 +217,8 @@
 	var body = document.getElementById("content"),
 		button = document.getElementById("addItem"),
 		groceryList = document.getElementById("groceryList"),
-		cart = document.getElementById("shoppingCart"),
-		rejects = document.getElementById("rejects"),
+		cart = document.getElementById("cartWrapper"),
+		rejects = document.getElementById("rejectsWrapper"),
 		groceryListObj = {
 			names: ['cart'],
 			prices: [1.33]
@@ -230,7 +230,7 @@
 		visible = "cart",
 		switchVisibility = document.getElementById('switchButton');
 	
-	(function(){
+	(function () {
 		emptyListFill();
 	}());
 	body.addEventListener("click", function (e) {
@@ -266,7 +266,11 @@
 				cartToRejects(e, rejects, groceryListObj, rejectsObj);
 				calculateTotal(groceryListObj);
 			}
+		} else if (e.target.id === "cartButton") {
+			visible = switchCartRejects(visible);
 		}
+		var troubleShoot = document.getElementById("troubleShoot");
+		troubleShoot.textContent = visible;
 		emptyListFill();
 	}, false);
 	
@@ -276,12 +280,14 @@
 				rejectsToCart(e, rejects, groceryListObj, rejectsObj);
 				calculateTotal(groceryListObj);
 			}
+		} else if (e.target.id === "rejectsButton") {
+			visible = switchCartRejects(visible);
 		}
 		emptyListFill();
 	}, false);
 	
-	switchVisibility.addEventListener("click", function () {
-		visible = switchCartRejects(visible);
-	}, false);
+//	switchVisibility.addEventListener("click", function () {
+//		visible = switchCartRejects(visible);
+//	}, false);
 	
 }());
