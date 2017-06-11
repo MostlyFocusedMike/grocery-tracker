@@ -243,6 +243,7 @@
 		addName();
 		var troubleShoot = document.getElementById("troubleShoot");
 		troubleShoot.textContent = "hello";
+		emptyListFill();
 	}, false);
   
 	
