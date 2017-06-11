@@ -68,19 +68,19 @@ div#header {
 /* Grocery list ///////////////////////////////////////////// */
 div#listWrapper {
 	border-top: solid 5px #0077C6;
-	margin-top: 10px;
+	margin: 10px auto 15px;
 	padding-top: 0px;
 }
 
 #listWrapper h2 {
 	color: #0077C6;
-	margin: 5px;
+	margin: 10px;
 }
 
 div#mainInput {
 	width: 322px;
 	height: 40px;
-	margin: 0 auto;
+	margin: 20px auto;
 	padding: 0px;
 }
 div#mainInput input {
@@ -229,7 +229,7 @@ li button#addToCart {
 }
 #cartAndRejects p {
 	color: forestgreen;
-	margin: 15px;
+	margin: 25px auto 15px;
 	text-align: center;
 }
 #cartWrapper {
