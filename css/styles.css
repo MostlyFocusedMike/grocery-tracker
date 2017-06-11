@@ -241,7 +241,7 @@ ul#shoppingCart {
 	min-height: 45px;
 	border-color: forestgreen;
 }
-li.cartItem {
+li.cartItem, #rejectsButton {
 	background-color: forestgreen;
 	background: -webkit-linear-gradient(#5bd75b, forestgreen); /* Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#5bd75b, forestgreen); /* Opera 11.1 to 12.0 */
@@ -265,7 +265,7 @@ ul#rejects {
 	border-bottom: solid 2px #ff6666;
 	min-height: 45px;
 }
-li.rejectsItem {
+li.rejectsItem, #cartButton {
 	background-color: #ff6666;
 	background: -webkit-linear-gradient(#ff9999, #ff4d4d); /* Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#ff9999, #ff4d4d); /* Opera 11.1 to 12.0 */
@@ -273,7 +273,7 @@ li.rejectsItem {
   background: linear-gradient(#ff9999, #ff4d4d); /* Standard syntax */
 	color: white;
 }
-button#switchButton {
+button#cartButton, #rejectsButton {
 	background-color: #ff6666;
 	width: 215px;
 	margin-left: 80px;
