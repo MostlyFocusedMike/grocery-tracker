@@ -46,7 +46,7 @@
 		}
 	}
 	
-		function addInputsCart(e) {
+	function addInputsCart(e) {
 		var li = e.target,
 			liText = li.textContent,
 			liItems = document.getElementsByClassName("groceryItem"),
@@ -82,7 +82,6 @@
 		li.innerHTML = liText;
 	}
 
-	
 	function calculateItemPrice(e) {
 		var button = e.target,
 			item = button.parentElement.parentElement,
@@ -98,6 +97,8 @@
 		var item = e.target.parentElement,
 			name = item.textContent.slice(0, -35),
 			price = finalPrice,
+			sale = document.getElementById("itemSale").value,
+			amount = document.getElementById("itemAmount").value,
 			groceryList = document.getElementById("groceryList"),
 			cart = document.getElementById("shoppingCart"),
 			newLi = document.createElement("li"),
@@ -108,6 +109,8 @@
 		groceryList.removeChild(item);
 		groceryListObj.names.push(name);
 		groceryListObj.prices.push(price);
+		groceryListObj.sales.push(sale);
+		groceryListObj.amounts.push(amount);
 	}
 	
 	function calculateTotal(groceryListObj) {
@@ -248,11 +251,15 @@
 		rejectsWrapper = document.getElementById("rejectsWrapper"),
 		groceryListObj = {
 			names: ['cart'],
-			prices: [1.33]
+			prices: [1.33],
+			sales: [0],
+			ammounts: [1]
 		},
 		rejectsObj = {
 			names: ["rejects"],
-			prices: [1.66]
+			prices: [1.66],
+			sales: [0],
+			ammounts: [1]
 		},
 		visible = "cart",
 		switchVisibility = document.getElementById('switchButton');
