@@ -155,14 +155,9 @@
 		price = groceryListObj.prices[indexNum];
 		sale = groceryListObj.sales[indexNum];
 		amount = groceryListObj.amounts[indexNum];
-
-	
 		rejectsObj.names.push(name);
-
 		rejectsObj.prices.push(price);
-
 		rejectsObj.sales.push(sale);
-
 		rejectsObj.amounts.push(amount);
 		
 
@@ -189,10 +184,9 @@
 		var item = e.target,
 			rejectsList = item.parentElement,
 			cart = document.getElementById("shoppingCart"),
-			cartItems = document.getElementsByClassName("cartItem"),
 			rejectsItems = document.getElementsByClassName("rejectsItem"),
 			arrayItems = [],
-			i, indexNum, name, price, textNode, newLi;
+			i, indexNum, name, price, textNode, newLi, sale, amount;
 			
 		//finds the index of the item that was clicked
 		arrayItems = Array.prototype.slice.call(rejectsItems);
@@ -200,13 +194,22 @@
 		
 		//copies the values from rejects obj  into the grocerlylistobj
 		name = rejectsObj.names[indexNum];
+		var troubleShoot = document.getElementById("troubleShoot");
+		troubleShoot.textContent = "hello";
 		price = rejectsObj.prices[indexNum];
+		sale = rejectsObj.sales[indexNum];
+		amount = rejectsObj.amounts[indexNum];
+		
 		groceryListObj.names.push(name);
 		groceryListObj.prices.push(price);
+		groceryListObj.sales.push(sale);
+		groceryListObj.amounts.push(amount);
 		
 		//deletes the item from the rejectslist obj
 		rejectsObj.names.splice(indexNum, 1);
 		rejectsObj.prices.splice(indexNum, 1);
+		rejectsObj.sales.splice(indexNum, 1);
+		rejectsObj.amounts.splice(indexNum, 1);
 		
 		//adds a <li> to the rejects list
 		
@@ -334,7 +337,7 @@
 			visible = switchCartRejects(visible);
 		} else if (e.target.id === "removalButton") {
 			cartToRejects(e, rejects, groceryListObj, rejectsObj);
-			
+			calculateTotal(groceryListObj);
 		}
 		var troubleShoot = document.getElementById("troubleShoot");
 		troubleShoot.textContent = visible;
@@ -344,7 +347,10 @@
 	rejectsWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "rejectsItem") {
 			if (rejectsObj.names.length > 0) {
+				
 				rejectsToCart(e, rejects, groceryListObj, rejectsObj);
+				var troubleShoot = document.getElementById("troubleShoot");
+		troubleShoot.textContent = "hello";
 				calculateTotal(groceryListObj);
 			}
 		} else if (e.target.id === "rejectsButton") {
