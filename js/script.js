@@ -46,36 +46,6 @@
 		}
 	}
 	
-	function addInputsCart(e) {
-		var li = e.target,
-			liText = li.textContent,
-			liItems = document.getElementsByClassName("groceryItem"),
-			arrayItems = [],
-			inputs = '<div class="popUp"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="0" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="1" id="itemAmount"><p>Amount</p></div></div><button id="addToCart">Add Item To Cart</button>',
-			i, el, elText, arr;
-		
-		//formatting liText to remove the "add item x" from its textContent		
-		if (liText.includes("x$Price")) {
-			liText = liText.slice(0, -35);
-		}
-		li.innerHTML = liText + inputs;
-		
-		//converts node list to an array, so pop up menu is always removed from non event targets
-		arrayItems = Array.prototype.slice.call(liItems);
-		
-		for (i = 0; i < liItems.length; i++) {
-			el = arrayItems[i];
-			elText = el.textContent;
-			if (elText.includes("x$Price")) { //finds the actual text of the grocery item 
-				elText = elText.slice(0, -35);  //
-			}
-			if (elText !== liText) {  //if the text of the grocery item does not match
-				el.innerHTML = elText;  //the text of the event object text, then the popup
-			}                         //menu is removed by replacing the html with just the text
-			
-		}
-	}
-	
 	function xMenu(e) {
 		var li = e.target.parentElement.parentElement,
 			liText = li.textContent.slice(0, -35);
@@ -111,6 +81,36 @@
 		groceryListObj.prices.push(price);
 		groceryListObj.sales.push(sale);
 		groceryListObj.amounts.push(amount);
+	}
+	
+	function addInputsCart(e) {
+		var li = e.target,
+			liText = li.textContent,
+			liItems = document.getElementsByClassName("cartItem"),
+			arrayItems = [],
+			inputs = '<div class="popUp"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="0" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="1" id="itemAmount"><p>Amount</p></div></div><button id="removalButton">Remove Item</button>',
+			i, el, elText, arr;
+		
+		//formatting liText to remove the "add item x" from its textContent		
+		if (liText.includes("x$Price")) {
+			liText = liText.slice(0, -30);
+		}
+		li.innerHTML = liText + inputs;
+		
+		//converts node list to an array, so pop up menu is always removed from non event targets
+		arrayItems = Array.prototype.slice.call(liItems);
+		
+		for (i = 0; i < liItems.length; i++) {
+			el = arrayItems[i];
+			elText = el.textContent;
+			if (elText.includes("x$Price")) { //finds the actual text of the grocery item 
+				elText = elText.slice(0, -30);  //
+			}
+			if (elText !== liText) {  //if the text of the grocery item does not match
+				el.innerHTML = elText;  //the text of the event object text, then the popup
+			}                         //menu is removed by replacing the html with just the text
+			
+		}
 	}
 	
 	function calculateTotal(groceryListObj) {
@@ -297,7 +297,8 @@
 	cartWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "cartItem") {
 			if (groceryListObj.names.length > 0) {
-				cartToRejects(e, rejects, groceryListObj, rejectsObj);
+				addInputsCart(e);
+//				cartToRejects(e, rejects, groceryListObj, rejectsObj);
 				calculateTotal(groceryListObj);
 			}
 		} else if (e.target.id === "cartButton") {
