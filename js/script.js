@@ -83,13 +83,22 @@
 		groceryListObj.amounts.push(amount);
 	}
 	
-	function addInputsCart(e) {
+	function addInputsCart(e, groceryListObj) {
 		var li = e.target,
 			liText = li.textContent,
 			liItems = document.getElementsByClassName("cartItem"),
 			arrayItems = [],
-			inputs = '<div id="popUpCart"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="0" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="1" id="itemAmount"><p>Amount</p></div></div><button id="removalButton">Remove Item</button>',
-			i, el, elText, arr;
+			price,
+			inputs,
+			i, el, elText, arr, index, sale, amount;
+		
+		arrayItems = Array.prototype.slice.call(liItems);
+		index = arrayItems.indexOf(li);
+		price = groceryListObj.prices[index];
+		sale = groceryListObj.sales[index];
+		amount = groceryListObj.amounts[index];
+		
+		inputs = '<div id="popUpCart"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="' + price + '" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="' + sale + '" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="' + amount + '" id="itemAmount"><p>Amount</p></div></div><button id="removalButton">Remove Item</button>'
 		
 		//formatting liText to remove the "add item x" from its textContent		
 		if (liText.includes("x$Price")) {
@@ -98,7 +107,7 @@
 		li.innerHTML = liText + inputs;
 		
 		//converts node list to an array, so pop up menu is always removed from non event targets
-		arrayItems = Array.prototype.slice.call(liItems);
+		
 		
 		for (i = 0; i < liItems.length; i++) {
 			el = arrayItems[i];
@@ -253,7 +262,7 @@
 			names: ['cart'],
 			prices: [1.33],
 			sales: [0],
-			ammounts: [1]
+			amounts: [1]
 		},
 		rejectsObj = {
 			names: ["rejects"],
@@ -297,7 +306,7 @@
 	cartWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "cartItem") {
 			if (groceryListObj.names.length > 0) {
-				addInputsCart(e);
+				addInputsCart(e, groceryListObj);
 //				cartToRejects(e, rejects, groceryListObj, rejectsObj);
 				calculateTotal(groceryListObj);
 			}
