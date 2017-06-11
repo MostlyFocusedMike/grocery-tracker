@@ -217,8 +217,10 @@
 	var body = document.getElementById("content"),
 		button = document.getElementById("addItem"),
 		groceryList = document.getElementById("groceryList"),
-		cart = document.getElementById("cartWrapper"),
-		rejects = document.getElementById("rejectsWrapper"),
+		cart = document.getElementById("shoppingCart"),
+		cartWrapper = document.getElementById("cartWrapper"),
+		rejects = document.getElementById("rejects"),
+		rejectsWrapper = document.getElementById("rejectsWrapper"),
 		groceryListObj = {
 			names: ['cart'],
 			prices: [1.33]
@@ -260,7 +262,7 @@
 		emptyListFill();
 	}, false);
 	
-	cart.addEventListener("click", function (e) {
+	cartWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "cartItem") {
 			if (groceryListObj.names.length > 0) {
 				cartToRejects(e, rejects, groceryListObj, rejectsObj);
@@ -274,7 +276,7 @@
 		emptyListFill();
 	}, false);
 	
-	rejects.addEventListener("click", function (e) {
+	rejectsWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "rejectsItem") {
 			if (rejectsObj.names.length > 0) {
 				rejectsToCart(e, rejects, groceryListObj, rejectsObj);
