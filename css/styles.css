@@ -9,7 +9,7 @@ div#content {
 	height: 667px;
 	padding: 0px;
 	margin: 0 auto;
-
+	background-color: white;
 	position: absolute;
 }
 
@@ -34,9 +34,8 @@ ul {
 	margin: 10px auto;
 }
 li {
-	border-top: solid 1px black;
 	width: 300px;
-	margin: -2px auto;
+	margin: 10px auto;
 	padding: 10px 20px 10px 20px;
 	font-size: 20px;
 	font-family: Avenir, Helvetica, sans-serif;
@@ -73,6 +72,11 @@ div#listWrapper {
 	padding-top: 0px;
 }
 
+#listWrapper h2 {
+	color: #0077C6;
+	margin: 5px;
+}
+
 div#mainInput {
 	width: 322px;
 	height: 40px;
@@ -98,7 +102,7 @@ div#mainInput button {
 	margin: 0;
 	position: absolute;
 	margin-left: 212px;
-	background-color: #0077C6;
+	background-color: dodgerblue;
 	color: white;
 	border-top-right-radius: 10px;
 	border-top-left-radius: 0px;
@@ -106,6 +110,10 @@ div#mainInput button {
 	border-bottom-left-radius: 0px;
 	border: none;
 	font-family: Avenir, Helvetica, sans-serif;
+  background: -webkit-linear-gradient(#008ae6, #004d80); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#008ae6, #004d80); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#008ae6, #004d80); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#008ae6, #004d80); /* Standard syntax */
 }
 
 #listWrapper ul {
@@ -119,7 +127,12 @@ div#mainInput button {
 	min-height: 45px;
 }
 #listWrapper li {
-	border-color: #0077C6;
+	background-color: dodgerblue;
+	background: -webkit-linear-gradient(dodgerblue, #0077C6); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(dodgerblue, #0077C6); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(dodgerblue, #0077C6); /* Firefox 3.6 to 15 */
+  background: linear-gradient(dodgerblue, #0077C6); /* Standard syntax */
+	color: white;
 }
 
 /*Pop up section*/
@@ -129,7 +142,13 @@ div#mainInput button {
 	width: 190px;
 	margin: 10px auto;
 	background-color: #0077C6;
+	background: -webkit-linear-gradient(#008ae6, #004d80); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#008ae6, #004d80); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#008ae6, #004d80); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#008ae6, #004d80); /* Standard syntax */
+	background-color: #0077C6;
 	height: 150px;
+	border: solid 2px #cce5ff;
 }
 .popUp div {
 	display: block;
@@ -139,6 +158,7 @@ div#mainInput button {
 }
 button#x {
 	background-color: #0077C6;
+	background-color: rgba(0, 0, 0, 0.0);
 	color: white;
 	border: none;
 	width: 30px;
@@ -177,17 +197,18 @@ li button#addToCart {
 	padding: 5px;
 	width: 190px;
 	background-color: #0077C6;
+ 	background: -webkit-linear-gradient(#008ae6, #004d80); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#008ae6, #004d80); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#008ae6, #004d80); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#008ae6, #004d80); /* Standard syntax */
 	color: white;
 	border-radius: 10px;
+	border: solid 2px #cce5ff;
 	font-family: Avenir, Helvetica, sans-serif;
 	display: block;
 }
 
 /*Shopping cart and reject list section ////////////////////////////////////*/
-
-#cartAndRejects {
-	
-}
 #total {
 	text-align: right;
 	margin: 5px 20px 5px 10px;
@@ -198,8 +219,8 @@ li button#addToCart {
 	text-align: center;
 	float: right;
 	background-color: #111;
-	border-bottom-left-radius: 60px;
-	border-bottom-right-radius: 60px;
+	border-bottom-left-radius: 30px;
+	border-bottom-right-radius: 30px;
 	color: white;
 }
 #cartTitle, #rejectsTitle {
@@ -221,7 +242,12 @@ ul#shoppingCart {
 	border-color: forestgreen;
 }
 li.cartItem {
-	border-color: forestgreen;
+	background-color: forestgreen;
+	background: -webkit-linear-gradient(#5bd75b, forestgreen); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#5bd75b, forestgreen); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#5bd75b, forestgreen); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#5bd75b, forestgreen); /* Standard syntax */
+	color: white;
 }
 
 #rejectsWrapper {
@@ -240,7 +266,12 @@ ul#rejects {
 	min-height: 45px;
 }
 li.rejectsItem {
-	border-top-color: #ff6666;
+	background-color: #ff6666;
+	background: -webkit-linear-gradient(#ff9999, #ff4d4d); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#ff9999, #ff4d4d); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#ff9999, #ff4d4d); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#ff9999, #ff4d4d); /* Standard syntax */
+	color: white;
 }
 button#switchButton {
 	background-color: #ff6666;
