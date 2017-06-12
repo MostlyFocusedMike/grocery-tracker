@@ -9,7 +9,7 @@ div#content {
 	height: 667px;
 	padding: 0px;
 	margin: 0 auto;
-
+	border-bottom: solid 2px red;
 	position: absolute;
 }
 
@@ -203,7 +203,7 @@ li button#addToCart {
 /*Shopping cart and reject list section ////////////////////////////////////*/
 
 #cartAndRejects {
-	border-top: solid 5px black;
+
 }
 #total {
 	text-align: right;
@@ -261,6 +261,10 @@ button#cartButton, #rejectsButton {
 	width: 215px;
 	margin-left: 80px;
 	border: none;
+	position: absolute;
+	margin: -38px 0px 0px 190px;
+	font-size: 16px;
+	width: 170px;
 }
 
 #rejectsButton {
@@ -271,7 +275,14 @@ button#cartButton, #rejectsButton {
   background: linear-gradient(#32cd32, forestgreen); /* Standard syntax */
 }
 
+#info {
+	border-top: solid 5px black;
+}
 
+ul#rejects, ul#shoppingCart {
+	max-height: 300px;
+	overflow: scroll;
+}
 
 
 #popUpCart {
