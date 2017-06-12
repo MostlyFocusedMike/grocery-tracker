@@ -1,7 +1,7 @@
-html, body {
-    margin: 0;
+html, body, div {
+    margin: 0 auto;
     padding: 0;
-		font-family:  Helvetica, sans-serif, Helvetica, sans-serif;
+		font-family:  Helvetica, sans-serif;
 }
 
 div#content {
@@ -9,23 +9,19 @@ div#content {
 	height: 667px;
 	padding: 0px;
 	margin: 0 auto;
-	border-bottom: solid 2px red;
 	position: absolute;
 }
-
 h1 {
 	font-family:  Helvetica, sans-serif;	
 	margin: 0 auto;
 	padding: 0;
 }
-
 h2 {
 	padding-left: 10px;
 	padding-top: 0;
 	margin-top: 10px;
 	font-family:  Helvetica, sans-serif;
 }
-
 ul {
 	list-style: none;
 	width: 360px;
@@ -35,8 +31,8 @@ ul {
 }
 li {
 	border-top: solid 2px black;
-	width: 320px;
-	margin: 0 auto;
+	width: 310px;
+	margin: -2px auto;
 	padding: 10px 20px;
 	padding-left: 20px;
 	font-size: 20px;
@@ -47,50 +43,42 @@ button {
 	width: 200px;
 	font-size: 20px;
 	padding: 5px;
-	margin: 10px;
+	margin: 10px auto;
 	color: white;
 	border-radius: 10px;
 	border: none;
 	font-family:  Helvetica, sans-serif;
+	font-size: 20px;
 }
 
 /*Header /////////////////////////////////////////////////////*/
 div#header {
 	height: 60px;
-	padding: 0px;
+	padding: 20px 0px 0px;
 	background-color: black;
 	color: white;
 	margin-top: 10px;
-	font-family: Verdana;
 	text-align: center;
-	padding-top: 10px;
 }
-
 /* Grocery list ///////////////////////////////////////////// */
 div#listWrapper {
 	border-top: solid 5px #0077C6;
 	margin-top: 10px;
-	padding-top: 0px;
 }
-
 div#listWrapper h2 {
 	color: #0077C6;
 }
-
 div#mainInput {
 	width: 322px;
 	height: 40px;
-	margin: 0 auto;
-	padding: 0px;
 }
 div#mainInput input {
 	width: 200px;
 	font-size: 20px;
 	padding: 5px;
-	margin: 0;
+	margin: 0 auto;
 	position: absolute;
 	border: solid 2px black;
-	font-family:  Helvetica, sans-serif;
 	color: gray;
 	text-align: center;
 	border-radius: 0px;
@@ -113,25 +101,13 @@ div#mainInput button {
 	border-top-left-radius: 0px;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 0px;
-
-	font-family:  Helvetica, sans-serif;
 }
-
 #listWrapper ul {
-	list-style: none;
-	width: 360px;
-	padding: 0;
 	border-bottom: solid 2px #0077C6;
-	margin: 10px auto;
+	border-top: solid 2px #0077C6;
 }
 #listWrapper li {
-	border-top: solid 2px #0077C6;
-	width: 320px;
-	margin: 0 auto;
-	padding: 10px 20px;
-	font-size: 20px;
-	font-family:  Helvetica, sans-serif;
-	font-style: italic;
+	border-top: solid 1px #0077C6;
 }
 
 /*Pop up section*/
@@ -139,9 +115,9 @@ div#mainInput button {
 	padding: 5px 10px;
 	text-align: center;
 	width: 190px;
+	height: 150px;
 	margin: 10px auto;
 	background-color: #0077C6;
-	height: 150px;
 }
 .popUp div {
 	display: block;
@@ -181,11 +157,9 @@ li input {
 	border-radius: 0px;
 }
 input#itemAmount {
-	width: 28px;
+	width: 32px;
 }
 li button#addToCart {
-	font-size: 20px;
-	margin: 10px auto;
 	padding: 5px;
 	width: 190px;
 	background-color: #0077C6;
@@ -193,18 +167,10 @@ li button#addToCart {
   background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
   background: linear-gradient(#67ADFF, #0077C6); /* Standard syntax */
-	border: none;
-	color: white;
-	border-radius: 10px;
-	font-family:  Helvetica, sans-serif;
 	display: block;
 }
 
 /*Shopping cart and reject list section ////////////////////////////////////*/
-
-#cartAndRejects {
-
-}
 #total {
 	text-align: right;
 	margin-right: 10px;
@@ -219,18 +185,16 @@ li button#addToCart {
 	margin: 0px;
 	text-align: center;
 }
+
 #cartWrapper {
 	border-top: solid 5px forestgreen;
 }
 ul#shoppingCart {
 	border-top: solid 2px forestgreen;
 	border-bottom: solid 2px forestgreen;
-	min-height: 45px;
-	border-color: forestgreen;
 }
 li.cartItem {
-	border-color: forestgreen;
-	margin: -2px 0px;
+	border-top:solid 1px forestgreen;
 }
 
 #rejectsWrapper {
@@ -246,11 +210,9 @@ li.cartItem {
 ul#rejects {
 	border-top: solid 2px #ff6666;
 	border-bottom: solid 2px #ff6666;
-	min-height: 45px;
 }
 li.rejectsItem {
-	border-top-color: #ff6666;
-	margin: -2px 0px;
+	border-top:solid 1px #ff6666;
 }
 button#cartButton, #rejectsButton {
 	background-color: #ff6666;
@@ -258,15 +220,12 @@ button#cartButton, #rejectsButton {
   background: -o-linear-gradient(#32cd32, forestgreen); /* Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#32cd32, forestgreen); /* Firefox 3.6 to 15 */
   background: linear-gradient(#f99, #f55); /* Standard syntax */
-	width: 215px;
-	margin-left: 80px;
 	border: none;
 	position: absolute;
 	margin: -38px 0px 0px 190px;
 	font-size: 16px;
 	width: 170px;
 }
-
 #rejectsButton {
 	background-color: forestgreen;
 	background: -webkit-linear-gradient(#32cd32, forestgreen)); /* Safari 5.1to 6.0 */
@@ -274,19 +233,6 @@ button#cartButton, #rejectsButton {
   background: -moz-linear-gradient(#32cd32, forestgreen); /* Firefox 3.6 to 15 */
   background: linear-gradient(#32cd32, forestgreen); /* Standard syntax */
 }
-
-#info {
-	border-top: solid 5px black;
-	position: fixed;
-	bottom: 0;
-	width: 375px;
-	margin: 0;
-	padding: 0;
-	background-color: white;
-}
-
-
-
 
 #popUpCart {
 	padding: 5px 10px;
@@ -307,13 +253,11 @@ button#cartButton, #rejectsButton {
 	color: white;
 	border: none;
 	width: 30px;
-	margin: 0px;
+	margin: -5px 0px 0px 75px;
 	padding: 0px;
 	font-size: 25px;
 	font-style: bold;
 	position: absolute;
-	margin-left: 75px;
-	margin-top: -5px;
 }
 #popUpCart p {
 	margin: 10px;
@@ -342,13 +286,20 @@ button#removalButton, #updateButton {
 	padding: 5px;
 	width: 190px;
 	background-color: darkgreen;
- 	background: -webkit-linear-gradient(#32cd32, forestgreen)); /* Safari 5.1 to 6.0 */
+ 	background: -webkit-linear-gradient(#32cd32, forestgreen)); /* Safari 5.1 6.0 */
   background: -o-linear-gradient(#32cd32, forestgreen); /* Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#32cd32, forestgreen); /* Firefox 3.6 to 15 */
   background: linear-gradient(#32cd32, forestgreen); /* Standard syntax */
-	color: white;
 	border-radius: 10px;
 	border: none; /* solid 2px #cce5ff;*/
-	font-family:  Helvetica, sans-serif;
 	display: block;
+}
+#info {
+	border-top: solid 5px black;
+	position: fixed;
+	bottom: 0;
+	width: 375px;
+	margin: 0;
+	padding: 0;
+	background-color: white;
 }
