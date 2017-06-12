@@ -277,6 +277,12 @@ button#cartButton, #rejectsButton {
 
 #info {
 	border-top: solid 5px black;
+	position: fixed;
+	bottom: 0;
+	width: 375px;
+	margin: 0;
+	padding: 0;
+	background-color: white;
 }
 
 
