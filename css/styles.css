@@ -279,10 +279,7 @@ button#cartButton, #rejectsButton {
 	border-top: solid 5px black;
 }
 
-ul#rejects, ul#shoppingCart {
-	max-height: 300px;
-	overflow: scroll;
-}
+
 
 
 #popUpCart {
