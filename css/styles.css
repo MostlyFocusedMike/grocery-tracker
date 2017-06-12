@@ -1,7 +1,7 @@
 html, body {
     margin: 0;
     padding: 0;
-		font-family: Avenir, Helvetica, sans-serif, Helvetica, sans-serif;
+		font-family:  Helvetica, sans-serif, Helvetica, sans-serif;
 }
 
 div#content {
@@ -9,12 +9,12 @@ div#content {
 	height: 667px;
 	padding: 0px;
 	margin: 0 auto;
-	background-color: white;
+
 	position: absolute;
 }
 
 h1 {
-	font-family: Avenir, Helvetica, sans-serif;	
+	font-family:  Helvetica, sans-serif;	
 	margin: 0 auto;
 	padding: 0;
 }
@@ -23,7 +23,7 @@ h2 {
 	padding-left: 10px;
 	padding-top: 0;
 	margin-top: 10px;
-	font-family: Avenir, Helvetica, sans-serif;
+	font-family:  Helvetica, sans-serif;
 }
 
 ul {
@@ -34,11 +34,13 @@ ul {
 	margin: 10px auto;
 }
 li {
-	width: 300px;
-	margin: 10px auto;
-	padding: 10px 20px 10px 20px;
+	border-top: solid 2px black;
+	width: 320px;
+	margin: 0 auto;
+	padding: 10px 20px;
+	padding-left: 20px;
 	font-size: 20px;
-	font-family: Avenir, Helvetica, sans-serif;
+	font-family:  Helvetica, sans-serif;
 	font-style: italic;
 }
 button {
@@ -46,11 +48,10 @@ button {
 	font-size: 20px;
 	padding: 5px;
 	margin: 10px;
-	background-color: #67ADFF;
 	color: white;
 	border-radius: 10px;
 	border: none;
-	font-family: Avenir, Helvetica, sans-serif;
+	font-family:  Helvetica, sans-serif;
 }
 
 /*Header /////////////////////////////////////////////////////*/
@@ -68,19 +69,18 @@ div#header {
 /* Grocery list ///////////////////////////////////////////// */
 div#listWrapper {
 	border-top: solid 5px #0077C6;
-	margin: 10px auto 15px;
+	margin-top: 10px;
 	padding-top: 0px;
 }
 
-#listWrapper h2 {
+div#listWrapper h2 {
 	color: #0077C6;
-	margin: 10px;
 }
 
 div#mainInput {
 	width: 322px;
 	height: 40px;
-	margin: 20px auto;
+	margin: 0 auto;
 	padding: 0px;
 }
 div#mainInput input {
@@ -90,7 +90,7 @@ div#mainInput input {
 	margin: 0;
 	position: absolute;
 	border: solid 2px black;
-	font-family: Avenir, Helvetica, sans-serif;
+	font-family:  Helvetica, sans-serif;
 	color: gray;
 	text-align: center;
 	border-radius: 0px;
@@ -102,18 +102,19 @@ div#mainInput button {
 	margin: 0;
 	position: absolute;
 	margin-left: 212px;
-	background-color: dodgerblue;
+	background-color: #67ADFF;
+	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#67ADFF, #0077C6); /* Standard syntax */
 	color: white;
+	border-left: solid 2px black;
 	border-top-right-radius: 10px;
 	border-top-left-radius: 0px;
 	border-bottom-right-radius: 10px;
 	border-bottom-left-radius: 0px;
-	border: none;
-	font-family: Avenir, Helvetica, sans-serif;
-  background: -webkit-linear-gradient(#008ae6, #004d80); /* Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#008ae6, #004d80); /* Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#008ae6, #004d80); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#008ae6, #004d80); /* Standard syntax */
+
+	font-family:  Helvetica, sans-serif;
 }
 
 #listWrapper ul {
@@ -122,17 +123,15 @@ div#mainInput button {
 	padding: 0;
 	border-bottom: solid 2px #0077C6;
 	margin: 10px auto;
-	border-top: solid 2px #0077C6;
-	border-bottom: solid 2px #0077C6;
-	min-height: 45px;
 }
-li.groceryItem {
-	background-color: dodgerblue;
-	background: -webkit-linear-gradient(dodgerblue, #0077C6); /* Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(dodgerblue, #0077C6); /* Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(dodgerblue, #0077C6); /* Firefox 3.6 to 15 */
-  background: linear-gradient(dodgerblue, #0077C6); /* Standard syntax */
-	color: white;
+#listWrapper li {
+	border-top: solid 2px #0077C6;
+	width: 320px;
+	margin: 0 auto;
+	padding: 10px 20px;
+	font-size: 20px;
+	font-family:  Helvetica, sans-serif;
+	font-style: italic;
 }
 
 /*Pop up section*/
@@ -142,13 +141,7 @@ li.groceryItem {
 	width: 190px;
 	margin: 10px auto;
 	background-color: #0077C6;
-	background: -webkit-linear-gradient(#008ae6, #004d80); /* Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#008ae6, #004d80); /* Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#008ae6, #004d80); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#008ae6, #004d80); /* Standard syntax */
-	background-color: #0077C6;
 	height: 150px;
-	border: solid 2px #cce5ff;
 }
 .popUp div {
 	display: block;
@@ -158,7 +151,6 @@ li.groceryItem {
 }
 button#x {
 	background-color: #0077C6;
-	background-color: rgba(0, 0, 0, 0.0);
 	color: white;
 	border: none;
 	width: 30px;
@@ -197,39 +189,34 @@ li button#addToCart {
 	padding: 5px;
 	width: 190px;
 	background-color: #0077C6;
- 	background: -webkit-linear-gradient(#008ae6, #004d80); /* Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#008ae6, #004d80); /* Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#008ae6, #004d80); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#008ae6, #004d80); /* Standard syntax */
+	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#67ADFF, #0077C6); /* Standard syntax */
+	border: none;
 	color: white;
 	border-radius: 10px;
-	border: solid 2px #cce5ff;
-	font-family: Avenir, Helvetica, sans-serif;
+	font-family:  Helvetica, sans-serif;
 	display: block;
 }
 
 /*Shopping cart and reject list section ////////////////////////////////////*/
+
+#cartAndRejects {
+	border-top: solid 5px black;
+}
 #total {
 	text-align: right;
-	margin: 5px 20px 5px 10px;
-	padding: 5px;
-	line-height: 20px;
-	font-size: 20px;
-	width: 130px;
-	text-align: center;
-	float: right;
-	background-color: #111;
-	border-bottom-left-radius: 30px;
-	border-bottom-right-radius: 30px;
-	color: white;
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
 #cartTitle, #rejectsTitle {
 	color: forestgreen;
-	margin: 10px 0px 10px 10px;
+	margin: 10px 0px;
 }
 #cartAndRejects p {
 	color: forestgreen;
-	margin: 25px auto 15px;
+	margin: 0px;
 	text-align: center;
 }
 #cartWrapper {
@@ -241,13 +228,9 @@ ul#shoppingCart {
 	min-height: 45px;
 	border-color: forestgreen;
 }
-li.cartItem, #rejectsButton {
-	background-color: forestgreen;
-	background: -webkit-linear-gradient(#5bd75b, forestgreen); /* Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#5bd75b, forestgreen); /* Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#5bd75b, forestgreen); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#5bd75b, forestgreen); /* Standard syntax */
-	color: white;
+li.cartItem {
+	border-color: forestgreen;
+	margin: -2px 0px;
 }
 
 #rejectsWrapper {
@@ -265,21 +248,28 @@ ul#rejects {
 	border-bottom: solid 2px #ff6666;
 	min-height: 45px;
 }
-li.rejectsItem, #cartButton {
-	background-color: #ff6666;
-	background: -webkit-linear-gradient(#ff9999, #ff4d4d); /* Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#ff9999, #ff4d4d); /* Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#ff9999, #ff4d4d); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#ff9999, #ff4d4d); /* Standard syntax */
-	color: white;
+li.rejectsItem {
+	border-top-color: #ff6666;
+	margin: -2px 0px;
 }
 button#cartButton, #rejectsButton {
 	background-color: #ff6666;
+	background: -webkit-linear-gradient(#32cd32, forestgreen)); /* Safari 5.1to 6.0 */
+  background: -o-linear-gradient(#32cd32, forestgreen); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#32cd32, forestgreen); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#f99, #f55); /* Standard syntax */
 	width: 215px;
 	margin-left: 80px;
+	border: none;
 }
 
-
+#rejectsButton {
+	background-color: forestgreen;
+	background: -webkit-linear-gradient(#32cd32, forestgreen)); /* Safari 5.1to 6.0 */
+  background: -o-linear-gradient(#32cd32, forestgreen); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#32cd32, forestgreen); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#32cd32, forestgreen); /* Standard syntax */
+}
 
 
 
@@ -289,14 +279,8 @@ button#cartButton, #rejectsButton {
 	text-align: center;
 	width: 190px;
 	margin: 10px auto;
-	background-color: #0077C6;
-	background: -webkit-linear-gradient(#008ae6, #004d80); /* Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#008ae6, #004d80); /* Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#008ae6, #004d80); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#008ae6, #004d80); /* Standard syntax */
-	background-color: #0077C6;
+	background-color: forestgreen;
 	height: 150px;
-	border: solid 2px #cce5ff;
 }
 #popUpCart div {
 	display: block;
@@ -305,8 +289,7 @@ button#cartButton, #rejectsButton {
 	text-align: left;
 }
 #popUpCart button#xCart {
-	background-color: #0077C6;
-	background-color: rgba(0, 0, 0, 0.0);
+	background-color: forestgreen;
 	color: white;
 	border: none;
 	width: 30px;
@@ -339,19 +322,19 @@ p#percentCart {
 #popUpCart input#itemAmountCart {
 	width: 28px;
 }
-button#removalButton {
+button#removalButton, #updateButton {
 	font-size: 20px;
 	margin: 10px auto;
 	padding: 5px;
 	width: 190px;
-	background-color: #0077C6;
- 	background: -webkit-linear-gradient(#008ae6, #004d80); /* Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#008ae6, #004d80); /* Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#008ae6, #004d80); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#008ae6, #004d80); /* Standard syntax */
+	background-color: darkgreen;
+ 	background: -webkit-linear-gradient(#32cd32, forestgreen)); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#32cd32, forestgreen); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#32cd32, forestgreen); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#32cd32, forestgreen); /* Standard syntax */
 	color: white;
 	border-radius: 10px;
-	border: solid 2px #cce5ff;
-	font-family: Avenir, Helvetica, sans-serif;
+	border: none; /* solid 2px #cce5ff;*/
+	font-family:  Helvetica, sans-serif;
 	display: block;
 }
