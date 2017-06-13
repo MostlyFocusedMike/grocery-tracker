@@ -182,49 +182,50 @@ li button#addToCart {
 }
 
 #cartTitle, #rejectsTitle {
-	color: forestgreen;
+	color: black;
 	margin: 10px 0px;
 }
 #cartAndRejects p {
-	color: forestgreen;
+	color: black;
 	margin: 0px;
 	text-align: center;
 }
 
 #cartWrapper {
-	border-top: solid 5px forestgreen;
+	border-top: solid 5px black;
 }
 ul#shoppingCart {
-	border-top: solid 2px forestgreen;
-	border-bottom: solid 2px forestgreen;
+	border-top: solid 2px black;
+	border-bottom: solid 2px black;
 }
 li.cartItem {
-	border-top:solid 1px forestgreen;
+	border-top:solid 1px black;
 }
 
 #rejectsWrapper {
-	border-top: solid 5px #f66;
+	border-top: solid 5px #9C6AFA;
 	display: none;
 }
 #rejectsTitle {
-	color: #ff6666;
+	color: #9C6AFA;
 }
 #rejectsWrapper p {
-	color: #ff6666;
+	color: #9C6AFA;
 }
 ul#rejects {
-	border-top: solid 2px #ff6666;
-	border-bottom: solid 2px #ff6666;
+	border-top: solid 2px #9C6AFA;
+	border-bottom: solid 2px #9C6AFA;
 }
 li.rejectsItem {
-	border-top:solid 1px #ff6666;
+	border-top:solid 1px #9C6AFA;
+	color: #9C6AFA;
 }
 button#cartButton, #rejectsButton {
-	background-color: #ff6666;
-	background: -webkit-linear-gradient(#32cd32, forestgreen)); /* Safari 5.1to 6.0 */
-  background: -o-linear-gradient(#32cd32, forestgreen); /* Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#32cd32, forestgreen); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#f99, #f55); /* Standard syntax */
+	background-color: #9C6AFA;
+	background: -webkit-linear-gradient(#B894FC, #9C6AFA); 
+  background: -o-linear-gradient(#B894FC, #9C6AFA);
+  background: -moz-linear-gradient(#B894FC, #9C6AFA); 
+  background: linear-gradient(#B894FC, #9C6AFA); 
 	border: none;
 	position: absolute;
 	margin: -38px 0px 0px 190px;
@@ -232,11 +233,11 @@ button#cartButton, #rejectsButton {
 	width: 170px;
 }
 #rejectsButton {
-	background-color: forestgreen;
-	background: -webkit-linear-gradient(#32cd32, forestgreen)); /* Safari 5.1to 6.0 */
-  background: -o-linear-gradient(#32cd32, forestgreen); /* Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#32cd32, forestgreen); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#32cd32, forestgreen); /* Standard syntax */
+	background-color: black;
+	background: -webkit-linear-gradient(#32cd32, black)); /* Safari 5.1to 6.0 */
+  background: -o-linear-gradient(#32cd32, black); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#32cd32, black); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#32cd32, black); /* Standard syntax */
 }
 
 #popUpCart {
@@ -244,8 +245,9 @@ button#cartButton, #rejectsButton {
 	text-align: center;
 	width: 190px;
 	margin: 10px auto;
-	background-color: forestgreen;
+	background-color: white;
 	height: 150px;
+	border: solid 2px black;
 }
 #popUpCart div {
 	display: block;
@@ -254,8 +256,8 @@ button#cartButton, #rejectsButton {
 	text-align: left;
 }
 #popUpCart button#xCart {
-	background-color: forestgreen;
-	color: white;
+	background-color: white;
+	color: black;
 	border: none;
 	width: 30px;
 	margin: -5px 0px 0px 75px;
@@ -267,7 +269,12 @@ button#cartButton, #rejectsButton {
 #popUpCart p {
 	margin: 10px;
 	display: inline;
-	color: white;
+	color: black;
+}
+
+#popUpCart input {
+	border: solid 1px black;
+
 }
 p#percentCart {
 	font-size: 17px;
@@ -286,20 +293,25 @@ p#percentCart {
 	width: 28px;
 }
 button#removalButton, #updateButton {
-	font-size: 18px;
+	font-size: 16px;
 	margin: 0px;
 	padding: 5px;
 	width: 125px;
-	background-color: darkgreen;
- 	background: -webkit-linear-gradient(#32cd32, forestgreen)); /* Safari 5.1 6.0 */
-  background: -o-linear-gradient(#32cd32, forestgreen); /* Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#32cd32, forestgreen); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#32cd32, forestgreen); /* Standard syntax */
+	background-color: #67ADFF;
+	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#67ADFF, #0077C6); /* Standard syntax */ 
 	border-radius: 10px;
 	border: none; /* solid 2px #cce5ff;*/
 }
 #updateButton  {
 	float: right;
+	background-color: #67ADFF;
+	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#67ADFF, #0077C6); /* Standard syntax */
 }
 #buttons {
 	width:260px;
