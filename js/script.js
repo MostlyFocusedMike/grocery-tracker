@@ -325,6 +325,36 @@
 		}
 
 	}
+	
+	function checkInputs(popUpMenu) {
+		var inputs = document.getElementsByTagName("input"),
+			i;
+		for (i = 0; i < inputs.length; i++) {
+			if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value === '') {
+				window.alert("Whoops, you left a box blank!");
+				return false;
+			} else if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value.includes("%")) {
+				window.alert("You don't need to include the '%' sign, just the amount of the sale.\nSo a '%20 sale' is just '20'.")
+				inputs[i].value = 0;
+				return false;
+			}	else if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value.includes("$")) {
+				window.alert("You don't need to include the '$' sign, just price itself.")
+				inputs[i].value = 0;
+				return false;
+			} else if (popUpMenu === inputs[i].parentElement.parentElement && isNaN(inputs[i].value)) {
+				window.alert("Hey, you can only put numbers in those boxes!");
+				return false;
+			} else if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value.includes(".00")) {
+				window.alert("You don't need to put the '.00' if an item price doesn't include change.");
+			} else if (document.getElementById("itemAmount") === inputs[i] && inputs[i].value === "0") {
+				window.alert("How do you plan on adding 0 of something to your cart?");
+				document.getElementById("itemAmount").value = 1;
+				return false;
+			} 
+			
+		}
+		return true;
+	}
 //^ functions   v events////////////////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////
 	
@@ -348,7 +378,8 @@
 			amounts: [1]
 		},
 		visible = "cart",
-		switchVisibility = document.getElementById('switchButton');
+		switchVisibility = document.getElementById('switchButton'),
+		check;
 	
 	(function () {
 		emptyListFill();
@@ -369,14 +400,15 @@
 	groceryList.addEventListener("click", function (e) {
 		if (e.target.className === "groceryItem") {
 			addInputsList(e);
-			calculateTotal(groceryListObj);
 			centerMenu(document.getElementById("popUpList"));
 		} else if (e.target.id === "x") {
 			xMenu(e);
-		} else if (e.target.id === "addToCart") {
-			var finalPrice = calculateItemPrice(e);
-			addToCart(e, finalPrice, groceryListObj);
-			calculateTotal(groceryListObj);
+		}  else if (e.target.id === "addToCart") {
+			if (checkInputs(document.getElementById("popUpList"))) {
+				var finalPrice = calculateItemPrice(e);
+				addToCart(e, finalPrice, groceryListObj);
+				calculateTotal(groceryListObj);
+			}
 		}
 		emptyListFill();
 	}, false);
@@ -395,8 +427,10 @@
 			cartToRejects(e, rejects, groceryListObj, rejectsObj);
 			calculateTotal(groceryListObj);
 		} else if (e.target.id === "updateButton") {
-			updateItemPrice(e, rejects, groceryListObj, rejectsObj);
-			calculateTotal(groceryListObj);
+			if (checkInputs(document.getElementById("popUpCart"))) {
+				updateItemPrice(e, rejects, groceryListObj, rejectsObj);
+				calculateTotal(groceryListObj);
+			}
 		}
 
 		emptyListFill();
