@@ -72,6 +72,12 @@ div#mainInput {
 	width: 322px;
 	height: 40px;
 }
+
+div#listWrapper p {
+	color: #0077C6;
+	text-align: center;
+}
+
 div#mainInput input {
 	width: 200px;
 	font-size: 20px;
@@ -171,11 +177,10 @@ li button#addToCart {
 }
 
 /*Shopping cart and reject list section ////////////////////////////////////*/
-#total {
-	text-align: right;
-	margin-right: 10px;
-	margin-bottom: 10px;
+#cartAndRejects {
+	margin-bottom: 45px;
 }
+
 #cartTitle, #rejectsTitle {
 	color: forestgreen;
 	margin: 10px 0px;
@@ -308,5 +313,10 @@ button#removalButton, #updateButton {
 	margin: 0;
 	padding: 0;
 	background-color: white;
+}
+#total {
+	text-align: right;
+	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
