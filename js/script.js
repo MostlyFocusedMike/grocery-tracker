@@ -21,7 +21,7 @@
 			liText = li.textContent,
 			liItems = document.getElementsByClassName("groceryItem"),
 			arrayItems = [],
-			inputs = '<div class="popUp"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="0" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="1" id="itemAmount"><p>Amount</p></div></div><button id="addToCart">Add Item To Cart</button>',
+			inputs = '<div id="popUpList"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="0" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="1" id="itemAmount"><p>Amount</p></div></div><button id="addToCart">Add Item To Cart</button>',
 			i, el, elText, arr;
 		
 		//formatting liText to remove the "add item x" from its textContent		
@@ -45,6 +45,36 @@
 			
 		}
 	}
+	
+	function centerMenu(popUpMenu) {
+		//var popUpList = popUpMenu;
+		var rect = popUpMenu.getBoundingClientRect();
+//		alert("Coordinates: " + rect.left + "px, " + rect.top + "px");
+		
+		if (rect.top >= 380 && rect.top < 420) {
+//			alert("380");
+			window.scrollBy(0, 50);
+		} else if(rect.top >= 420 && rect.top < 460) {
+//			alert("420 , 460");
+			window.scrollBy(0, 100);
+		} else if (rect.top >= 460 && rect.top < 500) {
+//			alert("460");
+			window.scrollBy(0, 150);
+		} else if (rect.top >= 500 && rect.top < 545) {
+//			alert("500");
+			window.scrollBy(0, 175);
+		}	else if (rect.top >= 545 && rect.top < 590) {
+//			alert("545");
+			window.scrollBy(0, 200);
+		}	else if (rect.top >= 590 && rect.top < 630) {
+//			alert("590");
+			window.scrollBy(0, 225);
+		}	else if (rect.top >= 630 && rect.top < 650) {
+//			alert("630");
+			window.scrollBy(0, 250);
+		}
+	}
+
 	
 	function xMenu(e) {
 		var li = e.target.parentElement.parentElement,
@@ -206,8 +236,7 @@
 		}
 		
 	}
-	
-	
+		
 	function rejectsToCart(e, rejects, groceryListObj, rejectsObj) {
 		var item = e.target,
 			rejectsList = item.parentElement,
@@ -337,11 +366,12 @@
 		troubleShoot.textContent = "hello";
 		emptyListFill();
 	}, false);
-  
-	
+  	
 	groceryList.addEventListener("click", function (e) {
 		if (e.target.className === "groceryItem") {
 			addInputsList(e);
+			calculateTotal(groceryListObj);
+			centerMenu(document.getElementById("popUpList"));
 		} else if (e.target.id === "x") {
 			xMenu(e);
 		} else if (e.target.id === "addToCart") {
@@ -356,7 +386,7 @@
 		if (e.target.className === "cartItem") {
 			if (groceryListObj.names.length > 0) {
 				addInputsCart(e, groceryListObj);
-				calculateTotal(groceryListObj);
+				centerMenu(document.getElementById("popUpCart"));
 			}
 		} else if (e.target.id === "xCart") {
 			xMenuCart(e);
@@ -366,9 +396,8 @@
 			cartToRejects(e, rejects, groceryListObj, rejectsObj);
 			calculateTotal(groceryListObj);
 		} else if (e.target.id === "updateButton") {
-		
 			updateItemPrice(e, rejects, groceryListObj, rejectsObj);
-			
+			calculateTotal(groceryListObj);
 		}
 
 		emptyListFill();

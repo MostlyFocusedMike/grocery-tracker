@@ -111,7 +111,7 @@ div#mainInput button {
 }
 
 /*Pop up section*/
-.popUp {
+#popUpList {
 	padding: 5px 10px;
 	text-align: center;
 	width: 190px;
@@ -119,7 +119,7 @@ div#mainInput button {
 	margin: 10px auto;
 	background-color: #0077C6;
 }
-.popUp div {
+#popUpList div {
 	display: block;
 	width: 180px;
 	margin: 10px auto;
