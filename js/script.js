@@ -75,7 +75,6 @@
 		}
 	}
 
-	
 	function xMenu(e) {
 		var li = e.target.parentElement.parentElement,
 			liText = li.textContent.slice(0, -35);
@@ -127,7 +126,7 @@
 		sale = groceryListObj.sales[index];
 		amount = groceryListObj.amounts[index];
 		
-		inputs = '<div id="popUpCart"><button id="xCart">x</button><div><p id="dollarCart">$</p><input type="text" value="' + price + '" id="itemPriceCart"><p>Price</p></div><div><p id="percentCart">%</p><input type="text" value="' + sale + '" id="itemSaleCart"><p>Sale</p></div><div><p id="hashCart">#</p><input type="text" value="' + amount + '" id="itemAmountCart"><p>Amount</p></div></div><button id="updateButton">Update Item</button><button id="removalButton">Remove Item</button>'
+		inputs = '<div id="popUpCart"><button id="xCart">x</button><div><p id="dollarCart">$</p><input type="text" value="' + price + '" id="itemPriceCart"><p>Price</p></div><div><p id="percentCart">%</p><input type="text" value="' + sale + '" id="itemSaleCart"><p>Sale</p></div><div><p id="hashCart">#</p><input type="text" value="' + amount + '" id="itemAmountCart"><p>Amount</p></div></div><div id="buttons"><button id="updateButton">Update Item</button><button id="removalButton">Remove Item</button></div>'
 		
 		//formatting liText to remove the "add item x" from its textContent		
 		if (liText.includes("x$Price")) {
@@ -168,7 +167,7 @@
 	
 	function cartToRejects(e, rejects, groceryListObj, rejectsObj) {
 		var button = e.target,
-			item = button.parentElement,
+			item = button.parentElement.parentElement,
 			cart = document.getElementById("shoppingCart"),
 			cartItems = document.getElementsByClassName("cartItem"),
 			arrayItems = [],
@@ -211,7 +210,7 @@
 	
 	function updateItemPrice(e, rejects, groceryListObj, rejectsObj) {
 		var button = e.target,
-			item = button.parentElement,
+			item = button.parentElement.parentElement,
 			itemPrice = document.getElementById("itemPriceCart").value,
 			itemAmount = document.getElementById("itemAmountCart").value,
 			itemSale = document.getElementById("itemSaleCart").value / 100,

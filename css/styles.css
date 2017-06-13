@@ -281,10 +281,10 @@ p#percentCart {
 	width: 28px;
 }
 button#removalButton, #updateButton {
-	font-size: 20px;
-	margin: 10px auto;
+	font-size: 18px;
+	margin: 0px;
 	padding: 5px;
-	width: 190px;
+	width: 125px;
 	background-color: darkgreen;
  	background: -webkit-linear-gradient(#32cd32, forestgreen)); /* Safari 5.1 6.0 */
   background: -o-linear-gradient(#32cd32, forestgreen); /* Opera 11.1 to 12.0 */
@@ -292,7 +292,13 @@ button#removalButton, #updateButton {
   background: linear-gradient(#32cd32, forestgreen); /* Standard syntax */
 	border-radius: 10px;
 	border: none; /* solid 2px #cce5ff;*/
-	display: block;
+}
+#updateButton  {
+	float: right;
+}
+#buttons {
+	width:260px;
+	margin: 10px auto;
 }
 #info {
 	border-top: solid 5px black;
@@ -303,3 +309,4 @@ button#removalButton, #updateButton {
 	padding: 0;
 	background-color: white;
 }
+
