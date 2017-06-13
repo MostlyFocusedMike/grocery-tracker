@@ -39,7 +39,7 @@
 			if (elText.includes("x$Price")) { //finds the actual text of the grocery item 
 				elText = elText.slice(0, -35);  //
 			}
-			if (elText !== liText) {  //if the text of the grocery item does not match
+			if (arrayItems[i] !== e.target) {  //if the text of the grocery item does not match
 				el.innerHTML = elText;  //the text of the event object text, then the popup
 			}                         //menu is removed by replacing the html with just the text
 			
@@ -143,7 +143,7 @@
 			if (elText.includes("x$Price")) { //finds the actual text of the grocery item 
 				elText = elText.slice(0, -41);  //
 			}
-			if (elText !== liText) {  //if the text of the grocery item does not match
+			if (arrayItems[i] !== e.target) {  //if the text of the grocery item does not match
 				el.innerHTML = elText;  //the text of the event object text, then the popup
 			}                         //menu is removed by replacing the html with just the text
 			
