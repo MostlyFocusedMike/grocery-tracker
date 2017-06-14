@@ -338,13 +338,18 @@ button#removalButton, #updateButton {
 	background-color: black;
 
 }
-
-img {
+img#headerImg {
+	height: 80px;
+	margin-top: -20px;
+	padding-top: 0px;
+}
+img#bkgHead {
 	height: 35px;
 	position: absolute;
-	left: 29px;
-	top: 45px;
+	left: 315px;
+	top: 5px;
 	visibility: hidden;
+
 }
 
 #background {
@@ -352,5 +357,5 @@ img {
 	height: 40px;
 	position: absolute;
 	left: 29px;
-	top: 45px;	
+	top: 0px;	
 }
