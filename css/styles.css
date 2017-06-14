@@ -6,10 +6,10 @@ html, body, div {
 
 div#content {
 	width: 375px;
-	height: 667px;
 	padding: 0px;
 	margin: 0 auto;
 	position: absolute;
+	display: block;
 }
 h1 {
 	font-family:  Helvetica, sans-serif;	
@@ -24,14 +24,14 @@ h2 {
 }
 ul {
 	list-style: none;
-	width: 360px;
+	width: 310px;
 	padding: 0;
 	border-bottom: solid 2px black;
 	margin: 10px auto;
 }
 li {
 	border-top: solid 2px black;
-	width: 310px;
+	width: 260px;
 	margin: -2px auto;
 	padding: 10px 20px;
 	padding-left: 20px;
@@ -57,8 +57,9 @@ div#header {
 	padding: 20px 0px 0px;
 	background-color: black;
 	color: white;
-	margin-top: 10px;
+	margin-top: 00px;
 	text-align: center;
+	width: 320px;
 }
 /* Grocery list ///////////////////////////////////////////// */
 div#listWrapper {
@@ -317,20 +318,24 @@ button#removalButton, #updateButton {
 }
 #buttons {
 	width:260px;
-	margin: 10px auto;
+	margin: 0px auto;
+	padding: 0px;
 }
 #info {
-	border-top: solid 5px black;
 	position: fixed;
 	bottom: 0;
-	width: 375px;
+	right: 25px;
 	margin: 0;
 	padding: 0;
-	background-color: white;
+	
 }
 #total {
 	text-align: right;
 	margin-right: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 0px;
+	color: white;
+	padding: 10px;
+	background-color: black;
+
 }
 
