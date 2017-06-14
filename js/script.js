@@ -89,6 +89,16 @@
 		return finalPrice;
 	}
 	
+	function calculateItemPriceCart(e) {
+		var button = e.target,
+			item = button.parentElement.parentElement,
+			itemPrice = document.getElementById("itemPriceCart").value,
+			itemAmount = document.getElementById("itemAmountCart").value,
+			itemSale = document.getElementById("itemSaleCart").value / 100,
+			finalPrice = ((parseFloat(itemPrice) - (parseFloat(itemPrice) * parseFloat(itemSale))) * parseFloat(itemAmount)).toFixed(2);
+		return finalPrice;
+	}
+	
 	function addToCart(e, finalPrice, groceryListObj) {
 		var item = e.target.parentElement,
 			name = item.textContent.slice(0, -35),
@@ -163,7 +173,7 @@
 		document.getElementById("total").textContent = "Cart Total: $" + total.toFixed(2);
 	}
 	
-	function cartToRejects(e, rejects, groceryListObj, rejectsObj) {
+	function cartToRejects(e, rejects, groceryListObj, rejectsObj, finalPriceCart) {
 		var button = e.target,
 			item = button.parentElement.parentElement,
 			cart = document.getElementById("shoppingCart"),
@@ -196,7 +206,7 @@
 		
 		//adds a <li> to the rejects list
 		
-		textNode = document.createTextNode(name + ": $" + price);
+		textNode = document.createTextNode(name + ": $" + finalPriceCart);
 		newLi = document.createElement("li");
 		newLi.appendChild(textNode);
 		newLi.className = "rejectsItem";
@@ -387,7 +397,7 @@
   
 	background.addEventListener("click", function () {
 		document.getElementById("bkgHead").style.visibility = 'visible';
-	}, false)
+	}, false);
 	
 	groceryList.addEventListener("click", function (e) {
 		if (e.target.className === "groceryItem") {
@@ -416,7 +426,8 @@
 		} else if (e.target.id === "cartButton") {
 			visible = switchCartRejects(visible);
 		} else if (e.target.id === "removalButton") {
-			cartToRejects(e, rejects, groceryListObj, rejectsObj);
+			var finalPriceCart = calculateItemPriceCart(e)
+			cartToRejects(e, rejects, groceryListObj, rejectsObj, finalPriceCart);
 			calculateTotal(groceryListObj);
 		} else if (e.target.id === "updateButton") {
 			if (checkInputs(document.getElementById("popUpCart"))) {
@@ -431,10 +442,7 @@
 	rejectsWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "rejectsItem") {
 			if (rejectsObj.names.length > 0) {
-				
 				rejectsToCart(e, rejects, groceryListObj, rejectsObj);
-				var troubleShoot = document.getElementById("troubleShoot");
-		troubleShoot.textContent = "hello";
 				calculateTotal(groceryListObj);
 			}
 		} else if (e.target.id === "rejectsButton") {
