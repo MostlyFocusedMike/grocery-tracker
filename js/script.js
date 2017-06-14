@@ -237,7 +237,7 @@
 
 			//copies the values from grocerlylistobj into the rejects obj
 			name = groceryListObj.names[indexNum];
-			groceryListObj.prices[indexNum] = finalPrice;
+			groceryListObj.prices[indexNum] = itemPrice;
 			groceryListObj.sales[indexNum] = itemSale;
 			groceryListObj.amounts[indexNum] = itemAmount;
 			item.textContent = name + ': $' + finalPrice;
