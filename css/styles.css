@@ -344,5 +344,13 @@ img {
 	position: absolute;
 	left: 29px;
 	top: 45px;
+	visibility: hidden;
 }
 
+#background {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	left: 29px;
+	top: 45px;	
+}
