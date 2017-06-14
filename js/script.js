@@ -339,7 +339,7 @@
 				window.alert("Whoops, you left a box blank!");
 				return false;
 			} else if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value.includes("%")) {
-				window.alert("You don't need to include the '%' sign, just the amount of the sale.\nSo a '%20 sale' is just '20'.")
+				window.alert("You don't need to include the '%' sign, just the sale amount.")
 				inputs[i].value = 0;
 				return false;
 			}	else if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value.includes("$")) {
@@ -350,9 +350,9 @@
 				window.alert("Hey, you can only put numbers in those boxes!");
 				return false;
 			} else if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value.includes(".00")) {
-				window.alert("You don't need to put the '.00' if an item price doesn't include change.");
+				window.alert("You don't need to put the '.00' if a price doesn't need change.");
 			} else if (document.getElementById("itemAmount") === inputs[i] && inputs[i].value === "0") {
-				window.alert("How do you plan on adding 0 of something to your cart?");
+				window.alert("How are you adding 0 of something to your cart?");
 				document.getElementById("itemAmount").value = 1;
 				return false;
 			} 
