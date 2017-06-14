@@ -22,7 +22,10 @@
 			liItems = document.getElementsByClassName("groceryItem"),
 			arrayItems = [],
 			inputs = '<div id="popUpList"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="0" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="1" id="itemAmount"><p>Amount</p></div></div><button id="addToCart">Add Item To Cart</button>',
-			i, el, elText, arr;
+			i,
+			el,
+			elText,
+			arr;
 		
 		//formatting liText to remove the "add item x" from its textContent		
 		if (liText.includes("x$Price")) {
@@ -218,8 +221,9 @@
 			item = button.parentElement.parentElement,
 			itemPrice = document.getElementById("itemPriceCart").value,
 			itemAmount = document.getElementById("itemAmountCart").value,
-			itemSale = document.getElementById("itemSaleCart").value / 100,
-			finalPrice = ((parseFloat(itemPrice) - (parseFloat(itemPrice) * parseFloat(itemSale))) * parseFloat(itemAmount)).toFixed(2),
+			itemSale = document.getElementById("itemSaleCart").value,
+			itemSaleCalc = itemSale / 100,
+			finalPrice = ((parseFloat(itemPrice) - (parseFloat(itemPrice) * parseFloat(itemSaleCalc))) * parseFloat(itemAmount)).toFixed(2),
 			cartItems = document.getElementsByClassName("cartItem"),
 			arrayItems = [],
 			i, indexNum, name, price, sale, amount;
@@ -361,7 +365,6 @@
 		return true;
 	}
 //^ functions   v events////////////////////////////////////////////////////////////////////
-	////////////////////////////////////////////////////////////////////////////////////
 	
 	var body = document.getElementById("content"),
 		button = document.getElementById("addItem"),
@@ -372,16 +375,16 @@
 		rejectsWrapper = document.getElementById("rejectsWrapper"),
 		background = document.getElementById("background"),
 		groceryListObj = {
-			names: ['cart'],
-			prices: [1.33],
-			sales: [0],
-			amounts: [1]
+			names: [],
+			prices: [],
+			sales: [],
+			amounts: []
 		},
 		rejectsObj = {
-			names: ["rejects"],
-			prices: [1.66],
-			sales: [0],
-			amounts: [1]
+			names: [],
+			prices: [],
+			sales: [],
+			amounts: []
 		},
 		visible = "cart",
 		switchVisibility = document.getElementById('switchButton'),
@@ -398,8 +401,6 @@
 	
 	button.addEventListener("click", function () {
 		addName();
-		var troubleShoot = document.getElementById("troubleShoot");
-		troubleShoot.textContent = "hello";
 		emptyListFill();
 	}, false);
   
