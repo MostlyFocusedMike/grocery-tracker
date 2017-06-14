@@ -62,16 +62,16 @@
 			window.scrollBy(0, 150);
 		} else if (rect.top >= 500 && rect.top < 545) {
 //			alert("500");
-			window.scrollBy(0, 175);
+			window.scrollBy(0, 250);
 		}	else if (rect.top >= 545 && rect.top < 590) {
 //			alert("545");
-			window.scrollBy(0, 200);
+			window.scrollBy(0, 300);
 		}	else if (rect.top >= 590 && rect.top < 630) {
 //			alert("590");
-			window.scrollBy(0, 225);
+			window.scrollBy(0, 300);
 		}	else if (rect.top >= 630 && rect.top < 650) {
 //			alert("630");
-			window.scrollBy(0, 250);
+			window.scrollBy(0, 300);
 		}
 	}
 
