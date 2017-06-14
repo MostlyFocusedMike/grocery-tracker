@@ -52,7 +52,9 @@
 //		alert("Coordinates: " + rect.left + "px, " + rect.top + "px");
 		
 		
-		if (rect.top >= 340 && rect.top < 380) {
+		if (rect.top >= 300 && rect.top < 340) {
+			window.scrollBy(0, 50)
+		} else if (rect.top >= 340 && rect.top < 380) {
 			window.scrollBy(0, 100)
 		} else if (rect.top >= 380 && rect.top < 420) {
 //			alert("380");
