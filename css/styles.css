@@ -4,19 +4,12 @@ html, body, div {
 	font-family:  Helvetica, sans-serif;
   overflow-x: hidden;
 }
-
 div#content {
 	width: 375px;
 	padding: 0px;
 	margin: 0 auto;
 	position: absolute;
 	display: block;
-}
-h1 {
-	font-family:  Helvetica, sans-serif;	
-	margin: 0 auto;
-	padding: 0;
-	display: none;
 }
 h2 {
 	padding-left: 10px;
@@ -55,13 +48,37 @@ button {
 
 /*Header /////////////////////////////////////////////////////*/
 div#header {
-
-	padding: 20px 0px 0px;
+	padding: 0px;
 	background-color: black;
 	color: white;
 	margin-top: 0px;
 	text-align: center;
 	width: 320px;
+}
+h1 {
+	font-family:  Helvetica, sans-serif;	
+	margin: 0 auto;
+	padding: 0;
+	display: none;
+}
+img#headerImg {
+	height: 80px;
+	margin-top: 0px;
+	padding-top: 0px;
+}
+img#bkgHead {
+	height: 35px;
+	position: absolute;
+	left: 314px;
+	top: 5px;
+	visibility: hidden;
+}
+#background {
+	width: 40px;
+	height: 40px;
+	position: absolute;
+	left: 29px;
+	top: 0px;	
 }
 /* Grocery list ///////////////////////////////////////////// */
 div#listWrapper {
@@ -75,12 +92,10 @@ div#mainInput {
 	width: 322px;
 	height: 40px;
 }
-
 div#listWrapper > p {
 	color: #0077C6;
 	text-align: center;
 }
-
 div#mainInput input {
 	width: 200px;
 	font-size: 20px;
@@ -119,7 +134,7 @@ div#mainInput button {
 	border-top: solid 1px #0077C6;
 }
 
-/*Pop up section*/
+											/*Pop up section*/
 #popUpList {
 	padding: 5px 10px;
 	text-align: center;
@@ -156,6 +171,9 @@ p#percent {
 	font-size: 17px;
 	margin-right: 7px;
 }
+p#hash {
+	padding-right: 2px;
+}
 li input {
 	display: inline;
 	font-size: 20px;
@@ -184,7 +202,6 @@ li button#addToCart {
 #cartAndRejects {
 	margin-bottom: 45px;
 }
-
 #cartTitle, #rejectsTitle {
 	color: black;
 	margin: 10px 0px;
@@ -194,7 +211,27 @@ li button#addToCart {
 	margin: 0px;
 	text-align: center;
 }
+button#cartButton, #rejectsButton {
+	background-color: #A62CFF;
+	background: -webkit-linear-gradient(#CA88FA, #A62CFF); 
+  background: -o-linear-gradient(#CA88FA, #A62CFF);
+  background: -moz-linear-gradient(#CA88FA, #A62CFF); 
+  background: linear-gradient(#CA88FA, #A62CFF); 
+	border: none;
+	position: absolute;
+	margin: -38px 0px 0px 190px;
+	font-size: 16px;
+	width: 170px;
+}
+#rejectsButton {
+	background-color: black;
+	background: -webkit-linear-gradient(#777, black); /* Safari 5.1to 6.0 */
+  background: -o-linear-gradient(#777, black); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#777, black); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#777, black); /* Standard syntax */
+} /* the button that appears in rejects but leads to cart*/
 
+											/*Cart section////////////////*/
 #cartWrapper {
 	border-top: solid 5px black;
 }
@@ -205,45 +242,8 @@ ul#shoppingCart {
 li.cartItem {
 	border-top:solid 1px black;
 }
-
-#rejectsWrapper {
-	border-top: solid 5px #9C6AFA;
-	display: none;
-}
-#rejectsTitle {
-	color: black;
-}
-#rejectsWrapper p {
-	color: #9C6AFA;
-}
-ul#rejects {
-	border-top: solid 2px #9C6AFA;
-	border-bottom: solid 2px #9C6AFA;
-}
-li.rejectsItem {
-	border-top:solid 1px #9C6AFA;
-	color: black;
-}
-button#cartButton, #rejectsButton {
-	background-color: #9C6AFA;
-	background: -webkit-linear-gradient(#B894FC, #9C6AFA); 
-  background: -o-linear-gradient(#B894FC, #9C6AFA);
-  background: -moz-linear-gradient(#B894FC, #9C6AFA); 
-  background: linear-gradient(#B894FC, #9C6AFA); 
-	border: none;
-	position: absolute;
-	margin: -38px 0px 0px 190px;
-	font-size: 16px;
-	width: 170px;
-}
-#rejectsButton {
-	background-color: black;
-	background: -webkit-linear-gradient(#777, black)); /* Safari 5.1to 6.0 */
-  background: -o-linear-gradient(#777, black); /* Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#777, black); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#777, black); /* Standard syntax */
-}
-
+											
+											/*PopUpCart Section*/
 #popUpCart {
 	padding: 5px 10px;
 	text-align: center;
@@ -276,10 +276,8 @@ button#cartButton, #rejectsButton {
 	color: white;
 	font-style: normal;
 }
-
-#popUpCart input {
-	border: solid 1px black;
-
+#hashCart {
+	padding-right: 2px;
 }
 p#percentCart {
 	font-size: 17px;
@@ -293,6 +291,7 @@ p#percentCart {
 	padding: 5px;
 	text-align: center;
 	border-radius: 0px;
+	border: solid 1px black;
 }
 #popUpCart input#itemAmountCart {
 	width: 28px;
@@ -323,10 +322,29 @@ button#removalButton, #updateButton {
 	margin: 0px auto;
 	padding: 0px;
 }
+
+											/*Rejects section*/
+#rejectsWrapper {
+	border-top: solid 5px #A62CFF;
+	display: none;
+}
+#rejectsWrapper p {
+	color: #A62CFF;
+}
+ul#rejects {
+	border-top: solid 2px #A62CFF;
+	border-bottom: solid 2px #A62CFF;
+}
+li.rejectsItem {
+	border-top:solid 1px #A62CFF;
+	color: black;
+}
+
+/*Cart Total section //////////////////////////////////////////*/
 #info {
 	position: fixed;
 	bottom: 0;
-	right: 25px;
+	left: 155px;
 	margin: 0;
 	padding: 0;
 	
@@ -340,23 +358,4 @@ button#removalButton, #updateButton {
 	background-color: black;
 
 }
-img#headerImg {
-	height: 80px;
-	margin-top: -20px;
-	padding-top: 0px;
-}
-img#bkgHead {
-	height: 35px;
-	position: absolute;
-	left: 314px;
-	top: 5px;
-	visibility: hidden;
-}
 
-#background {
-	width: 40px;
-	height: 40px;
-	position: absolute;
-	left: 29px;
-	top: 0px;	
-}
