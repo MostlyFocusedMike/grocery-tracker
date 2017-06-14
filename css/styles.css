@@ -348,10 +348,9 @@ img#headerImg {
 img#bkgHead {
 	height: 35px;
 	position: absolute;
-	left: 315px;
+	left: 314px;
 	top: 5px;
 	visibility: hidden;
-
 }
 
 #background {
