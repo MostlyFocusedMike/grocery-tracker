@@ -166,9 +166,12 @@
 	
 	function calculateTotal(groceryListObj) {
 		var i,
-			total = 0;
-		for (i = 0; i < groceryListObj.prices.length; i++) {
-			total += parseFloat(groceryListObj.prices[i]);
+			total = 0,
+			glObj = groceryListObj,
+			finalPrice;
+		for (i = 0; i < glObj.prices.length; i++) {
+			finalPrice = (glObj.prices[i] - (glObj.prices[i] * (glObj.sales[i] / 100))) * glObj.amounts[i];
+			total += parseFloat(finalPrice);
 		}
 		document.getElementById("total").textContent = "Cart Total: $" + total.toFixed(2);
 	}
@@ -250,7 +253,7 @@
 			cart = document.getElementById("shoppingCart"),
 			rejectsItems = document.getElementsByClassName("rejectsItem"),
 			arrayItems = [],
-			i, indexNum, name, price, textNode, newLi, sale, amount;
+			i, indexNum, name, price, textNode, newLi, sale, amount, finalPrice;
 			
 		//finds the index of the item that was clicked
 		arrayItems = Array.prototype.slice.call(rejectsItems);
@@ -272,11 +275,10 @@
 		rejectsObj.prices.splice(indexNum, 1);
 		rejectsObj.sales.splice(indexNum, 1);
 		rejectsObj.amounts.splice(indexNum, 1);
-		rejects.removeChild(item);
-		alert("hello");
 		//adds a <li> to the rejects list
 		
-		textNode = document.createTextNode(name + ": $" + price);
+		finalPrice = (price - (price * (sale / 100))) * amount;
+		textNode = document.createTextNode(name + ": $" + finalPrice);
 		newLi = document.createElement("li");
 		newLi.appendChild(textNode);
 		newLi.className = "cartItem";
