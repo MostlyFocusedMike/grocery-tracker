@@ -370,6 +370,7 @@
 		cartWrapper = document.getElementById("cartWrapper"),
 		rejects = document.getElementById("rejects"),
 		rejectsWrapper = document.getElementById("rejectsWrapper"),
+		background = document.getElementById("background"),
 		groceryListObj = {
 			names: ['cart'],
 			prices: [1.33],
@@ -401,7 +402,11 @@
 		troubleShoot.textContent = "hello";
 		emptyListFill();
 	}, false);
-  	
+  
+	background.addEventListener("click", function () {
+		document.getElementById("bkgHead").style.visibility = 'visible';
+	}, false)
+	
 	groceryList.addEventListener("click", function (e) {
 		if (e.target.className === "groceryItem") {
 			addInputsList(e);

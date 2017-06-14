@@ -339,3 +339,10 @@ button#removalButton, #updateButton {
 
 }
 
+img {
+	height: 35px;
+	position: absolute;
+	left: 29px;
+	top: 45px;
+}
+
