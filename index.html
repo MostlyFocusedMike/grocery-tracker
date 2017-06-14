@@ -3,14 +3,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-
   <title>Grocery Tracker</title>
 	<meta name="viewport" content="width=375">
   <meta name="description" content="Grocery Tracker">
   <meta name="author" content="Mike Cronin">
-  <script src="js/jquery-3.2.1.js"></script>
   <link rel="stylesheet" href="css/styles.css?v">
-
 </head>
 
 <body>
@@ -31,62 +28,34 @@
 			<p>Tap on an item in your list to add it to your cart</p>
 			<ul id="groceryList">
 				<li id=groceryWarning class="warning">Your grocery list is empty</li>
-				<li class="groceryItem">list</li>
-					<!--
-							<div class="popUp">
-								<button id="x">x</button>
-								
-								<div>
-									<p id="dollar">$</p><input type="text" value="0.00" id="itemPrice">
-									<p>Price</p>
-								</div>
-
-								<div>
-									<p id="percent">%</p><input type="text" value="0" id="itemSale">
-									<p>Sale</p>
-								</div>
-								
-								<div>
-									<input type="text" value="1" id="itemAmount">
-									<p>Amount</p>
-								</div>
-								<button id="addToCart">Add Item To Cart</button>
-							</div>
-					-->
 			</ul>
     </div>
 		
-		
 		<div id="cartAndRejects">
-			
 			<div id="cartWrapper" class="wrapper">
 				<h2 id="cartTitle">Shopping Cart</h2>
 				<button id="cartButton">View Rejected Items</button>
-				<p>Tap on an item to remove it from your cart</p>
+				<p>Tap on an item to edit or remove it from your cart</p>
 				<ul id="shoppingCart">
 					<li id=cartWarning class="warning">Your grocery cart is empty</li>
-					<li class="cartItem">cart: $1.33</li>
 				</ul>
-				
 			</div>
 
 			<div id="rejectsWrapper" class="wrapper">
 				<h2 id="rejectsTitle">Rejected Items</h2>
 				<button id="rejectsButton">View Shopping Cart</button>
-				<p>Add an item into your cart by tapping it</p>
+				<p>Add an item back into your cart by tapping it</p>
 				<ul id="rejects">
 					<li id=rejectsWarning class="warning">You have no rejects</li>
-					<li class="rejectsItem">rejects: $1.66</li>
 				</ul>
-				
 			</div>
-			<div id="info" class="wrapper">
-        <h2 id="total">Cart Total: $1.33</h2>
-    	</div>
 			
+			<div id="info" class="wrapper">
+        <h2 id="total">Cart Total: 0.00</h2>
+    	</div>
 		</div>
-		<p id="troubleShoot">TroubleShoot</p>
 	</div>
+	
   <script src="js/script.js"></script>
 </body>
 </html>
