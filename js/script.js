@@ -247,7 +247,6 @@
 		
 	function rejectsToCart(e, rejects, groceryListObj, rejectsObj) {
 		var item = e.target,
-			rejectsList = item.parentElement,
 			cart = document.getElementById("shoppingCart"),
 			rejectsItems = document.getElementsByClassName("rejectsItem"),
 			arrayItems = [],
@@ -259,8 +258,6 @@
 		
 		//copies the values from rejects obj  into the grocerlylistobj
 		name = rejectsObj.names[indexNum];
-		var troubleShoot = document.getElementById("troubleShoot");
-		troubleShoot.textContent = "hello";
 		price = rejectsObj.prices[indexNum];
 		sale = rejectsObj.sales[indexNum];
 		amount = rejectsObj.amounts[indexNum];
@@ -275,7 +272,8 @@
 		rejectsObj.prices.splice(indexNum, 1);
 		rejectsObj.sales.splice(indexNum, 1);
 		rejectsObj.amounts.splice(indexNum, 1);
-		
+		rejects.removeChild(item);
+		alert("hello");
 		//adds a <li> to the rejects list
 		
 		textNode = document.createTextNode(name + ": $" + price);
