@@ -51,18 +51,21 @@
 		var rect = popUpMenu.getBoundingClientRect();
 //		alert("Coordinates: " + rect.left + "px, " + rect.top + "px");
 		
-		if (rect.top >= 380 && rect.top < 420) {
+		
+		if (rect.top >= 340 && rect.top < 380) {
+			window.scrollBy(0, 100)
+		} else if (rect.top >= 380 && rect.top < 420) {
 //			alert("380");
-			window.scrollBy(0, 50);
+			window.scrollBy(0, 150);
 		} else if(rect.top >= 420 && rect.top < 460) {
 //			alert("420 , 460");
-			window.scrollBy(0, 100);
+			window.scrollBy(0, 200);
 		} else if (rect.top >= 460 && rect.top < 500) {
 //			alert("460");
-			window.scrollBy(0, 150);
+			window.scrollBy(0, 250);
 		} else if (rect.top >= 500 && rect.top < 545) {
 //			alert("500");
-			window.scrollBy(0, 250);
+			window.scrollBy(0, 300);
 		}	else if (rect.top >= 545 && rect.top < 590) {
 //			alert("545");
 			window.scrollBy(0, 300);
@@ -71,7 +74,7 @@
 			window.scrollBy(0, 300);
 		}	else if (rect.top >= 630 && rect.top < 650) {
 //			alert("630");
-			window.scrollBy(0, 300);
+			window.scrollBy(0, 350);
 		}
 	}
 
