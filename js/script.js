@@ -50,35 +50,25 @@
 	}
 	
 	function centerMenu(popUpMenu) {
-		//var popUpList = popUpMenu;
 		var rect = popUpMenu.getBoundingClientRect();
-//		alert("Coordinates: " + rect.left + "px, " + rect.top + "px");
-		
 		
 		if (rect.top >= 300 && rect.top < 340) {
 			window.scrollBy(0, 50)
 		} else if (rect.top >= 340 && rect.top < 380) {
 			window.scrollBy(0, 100)
 		} else if (rect.top >= 380 && rect.top < 420) {
-//			alert("380");
 			window.scrollBy(0, 150);
 		} else if(rect.top >= 420 && rect.top < 460) {
-//			alert("420 , 460");
 			window.scrollBy(0, 200);
 		} else if (rect.top >= 460 && rect.top < 500) {
-//			alert("460");
 			window.scrollBy(0, 250);
 		} else if (rect.top >= 500 && rect.top < 545) {
-//			alert("500");
 			window.scrollBy(0, 300);
 		}	else if (rect.top >= 545 && rect.top < 590) {
-//			alert("545");
 			window.scrollBy(0, 300);
 		}	else if (rect.top >= 590 && rect.top < 630) {
-//			alert("590");
 			window.scrollBy(0, 300);
 		}	else if (rect.top >= 630 && rect.top < 650) {
-//			alert("630");
 			window.scrollBy(0, 350);
 		}
 	}
@@ -291,23 +281,14 @@
 	function switchCartRejects(visible) {
 		var cart = document.getElementById("cartWrapper"),
 			rejects = document.getElementById("rejectsWrapper");
-//			switchButton = document.getElementById("switchButton");
 		if (visible === "cart") {
 			visible = "rejects";
-		} else {
-			visible = "cart";
-		}
-		
-		if (visible === "cart") {
-			cart.style.display = "block";
-			rejects.style.display = "none";
-//			switchButton.textContent = "View Rejected Items";
-//			switchButton.style.backgroundColor = "#f66";
-		} else {
 			cart.style.display = "none";
 			rejects.style.display = "block";
-//			switchButton.textContent = "View Shopping Cart";
-//			switchButton.style.backgroundColor = "forestgreen";
+		} else {
+			visible = "cart";
+			cart.style.display = "block";
+			rejects.style.display = "none";
 		}
 		return visible;
 	}
@@ -461,9 +442,5 @@
 		}
 		emptyListFill();
 	}, false);
-	
-//	switchVisibility.addEventListener("click", function () {
-//		visible = switchCartRejects(visible);
-//	}, false);
 	
 }());
