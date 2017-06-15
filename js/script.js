@@ -25,13 +25,10 @@
 			inputs = '<div id="popUpList"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="0" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="1" id="itemAmount"><p>Amount</p></div></div><button id="addToCart">Add Item To Cart</button>',
 			i, el, elText, arr;
 		
-		//formatting liText to remove the popUp text from its textContent		
 		if (liText.includes("x$Price")) {
 			liText = liText.slice(0, -35);
 		}
-		li.innerHTML = liText + inputs;
-
-
+			li.innerHTML = liText + inputs;
 		
 		for (i = 0; i < liItems.length; i++) {
 			el = arrayItems[i];
@@ -76,17 +73,7 @@
 		li.innerHTML = liText;
 	}
 
-	function calculateItemPrice(e) {
-		var button = e.target,
-			item = button.parentElement.parentElement,
-			itemPrice = document.getElementById("itemPrice").value,
-			itemAmount = document.getElementById("itemAmount").value,
-			itemSale = document.getElementById("itemSale").value / 100,
-			finalPrice = ((parseFloat(itemPrice) - (parseFloat(itemPrice) * parseFloat(itemSale))) * parseFloat(itemAmount)).toFixed(2);
-		return finalPrice;
-	}
-	
-	function addToCart(e, groceryListObj) {
+	function addToCart(e, cartObj) {
 		var item = e.target.parentElement,
 			name = item.textContent.slice(0, -35),
 			price = document.getElementById("itemPrice").value,
@@ -101,49 +88,44 @@
 		newLi.appendChild(text);
 		newLi.className = "cartItem";
 		cart.appendChild(newLi);
+		
+		cartObj.names.push(name);
+		cartObj.prices.push(price);
+		cartObj.sales.push(sale);
+		cartObj.amounts.push(amount);
 		groceryList.removeChild(item);
-		groceryListObj.names.push(name);
-		groceryListObj.prices.push(price);
-		groceryListObj.sales.push(sale);
-		groceryListObj.amounts.push(amount);
 	}
 	
-	function addInputsCart(e, groceryListObj) {
+	function addInputsCart(e, cartObj) {
 		var li = e.target,
 			liText = li.textContent,
 			liItems = document.getElementsByClassName("cartItem"),
-			arrayItems = [],
+			arrayItems = Array.prototype.slice.call(liItems),
 			price,
 			inputs,
 			i, el, elText, arr, index, sale, amount;
 		
-		arrayItems = Array.prototype.slice.call(liItems);
 		index = arrayItems.indexOf(li);
-		price = groceryListObj.prices[index];
-		sale = groceryListObj.sales[index];
-		amount = groceryListObj.amounts[index];
-		
+		price = cartObj.prices[index];
+		sale = cartObj.sales[index];
+		amount = cartObj.amounts[index];
 		inputs = '<div id="popUpCart"><button id="xCart">x</button><div><p id="dollarCart">$</p><input type="text" value="' + price + '" id="itemPriceCart"><p>Price</p></div><div><p id="percentCart">%</p><input type="text" value="' + sale + '" id="itemSaleCart"><p>Sale</p></div><div><p id="hashCart">#</p><input type="text" value="' + amount + '" id="itemAmountCart"><p>Amount</p></div></div><div id="buttons"><button id="updateButton">Update Item</button><button id="removalButton">Remove Item</button></div>';
 		
-		//formatting liText to remove the "add item x" from its textContent		
+		//formatting liText to remove the popUp text from its textContent		
 		if (liText.includes("x$Price")) {
 			liText = liText.slice(0, -41);
 		}
 		li.innerHTML = liText + inputs;
 		
-		//converts node list to an array, so pop up menu is always removed from non event targets
-		
-		
 		for (i = 0; i < liItems.length; i++) {
 			el = arrayItems[i];
 			elText = el.textContent;
-			if (elText.includes("x$Price")) { //finds the actual text of the grocery item 
-				elText = elText.slice(0, -41);  //
+			if (elText.includes("x$Price")) { //finds the actual text of item 
+				elText = elText.slice(0, -41); 
 			}
-			if (arrayItems[i] !== e.target) {  //if the text of the grocery item does not match
-				el.innerHTML = elText;  //the text of the event object text, then the popup
-			}                         //menu is removed by replacing the html with just the text
-			
+			if (arrayItems[i] !== e.target) {  //if the clicked item does not match
+				el.innerHTML = elText;           //the event object, then the popup menu
+			}                                  //is replaced with the item text
 		}
 	}
 	
@@ -153,61 +135,54 @@
 		li.innerHTML = liText;
 	}
 	
-	function calculateTotal(groceryListObj) {
-		var i,
-			total = 0,
-			glObj = groceryListObj,
-			finalPrice;
+	function calculateTotal(cartObj) {
+		var total = 0,
+			glObj = cartObj,
+			discount, finalPrice, i;
+		
 		for (i = 0; i < glObj.prices.length; i++) {
-			finalPrice = (glObj.prices[i] - (glObj.prices[i] * (glObj.sales[i] / 100))) * glObj.amounts[i];
-			total += parseFloat(finalPrice);
+			discount = (glObj.prices[i] * (glObj.sales[i] / 100));
+			finalPrice = (glObj.prices[i] - (discount)) * glObj.amounts[i];
+			total += finalPrice;
 		}
 		document.getElementById("total").textContent = "Cart Total: $" + total.toFixed(2);
 	}
 	
-	function cartToRejects(e, rejects, groceryListObj, rejectsObj) {
+	function cartToRejects(e, cart, rejects, cartObj, rejectsObj) {
 		var button = e.target,
 			item = button.parentElement.parentElement,
-			cart = document.getElementById("shoppingCart"),
 			cartItems = document.getElementsByClassName("cartItem"),
-			arrayItems = [],
+			arrayItems = Array.prototype.slice.call(cartItems),
 			i, indexNum, name, price, textNode, newLi, sale, amount, finalPrice;
 			
-		
-		//finds the index of the item that was clicked
-		arrayItems = Array.prototype.slice.call(cartItems);
+		//copies the values from cartObj into the rejectsobj
 		indexNum = arrayItems.indexOf(item);
-
-		//copies the values from grocerlylistobj into the rejects obj
-		name = groceryListObj.names[indexNum];
-		price = groceryListObj.prices[indexNum];
-		sale = groceryListObj.sales[indexNum];
-		amount = groceryListObj.amounts[indexNum];
+		name = cartObj.names[indexNum];
+		price = cartObj.prices[indexNum];
+		sale = cartObj.sales[indexNum];
+		amount = cartObj.amounts[indexNum];
 		rejectsObj.names.push(name);
 		rejectsObj.prices.push(price);
 		rejectsObj.sales.push(sale);
 		rejectsObj.amounts.push(amount);
 		
-		
 		//deletes the item from the grocerylist obj
-		groceryListObj.names.splice(indexNum, 1);
-		groceryListObj.prices.splice(indexNum, 1);
-		groceryListObj.sales.splice(indexNum, 1);
-		groceryListObj.amounts.splice(indexNum, 1);
+		cartObj.names.splice(indexNum, 1);
+		cartObj.prices.splice(indexNum, 1);
+		cartObj.sales.splice(indexNum, 1);
+		cartObj.amounts.splice(indexNum, 1);
 		
-		//adds a <li> to the rejects list
+		//adds a <li> to the rejects list and removes it from grocery list
 		finalPrice = (price - (price * (sale / 100))) * amount;
 		textNode = document.createTextNode(name + ": $" + finalPrice.toFixed(2));
 		newLi = document.createElement("li");
 		newLi.appendChild(textNode);
 		newLi.className = "rejectsItem";
 		rejects.appendChild(newLi);
-		
-		//removes the <li> from the cart
 		cart.removeChild(item);
 	}
 	
-	function updateItemPrice(e, rejects, groceryListObj, rejectsObj) {
+	function updateItemPrice(e, cart, rejects, cartObj, rejectsObj) {
 		var button = e.target,
 			item = button.parentElement.parentElement,
 			itemPrice = document.getElementById("itemPriceCart").value,
@@ -215,65 +190,57 @@
 			itemSale = document.getElementById("itemSaleCart").value,
 			itemSaleCalc = itemSale / 100,
 			discount = parseFloat(itemPrice) * (parseFloat(itemSale) / 100),
-			finalPrice = ((parseFloat(itemPrice) - (discount)) * parseFloat(itemAmount)).toFixed(2),
+			finalPrice = ((parseFloat(itemPrice) - (discount)) * parseFloat(itemAmount)),
 			cartItems = document.getElementsByClassName("cartItem"),
-			arrayItems = [],
+			arrayItems = Array.prototype.slice.call(cartItems),
 			i, indexNum, name, price, sale, amount;
-			
-		if (itemAmount === "0") {
-			cartToRejects(e, rejects, groceryListObj, rejectsObj);
-		} else {
-			//finds the index of the item that was clicked
-			arrayItems = Array.prototype.slice.call(cartItems);
-			indexNum = arrayItems.indexOf(item);
-
-			//copies the values from grocerlylistobj into the rejects obj
-			name = groceryListObj.names[indexNum];
-			groceryListObj.prices[indexNum] = itemPrice;
-			groceryListObj.sales[indexNum] = itemSale;
-			groceryListObj.amounts[indexNum] = itemAmount;
-			item.textContent = name + ': $' + finalPrice;
-		}
 		
+		//if the user updates an amount to 0 in their cart, the item is removed
+		if (itemAmount === "0") {
+			cartToRejects(e, cart, rejects, cartObj, rejectsObj);
+			
+		} else {
+			//finds which item was edited, then places the new values into their indexes
+			indexNum = arrayItems.indexOf(item);
+			name = cartObj.names[indexNum];
+			cartObj.prices[indexNum] = itemPrice;
+			cartObj.sales[indexNum] = itemSale;
+			cartObj.amounts[indexNum] = itemAmount;
+			item.textContent = name + ': $' + finalPrice.toFixed(2);
+		}
 	}
 		
-	function rejectsToCart(e, rejects, groceryListObj, rejectsObj) {
+	function rejectsToCart(e, rejects, cartObj, rejectsObj) {
 		var item = e.target,
 			cart = document.getElementById("shoppingCart"),
 			rejectsItems = document.getElementsByClassName("rejectsItem"),
-			arrayItems = [],
+			arrayItems = Array.prototype.slice.call(rejectsItems),
 			i, indexNum, name, price, textNode, newLi, sale, amount, finalPrice;
-			
-		//finds the index of the item that was clicked
-		arrayItems = Array.prototype.slice.call(rejectsItems);
+	
+		//copies the values from rejectsobj into the cartObj
 		indexNum = arrayItems.indexOf(item);
-		
-		//copies the values from rejects obj  into the grocerlylistobj
 		name = rejectsObj.names[indexNum];
 		price = rejectsObj.prices[indexNum];
 		sale = rejectsObj.sales[indexNum];
 		amount = rejectsObj.amounts[indexNum];
-		
-		groceryListObj.names.push(name);
-		groceryListObj.prices.push(price);
-		groceryListObj.sales.push(sale);
-		groceryListObj.amounts.push(amount);
+		cartObj.names.push(name);
+		cartObj.prices.push(price);
+		cartObj.sales.push(sale);
+		cartObj.amounts.push(amount);
 		
 		//deletes the item from the rejectslist obj
 		rejectsObj.names.splice(indexNum, 1);
 		rejectsObj.prices.splice(indexNum, 1);
 		rejectsObj.sales.splice(indexNum, 1);
 		rejectsObj.amounts.splice(indexNum, 1);
-		//adds a <li> to the rejects list
 		
+		//adds a <li> to the shopingcart and deletes it from rejects list
 		finalPrice = (price - (price * (sale / 100))) * amount;
 		textNode = document.createTextNode(name + ": $" + finalPrice.toFixed(2));
 		newLi = document.createElement("li");
 		newLi.appendChild(textNode);
 		newLi.className = "cartItem";
 		cart.appendChild(newLi);
-		
-		//removes the <li> from the cart
 		rejects.removeChild(item);
 	}
 	
@@ -297,6 +264,7 @@
 			scItems = document.getElementsByClassName("cartItem"),
 			rItems = document.getElementsByClassName("rejectsItem");
 		
+		//if a list is empty, the warning li will become visible
 		if (glItems.length === 0) {
 			document.getElementById("groceryWarning").style.display = "block";
 		} else {
@@ -312,35 +280,41 @@
 		} else {
 			document.getElementById("rejectsWarning").style.display = "none";
 		}
-
 	}
 	
 	function checkInputs(popUpMenu) {
 		var inputs = document.getElementsByTagName("input"),
-			i;
+				glAmount = document.getElementById("itemAmount"),
+				glList = document.getElementById("groceryList"), i, inputLocation;
+		
 		for (i = 0; i < inputs.length; i++) {
-			if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value === '') {
+			inputLocation = inputs[i].parentElement.parentElement;
+			if (popUpMenu === inputLocation && inputs[i].value === '') {
 				window.alert("Whoops, you left a box blank!");
 				return false;
-			} else if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value.includes("%")) {
+			} else if (popUpMenu === inputLocation && inputs[i].value.includes("%")) {
 				window.alert("You don't need to include the '%' sign, just the sale amount.");
-				inputs[i].value = 0;
-				return false;
-			} else if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value.includes("$")) {
+				inputs[i].value = inputs[i].value.replace("%", "");
+				if (inputs[i].value === "") {
+					return false;
+				}
+			} else if (popUpMenu === inputLocation && inputs[i].value.includes("$")) {
 				window.alert("You don't need to include the '$' sign, just price itself.");
-				inputs[i].value = 0;
-				return false;
-			} else if (popUpMenu === inputs[i].parentElement.parentElement && isNaN(inputs[i].value)) {
+				inputs[i].value = inputs[i].value.replace("$", "");
+				if (inputs[i].value === "") {
+					return false;
+				}
+			} else if (popUpMenu === inputLocation && isNaN(inputs[i].value)) {
 				window.alert("Hey, you can only put numbers in those boxes!");
+				inputs[i].value = "";
 				return false;
-			} else if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value.includes(".00")) {
+			} else if (popUpMenu === inputLocation && inputs[i].value.includes(".00")) {
 				window.alert("You don't need to put the '.00' if a price doesn't need change.");
-			} else if (document.getElementById("itemAmount") === inputs[i] && inputs[i].value === "0") {
+			} else if ( glList === inputLocation && glAmount.value === "0") { //if the grocery list's amount box is 0
 				window.alert("How are you adding 0 of something to your cart?");
-				document.getElementById("itemAmount").value = 1;
+				glAmount.value = 1;
 				return false;
 			}
-			
 		}
 		return true;
 	}
@@ -354,7 +328,7 @@
 		rejects = document.getElementById("rejects"),
 		rejectsWrapper = document.getElementById("rejectsWrapper"),
 		background = document.getElementById("background"),
-		groceryListObj = {
+		cartObj = {
 			names: [],
 			prices: [],
 			sales: [],
@@ -396,8 +370,8 @@
 			xMenu(e);
 		} else if (e.target.id === "addToCart") {
 			if (checkInputs(document.getElementById("popUpList"))) {
-				addToCart(e, groceryListObj);
-				calculateTotal(groceryListObj);
+				addToCart(e, cartObj);
+				calculateTotal(cartObj);
 				emptyListFill();
 			}
 		}
@@ -406,8 +380,8 @@
 	
 	cartWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "cartItem") {
-			if (groceryListObj.names.length > 0) {
-				addInputsCart(e, groceryListObj);
+			if (cartObj.names.length > 0) {
+				addInputsCart(e, cartObj);
 				centerMenu(document.getElementById("popUpCart"));
 			}
 		} else if (e.target.id === "xCart") {
@@ -415,12 +389,12 @@
 		} else if (e.target.id === "cartButton") {
 			visible = switchCartRejects(visible);
 		} else if (e.target.id === "removalButton") {
-			cartToRejects(e, rejects, groceryListObj, rejectsObj);
-			calculateTotal(groceryListObj);
+			cartToRejects(e, cart, rejects, cartObj, rejectsObj);
+			calculateTotal(cartObj);
 		} else if (e.target.id === "updateButton") {
 			if (checkInputs(document.getElementById("popUpCart"))) {
-				updateItemPrice(e, rejects, groceryListObj, rejectsObj);
-				calculateTotal(groceryListObj);
+				updateItemPrice(e, cart, rejects, cartObj, rejectsObj);
+				calculateTotal(cartObj);
 			}
 		}
 
@@ -430,8 +404,8 @@
 	rejectsWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "rejectsItem") {
 			if (rejectsObj.names.length > 0) {
-				rejectsToCart(e, rejects, groceryListObj, rejectsObj);
-				calculateTotal(groceryListObj);
+				rejectsToCart(e, rejects, cartObj, rejectsObj);
+				calculateTotal(cartObj);
 			}
 		} else if (e.target.id === "rejectsButton") {
 			visible = switchCartRejects(visible);
