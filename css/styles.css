@@ -8,7 +8,6 @@ div#content {
 	width: 375px;
 	padding: 0px;
 	margin: 0 auto;
-	position: absolute;
 	display: block;
 }
 h2 {
@@ -71,17 +70,17 @@ img#headerImg {
 }
 img#bkgHead {
 	height: 35px;
-	position: absolute;
-	left: 314px;
-	top: 5px;
 	visibility: hidden;
+	position: absolute;
+	margin-top: -82px;
+	margin-left: 126px;
 }
 #background {
 	width: 40px;
 	height: 40px;
 	position: absolute;
-	left: 29px;
-	top: 0px;	
+	margin-top: -70px;
+	margin-left: 145px;
 }
 /* Grocery list ///////////////////////////////////////////// */
 div#listWrapper {
@@ -347,18 +346,17 @@ li.rejectsItem {
 #info {
 	position: fixed;
 	bottom: 0;
-	left: 130px;
-	margin: 0;
+	margin-left: 130px;
 	padding: 0;
 	
 }
 #total {
-	text-align: right;
 	margin-right: 10px;
 	margin-bottom: 0px;
 	color: white;
 	padding: 10px;
 	background-color: black;
-
+	max-width: 230px;
+	text-align: center;
 }
 
