@@ -397,7 +397,6 @@
 				calculateTotal(cartObj);
 			}
 		}
-
 		emptyListFill();
 	}, false);
 	
@@ -406,11 +405,11 @@
 			if (rejectsObj.names.length > 0) {
 				rejectsToCart(e, rejects, cartObj, rejectsObj);
 				calculateTotal(cartObj);
+				emptyListFill();
 			}
 		} else if (e.target.id === "rejectsButton") {
 			visible = switchCartRejects(visible);
 		}
-		emptyListFill();
 	}, false);
 	
 }());
