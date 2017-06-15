@@ -53,22 +53,22 @@
 		var rect = popUpMenu.getBoundingClientRect();
 		
 		if (rect.top >= 300 && rect.top < 340) {
-			window.scrollBy(0, 50)
+			window.scrollBy(0, 50);
 		} else if (rect.top >= 340 && rect.top < 380) {
-			window.scrollBy(0, 100)
+			window.scrollBy(0, 100);
 		} else if (rect.top >= 380 && rect.top < 420) {
 			window.scrollBy(0, 150);
-		} else if(rect.top >= 420 && rect.top < 460) {
+		} else if (rect.top >= 420 && rect.top < 460) {
 			window.scrollBy(0, 200);
 		} else if (rect.top >= 460 && rect.top < 500) {
 			window.scrollBy(0, 250);
 		} else if (rect.top >= 500 && rect.top < 545) {
 			window.scrollBy(0, 300);
-		}	else if (rect.top >= 545 && rect.top < 590) {
+		} else if (rect.top >= 545 && rect.top < 590) {
 			window.scrollBy(0, 300);
-		}	else if (rect.top >= 590 && rect.top < 630) {
+		} else if (rect.top >= 590 && rect.top < 630) {
 			window.scrollBy(0, 300);
-		}	else if (rect.top >= 630 && rect.top < 650) {
+		} else if (rect.top >= 630 && rect.top < 650) {
 			window.scrollBy(0, 350);
 		}
 	}
@@ -89,17 +89,7 @@
 		return finalPrice;
 	}
 	
-	function calculateItemPriceCart(e) {
-		var button = e.target,
-			item = button.parentElement.parentElement,
-			itemPrice = document.getElementById("itemPriceCart").value,
-			itemAmount = document.getElementById("itemAmountCart").value,
-			itemSale = document.getElementById("itemSaleCart").value / 100,
-			finalPrice = ((parseFloat(itemPrice) - (parseFloat(itemPrice) * parseFloat(itemSale))) * parseFloat(itemAmount)).toFixed(2);
-		return finalPrice;
-	}
-	
-	function addToCart(e, finalPrice, groceryListObj) {
+	function addToCart(e, groceryListObj) {
 		var item = e.target.parentElement,
 			name = item.textContent.slice(0, -35),
 			price = document.getElementById("itemPrice").value,
@@ -108,6 +98,8 @@
 			groceryList = document.getElementById("groceryList"),
 			cart = document.getElementById("shoppingCart"),
 			newLi = document.createElement("li"),
+			discount = parseFloat(price) * (parseFloat(sale) / 100),
+			finalPrice = ((parseFloat(price) - discount) * parseFloat(amount)).toFixed(2),
 			text = document.createTextNode(name + ": $" + finalPrice);
 		newLi.appendChild(text);
 		newLi.className = "cartItem";
@@ -134,7 +126,7 @@
 		sale = groceryListObj.sales[index];
 		amount = groceryListObj.amounts[index];
 		
-		inputs = '<div id="popUpCart"><button id="xCart">x</button><div><p id="dollarCart">$</p><input type="text" value="' + price + '" id="itemPriceCart"><p>Price</p></div><div><p id="percentCart">%</p><input type="text" value="' + sale + '" id="itemSaleCart"><p>Sale</p></div><div><p id="hashCart">#</p><input type="text" value="' + amount + '" id="itemAmountCart"><p>Amount</p></div></div><div id="buttons"><button id="updateButton">Update Item</button><button id="removalButton">Remove Item</button></div>'
+		inputs = '<div id="popUpCart"><button id="xCart">x</button><div><p id="dollarCart">$</p><input type="text" value="' + price + '" id="itemPriceCart"><p>Price</p></div><div><p id="percentCart">%</p><input type="text" value="' + sale + '" id="itemSaleCart"><p>Sale</p></div><div><p id="hashCart">#</p><input type="text" value="' + amount + '" id="itemAmountCart"><p>Amount</p></div></div><div id="buttons"><button id="updateButton">Update Item</button><button id="removalButton">Remove Item</button></div>';
 		
 		//formatting liText to remove the "add item x" from its textContent		
 		if (liText.includes("x$Price")) {
@@ -176,13 +168,13 @@
 		document.getElementById("total").textContent = "Cart Total: $" + total.toFixed(2);
 	}
 	
-	function cartToRejects(e, rejects, groceryListObj, rejectsObj, finalPriceCart) {
+	function cartToRejects(e, rejects, groceryListObj, rejectsObj) {
 		var button = e.target,
 			item = button.parentElement.parentElement,
 			cart = document.getElementById("shoppingCart"),
 			cartItems = document.getElementsByClassName("cartItem"),
 			arrayItems = [],
-			i, indexNum, name, price, textNode, newLi, sale, amount;
+			i, indexNum, name, price, textNode, newLi, sale, amount, finalPrice;
 			
 		
 		//finds the index of the item that was clicked
@@ -199,7 +191,6 @@
 		rejectsObj.sales.push(sale);
 		rejectsObj.amounts.push(amount);
 		
-
 		
 		//deletes the item from the grocerylist obj
 		groceryListObj.names.splice(indexNum, 1);
@@ -208,8 +199,8 @@
 		groceryListObj.amounts.splice(indexNum, 1);
 		
 		//adds a <li> to the rejects list
-		
-		textNode = document.createTextNode(name + ": $" + finalPriceCart);
+		finalPrice = (price - (price * (sale / 100))) * amount;
+		textNode = document.createTextNode(name + ": $" + finalPrice.toFixed(2));
 		newLi = document.createElement("li");
 		newLi.appendChild(textNode);
 		newLi.className = "rejectsItem";
@@ -226,7 +217,8 @@
 			itemAmount = document.getElementById("itemAmountCart").value,
 			itemSale = document.getElementById("itemSaleCart").value,
 			itemSaleCalc = itemSale / 100,
-			finalPrice = ((parseFloat(itemPrice) - (parseFloat(itemPrice) * parseFloat(itemSaleCalc))) * parseFloat(itemAmount)).toFixed(2),
+			discount = parseFloat(itemPrice) * (parseFloat(itemSale) / 100),
+			finalPrice = ((parseFloat(itemPrice) - (discount)) * parseFloat(itemAmount)).toFixed(2),
 			cartItems = document.getElementsByClassName("cartItem"),
 			arrayItems = [],
 			i, indexNum, name, price, sale, amount;
@@ -278,7 +270,7 @@
 		//adds a <li> to the rejects list
 		
 		finalPrice = (price - (price * (sale / 100))) * amount;
-		textNode = document.createTextNode(name + ": $" + finalPrice);
+		textNode = document.createTextNode(name + ": $" + finalPrice.toFixed(2));
 		newLi = document.createElement("li");
 		newLi.appendChild(textNode);
 		newLi.className = "cartItem";
@@ -334,11 +326,11 @@
 				window.alert("Whoops, you left a box blank!");
 				return false;
 			} else if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value.includes("%")) {
-				window.alert("You don't need to include the '%' sign, just the sale amount.")
+				window.alert("You don't need to include the '%' sign, just the sale amount.");
 				inputs[i].value = 0;
 				return false;
-			}	else if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value.includes("$")) {
-				window.alert("You don't need to include the '$' sign, just price itself.")
+			} else if (popUpMenu === inputs[i].parentElement.parentElement && inputs[i].value.includes("$")) {
+				window.alert("You don't need to include the '$' sign, just price itself.");
 				inputs[i].value = 0;
 				return false;
 			} else if (popUpMenu === inputs[i].parentElement.parentElement && isNaN(inputs[i].value)) {
@@ -350,7 +342,7 @@
 				window.alert("How are you adding 0 of something to your cart?");
 				document.getElementById("itemAmount").value = 1;
 				return false;
-			} 
+			}
 			
 		}
 		return true;
@@ -405,11 +397,11 @@
 			centerMenu(document.getElementById("popUpList"));
 		} else if (e.target.id === "x") {
 			xMenu(e);
-		}  else if (e.target.id === "addToCart") {
+		} else if (e.target.id === "addToCart") {
 			if (checkInputs(document.getElementById("popUpList"))) {
-				var finalPrice = calculateItemPrice(e);
-				addToCart(e, finalPrice, groceryListObj);
+				addToCart(e, groceryListObj);
 				calculateTotal(groceryListObj);
+				emptyListFill();
 			}
 		}
 		emptyListFill();
@@ -426,8 +418,7 @@
 		} else if (e.target.id === "cartButton") {
 			visible = switchCartRejects(visible);
 		} else if (e.target.id === "removalButton") {
-			var finalPriceCart = calculateItemPriceCart(e)
-			cartToRejects(e, rejects, groceryListObj, rejectsObj, finalPriceCart);
+			cartToRejects(e, rejects, groceryListObj, rejectsObj);
 			calculateTotal(groceryListObj);
 		} else if (e.target.id === "updateButton") {
 			if (checkInputs(document.getElementById("popUpCart"))) {
