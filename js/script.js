@@ -135,19 +135,6 @@
 		li.innerHTML = liText;
 	}
 	
-	function calculateTotal(cartObj) {
-		var total = 0,
-			glObj = cartObj,
-			discount, finalPrice, i;
-		
-		for (i = 0; i < glObj.prices.length; i++) {
-			discount = (glObj.prices[i] * (glObj.sales[i] / 100));
-			finalPrice = (glObj.prices[i] - (discount)) * glObj.amounts[i];
-			total += finalPrice;
-		}
-		document.getElementById("total").textContent = "Cart Total: $" + total.toFixed(2);
-	}
-	
 	function cartToRejects(e, cart, rejects, cartObj, rejectsObj) {
 		var button = e.target,
 			item = button.parentElement.parentElement,
@@ -256,6 +243,7 @@
 			cart.style.display = "block";
 			rejects.style.display = "none";
 		}
+		window.scrollBy(0, 150);
 		return visible;
 	}
 	
@@ -318,42 +306,55 @@
 		}
 		return true;
 	}
+	
+	function calculateTotal(cartObj) {
+		var total = 0,
+			glObj = cartObj,
+			discount, finalPrice, i;
+		
+		for (i = 0; i < glObj.prices.length; i++) {
+			discount = (glObj.prices[i] * (glObj.sales[i] / 100));
+			finalPrice = (glObj.prices[i] - (discount)) * glObj.amounts[i];
+			total += finalPrice;
+		}
+		document.getElementById("total").textContent = "Cart Total: $" + total.toFixed(2);
+	}
 //^ functions   v events////////////////////////////////////////////////////////////////////
 	
 	var body = document.getElementById("content"),
-		button = document.getElementById("addItem"),
-		groceryList = document.getElementById("groceryList"),
-		cart = document.getElementById("shoppingCart"),
-		cartWrapper = document.getElementById("cartWrapper"),
-		rejects = document.getElementById("rejects"),
-		rejectsWrapper = document.getElementById("rejectsWrapper"),
 		background = document.getElementById("background"),
+		addButton = document.getElementById("addItem"),
+		groceryList = document.getElementById("groceryList"),
+		cartWrapper = document.getElementById("cartWrapper"),	
+		cart = document.getElementById("shoppingCart"),
 		cartObj = {
 			names: [],
 			prices: [],
 			sales: [],
 			amounts: []
 		},
+		rejects = document.getElementById("rejects"),
+		rejectsWrapper = document.getElementById("rejectsWrapper"),
 		rejectsObj = {
 			names: [],
 			prices: [],
 			sales: [],
 			amounts: []
 		},
-		visible = "cart",
 		switchVisibility = document.getElementById('switchButton'),
-		check;
+		visible = "cart";
 	
 	(function () {
-		emptyListFill();
+		emptyListFill(); //runs the emptyFillList immediately so when the page opens, the warnings are up
 	}());
+	
 	body.addEventListener("click", function (e) {
 		if (e.target.type === "text") {
 			e.target.value = "";
 		}
 	}, false);
 	
-	button.addEventListener("click", function () {
+	addButton.addEventListener("click", function () {
 		addName();
 		emptyListFill();
 	}, false);
@@ -375,7 +376,6 @@
 				emptyListFill();
 			}
 		}
-		emptyListFill();
 	}, false);
 	
 	cartWrapper.addEventListener("click", function (e) {
