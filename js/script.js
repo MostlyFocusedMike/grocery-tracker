@@ -386,6 +386,7 @@
   
   function setUpLists() {
     var glStored = JSON.parse(localStorage.groceryList),
+      piStored = JSON.parse(localStorage.pastItems),
       i,
 			newLi,
 			newLiText;
@@ -398,6 +399,14 @@
 		    newLi.className = "groceryItem";
 		    document.getElementById("groceryList").appendChild(newLi);
       }
+    }
+    if (piStored) {
+      for (i = 0; i < piStored.length; i++) {
+        newLi = document.createElement("li");
+        newLi.innerHTML = piStored[i] + ' <button class="pastX">x</button>';
+        newLi.className = "pastItem";
+        document.getElementById("past").appendChild(newLi);
+      } 
     }
     
   }
