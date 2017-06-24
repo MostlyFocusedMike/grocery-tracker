@@ -13,7 +13,6 @@
 			newLi.appendChild(newLiText);
 			newLi.className = "groceryItem";
 			document.getElementById("groceryList").appendChild(newLi);
-			localStorage.clear();
       groceryListObj.push(nameInput.value);
       localStorage.groceryList = JSON.stringify(groceryListObj);
       window.alert(JSON.parse(localStorage.groceryList));
@@ -384,6 +383,24 @@
     }
     return [groceryListObj, pastItemsObj, cartObj, rejectsObj];
   }
+  
+  function setUpLists() {
+    var glStored = JSON.parse(localStorage.groceryList),
+      i,
+			newLi,
+			newLiText;
+    
+    if (glStored) {
+      for (i = 0; i < glStored.length; i++) {
+        newLi = document.createElement("li");
+        newLiText = document.createTextNode(glStored[i]);
+		    newLi.appendChild(newLiText);
+		    newLi.className = "groceryItem";
+		    document.getElementById("groceryList").appendChild(newLi);
+      }
+    }
+    
+  }
 //^ functions   v events////////////////////////////////////////////////////////////////////
 	
 	var body = document.getElementById("content"),
@@ -403,9 +420,9 @@
     rejectsObj = storageObjs[3];
   
 	(function () {
-    localStorage.clear(); //DON'T FORGET TO REMOVE THIS ONCE THEY LIST PROPERLY
+    setUpLists();
+//    localStorage.clear(); //DON'T FORGET TO REMOVE THIS ONCE THEY LIST PROPERLY
 		emptyListFill(); //runs the emptyFillList immediately so when the page opens, the warnings are up
-//    localStorage.clear();
     
   }());
 	
