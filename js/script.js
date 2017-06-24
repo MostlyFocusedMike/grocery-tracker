@@ -203,20 +203,23 @@
 			finalPrice = ((parseFloat(itemPrice) - (discount)) * parseFloat(itemAmount)),
 			cartItems = document.getElementsByClassName("cartItem"),
 			arrayItems = Array.prototype.slice.call(cartItems),
-			i, indexNum, name, price, sale, amount;
+		  indexNum = arrayItems.indexOf(item),
+      name;
 		
 		//if the user updates an amount to 0 in their cart, the item is removed
 		if (itemAmount === "0") {
 			cartToRejects(e, cart, rejects, cartObj, rejectsObj);
+      //window.alert(JSON.stringify(rejectsObj));
 			
 		} else {
-			//finds which item was edited, then places the new values into their indexes
-			indexNum = arrayItems.indexOf(item);
-			name = cartObj.names[indexNum];
+			//finds which item was edited, then places the new values into their indexes	
+      name = cartObj.names[indexNum];
 			cartObj.prices[indexNum] = itemPrice;
 			cartObj.sales[indexNum] = itemSale;
 			cartObj.amounts[indexNum] = itemAmount;
 			item.textContent = name + ': $' + finalPrice.toFixed(2);
+      localStorage.cart = JSON.stringify(cartObj);
+      window.alert(JSON.stringify(cartObj));
 		}
 	}
 		
