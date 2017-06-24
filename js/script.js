@@ -390,6 +390,7 @@
     var glStored = JSON.parse(localStorage.groceryList),
       piStored = JSON.parse(localStorage.pastItems),
       scStored = JSON.parse(localStorage.cart),
+      rStored = JSON.parse(localStorage.rejects),
       i,
 			newLi,
 			newLiText,
@@ -415,7 +416,6 @@
       } 
     }
     if (scStored) {
-      window.alert(scStored);
       for (i = 0; i < scStored.names.length; i++) {
         discount = scStored.prices[i] * (scStored.sales[i] / 100);
 		    finalPrice = ((scStored.prices[i] - discount) * scStored.amounts[i]).toFixed(2);
@@ -424,6 +424,18 @@
 		    newLi.appendChild(text);
 		    newLi.className = "cartItem";
 		    document.getElementById("shoppingCart").appendChild(newLi);
+      } 
+    }
+    if (rStored) {
+      window.alert(rStored);
+      for (i = 0; i < rStored.names.length; i++) {
+        discount = rStored.prices[i] * (rStored.sales[i] / 100);
+		    finalPrice = ((rStored.prices[i] - discount) * rStored.amounts[i]).toFixed(2);
+		    text = document.createTextNode(rStored.names[i] + ": $" + finalPrice);
+        newLi = document.createElement("li");
+		    newLi.appendChild(text);
+		    newLi.className = "rejectsItem";
+		    document.getElementById("rejects").appendChild(newLi);
       } 
     }
     
