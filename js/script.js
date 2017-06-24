@@ -16,7 +16,7 @@
 			localStorage.clear();
       groceryListObj.push(nameInput.value);
       localStorage.groceryList = JSON.stringify(groceryListObj);
-      alert(JSON.parse(localStorage.groceryList));
+      window.alert(JSON.parse(localStorage.groceryList));
       nameInput.value = "Type item name here";
 		}
 	}
@@ -159,24 +159,26 @@
 			item = button.parentElement.parentElement,
 			cartItems = document.getElementsByClassName("cartItem"),
 			arrayItems = Array.prototype.slice.call(cartItems),
-			i, indexNum, name, price, textNode, newLi, sale, amount, finalPrice;
-			
-		//copies the values from cartObj into the rejectsobj
-		indexNum = arrayItems.indexOf(item);
-		name = cartObj.names[indexNum];
-		price = cartObj.prices[indexNum];
-		sale = cartObj.sales[indexNum];
-		amount = cartObj.amounts[indexNum];
+      indexNum = arrayItems.indexOf(item),
+      name = cartObj.names[indexNum],
+		  price = cartObj.prices[indexNum],
+		  sale = cartObj.sales[indexNum],
+		  amount = cartObj.amounts[indexNum],
+		  textNode, newLi, finalPrice;	
+		
+    //copies the values from cartObj into the rejectsobj
 		rejectsObj.names.push(name);
 		rejectsObj.prices.push(price);
 		rejectsObj.sales.push(sale);
 		rejectsObj.amounts.push(amount);
+    localStorage.rejects = JSON.stringify(rejectsObj);
 		
 		//deletes the item from the grocerylist obj
 		cartObj.names.splice(indexNum, 1);
 		cartObj.prices.splice(indexNum, 1);
 		cartObj.sales.splice(indexNum, 1);
 		cartObj.amounts.splice(indexNum, 1);
+    localStorage.cart = JSON.stringify(cartObj);
 		
 		//adds a <li> to the rejects list and removes it from grocery list
 		finalPrice = (price - (price * (sale / 100))) * amount;
@@ -186,6 +188,8 @@
 		newLi.className = "rejectsItem";
 		rejects.appendChild(newLi);
 		cart.removeChild(item);
+//    window.alert(JSON.stringify(cartObj));
+//    window.alert(JSON.stringify(rejectsObj));
 	}
 	
 	function updateItemPrice(e, cart, rejects, cartObj, rejectsObj) {
@@ -349,12 +353,7 @@
 		cartObj,
 		rejects = document.getElementById("rejects"),
 		rejectsWrapper = document.getElementById("rejectsWrapper"),
-		rejectsObj = {
-			names: [],
-			prices: [],
-			sales: [],
-			amounts: []
-		},
+		rejectsObj,
 		switchVisibility = document.getElementById('switchButton'),
 		visible = "cart",
     groceryListObj, pastItemsObj;
@@ -382,7 +381,17 @@
 			prices: [],
 			sales: [],
 			amounts: []
-		};
+		  };
+    }
+    if (localStorage.rejects) {
+      rejectsObj = JSON.parse(localStorage.rejects);
+    } else {
+      rejectsObj = {
+			names: [],
+			prices: [],
+			sales: [],
+			amounts: []
+		  };
     }
   }());
 	
