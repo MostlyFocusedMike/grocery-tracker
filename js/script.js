@@ -228,24 +228,26 @@
 			cart = document.getElementById("shoppingCart"),
 			rejectsItems = document.getElementsByClassName("rejectsItem"),
 			arrayItems = Array.prototype.slice.call(rejectsItems),
-			i, indexNum, name, price, textNode, newLi, sale, amount, finalPrice;
+			indexNum = arrayItems.indexOf(item), 
+      name = rejectsObj.names[indexNum],
+		  price = rejectsObj.prices[indexNum],
+		  sale = rejectsObj.sales[indexNum],
+		  amount = rejectsObj.amounts[indexNum], 
+      textNode, newLi, finalPrice;
 	
-		//copies the values from rejectsobj into the cartObj
-		indexNum = arrayItems.indexOf(item);
-		name = rejectsObj.names[indexNum];
-		price = rejectsObj.prices[indexNum];
-		sale = rejectsObj.sales[indexNum];
-		amount = rejectsObj.amounts[indexNum];
+		//copies the values from rejectsobj into the cartObj		
 		cartObj.names.push(name);
 		cartObj.prices.push(price);
 		cartObj.sales.push(sale);
 		cartObj.amounts.push(amount);
+    localStorage.cart = JSON.stringify(cartObj);
 		
 		//deletes the item from the rejectslist obj
 		rejectsObj.names.splice(indexNum, 1);
 		rejectsObj.prices.splice(indexNum, 1);
 		rejectsObj.sales.splice(indexNum, 1);
 		rejectsObj.amounts.splice(indexNum, 1);
+    localStorage.rejects = JSON.stringify(rejectsObj);
 		
 		//adds a <li> to the shopingcart and deletes it from rejects list
 		finalPrice = (price - (price * (sale / 100))) * amount;
@@ -255,6 +257,8 @@
 		newLi.className = "cartItem";
 		cart.appendChild(newLi);
 		rejects.removeChild(item);
+//    window.alert(JSON.stringify(cartObj));
+//    window.alert(JSON.stringify(rejectsObj));
 	}
 	
 	function switchCartRejects(visible) {
