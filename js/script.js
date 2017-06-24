@@ -77,7 +77,7 @@
 		li.innerHTML = liText;
 	}
 
-	function addToCart(e, cartObj) {
+	function addToCart(e, groceryListObj, pastItemsObj, cartObj) {
 		var item = e.target.parentElement,
 			name = item.textContent.slice(0, -35),
 			price = document.getElementById("itemPrice").value,
@@ -85,18 +85,33 @@
 			amount = document.getElementById("itemAmount").value,
 			groceryList = document.getElementById("groceryList"),
 			cart = document.getElementById("shoppingCart"),
+      pastItems = document.getElementById("past"),
 			newLi = document.createElement("li"),
 			discount = parseFloat(price) * (parseFloat(sale) / 100),
 			finalPrice = ((parseFloat(price) - discount) * parseFloat(amount)).toFixed(2),
-			text = document.createTextNode(name + ": $" + finalPrice);
-		newLi.appendChild(text);
-		newLi.className = "cartItem";
-		cart.appendChild(newLi);
-		
+			text = document.createTextNode(name + ": $" + finalPrice),
+      indexNum = groceryListObj.indexOf(name);
+		//adds item to cart and it's object, updates storage
 		cartObj.names.push(name);
 		cartObj.prices.push(price);
 		cartObj.sales.push(sale);
 		cartObj.amounts.push(amount);
+    localStorage.cart = JSON.stringify(cartObj);
+    newLi.appendChild(text);
+		newLi.className = "cartItem";
+		cart.appendChild(newLi);
+    
+    //adds item to pastItems list and object, updates storage
+    newLi = document.createElement("li");
+    newLi.innerHTML = name + ' <button class="pastX">x</button>';
+    newLi.className = "pastItem";
+    pastItems.appendChild(newLi);
+    pastItemsObj.push(name);
+    localStorage.pastItems = (JSON.stringify(pastItemsObj));
+    
+    //removes item from grocery list and it's object, updates storage
+    groceryListObj.splice(indexNum, 1);
+    localStorage.groceryList = (JSON.stringify(groceryListObj));
 		groceryList.removeChild(item);
 	}
 	
@@ -331,12 +346,7 @@
 		groceryList = document.getElementById("groceryList"),
 		cartWrapper = document.getElementById("cartWrapper"),	
 		cart = document.getElementById("shoppingCart"),
-		cartObj = {
-			names: [],
-			prices: [],
-			sales: [],
-			amounts: []
-		},
+		cartObj,
 		rejects = document.getElementById("rejects"),
 		rejectsWrapper = document.getElementById("rejectsWrapper"),
 		rejectsObj = {
@@ -347,16 +357,32 @@
 		},
 		switchVisibility = document.getElementById('switchButton'),
 		visible = "cart",
-    groceryListObj;
+    groceryListObj, pastItemsObj;
   
   
 	(function () {
+    localStorage.clear(); //DON'T FORGET TO REMOVE THIS ONCE THEY LIST PROPERLY
 		emptyListFill(); //runs the emptyFillList immediately so when the page opens, the warnings are up
 //    localStorage.clear();
     if (localStorage.groceryList) {
       groceryListObj = JSON.parse(localStorage.groceryList);
     } else {
       groceryListObj = [];
+    }
+    if (localStorage.pastItems) {
+      pastItemsObj = JSON.parse(localStorage.pastItems);
+    } else {
+      pastItemsObj = [];
+    }
+    if (localStorage.cart) {
+      cartObj = JSON.parse(localStorage.cart);
+    } else {
+      cartObj = {
+			names: [],
+			prices: [],
+			sales: [],
+			amounts: []
+		};
     }
   }());
 	
@@ -383,7 +409,7 @@
 			xMenu(e);
 		} else if (e.target.id === "addToCart") {
 			if (checkInputs(document.getElementById("popUpList"))) {
-				addToCart(e, cartObj);
+				addToCart(e, groceryListObj, pastItemsObj, cartObj);
 				calculateTotal(cartObj);
 				emptyListFill();
 			}
