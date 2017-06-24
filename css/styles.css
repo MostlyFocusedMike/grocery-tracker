@@ -91,6 +91,19 @@ div#listWrapper {
 div#listWrapper h2 {
 	color: black;
 }
+#groceryButton {
+  background-color: #A62CFF;
+	background-color: #67ADFF;
+	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#67ADFF, #0077C6); /* Standard syntax */
+	border: none;
+	position: absolute;
+	margin: -48px 0px 0px 205px;
+	font-size: 16px;
+	width: 150px;
+}
 div#mainInput {
 	width: 322px;
 	height: 40px;
@@ -198,6 +211,38 @@ li button#addToCart {
   background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
   background: linear-gradient(#67ADFF, #0077C6); /* Standard syntax */
 	display: block;
+}
+
+/*Past Items //////////////////////////////////////////////////////////////*/
+div#pastWrapper {
+	border-top: solid 5px red;
+	margin-top: 10px;
+}
+div#pastWrapper h2 {
+	color: darkred;
+}
+div#pastWrapper > p {
+	color: red;
+	text-align: center;
+}
+#pastWrapper ul {
+	border-bottom: solid 2px red;
+	border-top: solid 2px red;
+}
+#pastWrapper li {
+	border-top: solid 1px red;
+}
+#pastButton {
+background-color: #A62CFF;
+	background: -webkit-linear-gradient(gray, darkred); 
+  background: -o-linear-gradient(gray, darkred);
+  background: -moz-linear-gradient(gray, darkred); 
+  background: linear-gradient(gray, darkred); 
+	border: none;
+	position: absolute;
+	margin: -48px 0px 0px 190px;
+	font-size: 16px;
+	width: 170px;
 }
 
 /*Shopping cart and reject list section ////////////////////////////////////*/
