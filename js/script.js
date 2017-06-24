@@ -278,6 +278,7 @@
 	
 	function emptyListFill() {
 		var glItems = document.getElementsByClassName("groceryItem"),
+      pItems = document.getElementsByClassName("pastItem"),
 			scItems = document.getElementsByClassName("cartItem"),
 			rItems = document.getElementsByClassName("rejectsItem");
 		
@@ -296,6 +297,11 @@
 			document.getElementById("rejectsWarning").style.display = "block";
 		} else {
 			document.getElementById("rejectsWarning").style.display = "none";
+		}
+    if (pItems.length === 0) {
+			document.getElementById("pastWarning").style.display = "block";
+		} else {
+			document.getElementById("pastWarning").style.display = "none";
 		}
 	}
 	
@@ -427,7 +433,6 @@
       } 
     }
     if (rStored) {
-      window.alert(rStored);
       for (i = 0; i < rStored.names.length; i++) {
         discount = rStored.prices[i] * (rStored.sales[i] / 100);
 		    finalPrice = ((rStored.prices[i] - discount) * rStored.amounts[i]).toFixed(2);
@@ -461,7 +466,7 @@
 	(function () {
     setUpLists();
 //    localStorage.clear(); //DON'T FORGET TO REMOVE THIS ONCE THEY LIST PROPERLY
-		emptyListFill(); //runs the emptyFillList immediately so when the page opens, the warnings are up
+		emptyListFill(); //runs immediately so when the page opens, the warnings are up
     calculateTotal(cartObj);
   }());
 	
