@@ -4,7 +4,7 @@
 (function () {
 	"use strict";
   
-	function addName() {
+	function addName(groceryListObj) {
 		var nameInput = document.getElementById("inputName"),
 			newLi = document.createElement("li"),
 			newLiText = document.createTextNode(nameInput.value);
@@ -13,7 +13,11 @@
 			newLi.appendChild(newLiText);
 			newLi.className = "groceryItem";
 			document.getElementById("groceryList").appendChild(newLi);
-			nameInput.value = "Type item name here";
+			localStorage.clear();
+      groceryListObj.push(nameInput.value);
+      localStorage.groceryList = JSON.stringify(groceryListObj);
+      alert(JSON.parse(localStorage.groceryList));
+      nameInput.value = "Type item name here";
 		}
 	}
 	
@@ -342,11 +346,19 @@
 			amounts: []
 		},
 		switchVisibility = document.getElementById('switchButton'),
-		visible = "cart";
-	
+		visible = "cart",
+    groceryListObj;
+  
+  
 	(function () {
 		emptyListFill(); //runs the emptyFillList immediately so when the page opens, the warnings are up
-	}());
+//    localStorage.clear();
+    if (localStorage.groceryList) {
+      groceryListObj = JSON.parse(localStorage.groceryList);
+    } else {
+      groceryListObj = [];
+    }
+  }());
 	
 	body.addEventListener("click", function (e) {
 		if (e.target.type === "text") {
@@ -355,7 +367,7 @@
 	}, false);
 	
 	addButton.addEventListener("click", function () {
-		addName();
+		addName(groceryListObj);
 		emptyListFill();
 	}, false);
   
