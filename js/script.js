@@ -385,11 +385,17 @@
   }
   
   function setUpLists() {
+    //checks if theres any data in storage, then adds them to the appropriate list
+    
     var glStored = JSON.parse(localStorage.groceryList),
       piStored = JSON.parse(localStorage.pastItems),
+      scStored = JSON.parse(localStorage.cart),
       i,
 			newLi,
-			newLiText;
+			newLiText,
+      discount,
+      finalPrice,
+      text;
     
     if (glStored) {
       for (i = 0; i < glStored.length; i++) {
@@ -406,6 +412,18 @@
         newLi.innerHTML = piStored[i] + ' <button class="pastX">x</button>';
         newLi.className = "pastItem";
         document.getElementById("past").appendChild(newLi);
+      } 
+    }
+    if (scStored) {
+      window.alert(scStored);
+      for (i = 0; i < scStored.names.length; i++) {
+        discount = scStored.prices[i] * (scStored.sales[i] / 100);
+		    finalPrice = ((scStored.prices[i] - discount) * scStored.amounts[i]).toFixed(2);
+		    text = document.createTextNode(scStored.names[i] + ": $" + finalPrice);
+        newLi = document.createElement("li");
+		    newLi.appendChild(text);
+		    newLi.className = "cartItem";
+		    document.getElementById("shoppingCart").appendChild(newLi);
       } 
     }
     
@@ -432,7 +450,7 @@
     setUpLists();
 //    localStorage.clear(); //DON'T FORGET TO REMOVE THIS ONCE THEY LIST PROPERLY
 		emptyListFill(); //runs the emptyFillList immediately so when the page opens, the warnings are up
-    
+    calculateTotal(cartObj);
   }());
 	
 	body.addEventListener("click", function (e) {
