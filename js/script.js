@@ -349,27 +349,9 @@
 		}
 		document.getElementById("total").textContent = "Cart Total: $" + total.toFixed(2);
 	}
-//^ functions   v events////////////////////////////////////////////////////////////////////
-	
-	var body = document.getElementById("content"),
-		background = document.getElementById("background"),
-		addButton = document.getElementById("addItem"),
-		groceryList = document.getElementById("groceryList"),
-		cartWrapper = document.getElementById("cartWrapper"),	
-		cart = document.getElementById("shoppingCart"),
-		cartObj,
-		rejects = document.getElementById("rejects"),
-		rejectsWrapper = document.getElementById("rejectsWrapper"),
-		rejectsObj,
-		switchVisibility = document.getElementById('switchButton'),
-		visible = "cart",
-    groceryListObj, pastItemsObj;
   
-  
-	(function () {
-    localStorage.clear(); //DON'T FORGET TO REMOVE THIS ONCE THEY LIST PROPERLY
-		emptyListFill(); //runs the emptyFillList immediately so when the page opens, the warnings are up
-//    localStorage.clear();
+  function checkStorage() {
+    var groceryListObj, pastItemsObj, cartObj, rejectsObj;
     if (localStorage.groceryList) {
       groceryListObj = JSON.parse(localStorage.groceryList);
     } else {
@@ -400,6 +382,31 @@
 			amounts: []
 		  };
     }
+    return [groceryListObj, pastItemsObj, cartObj, rejectsObj];
+  }
+//^ functions   v events////////////////////////////////////////////////////////////////////
+	
+	var body = document.getElementById("content"),
+		background = document.getElementById("background"),
+		addButton = document.getElementById("addItem"),
+		groceryList = document.getElementById("groceryList"),
+		cartWrapper = document.getElementById("cartWrapper"),	
+		cart = document.getElementById("shoppingCart"),
+		rejects = document.getElementById("rejects"),
+		rejectsWrapper = document.getElementById("rejectsWrapper"),
+		switchVisibility = document.getElementById('switchButton'),
+		visible = "cart",
+    storageObjs = checkStorage(),
+    groceryListObj = storageObjs[0],
+    pastItemsObj = storageObjs[1],
+    cartObj = storageObjs[2],
+    rejectsObj = storageObjs[3];
+  
+	(function () {
+    localStorage.clear(); //DON'T FORGET TO REMOVE THIS ONCE THEY LIST PROPERLY
+		emptyListFill(); //runs the emptyFillList immediately so when the page opens, the warnings are up
+//    localStorage.clear();
+    
   }());
 	
 	body.addEventListener("click", function (e) {
