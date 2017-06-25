@@ -147,7 +147,15 @@
     pastItemsObj.splice(indexNum, 1);
     localStorage.pastItems = JSON.stringify(pastItemsObj);
   }
-	
+  
+  function deletePast(pastItemsObj) {
+    var pastItems = document.getElementById("past");
+    
+    pastItems.innerHTML = '<li id=pastWarning class="warning">You have no past items</li>';
+    pastItemsObj = [];
+    localStorage.pastItems = JSON.stringify(pastItemsObj);
+  }
+  
 	function addInputsCart(e, cartObj) {
 		var li = e.target,
 			liText = li.textContent,
@@ -545,7 +553,10 @@
 			} 
     } else if (e.target.className === "pastX") {
         xPast(e, pastItemsObj);
-      }
+    } else if (e.target.id === "deletePastItems") {
+        deletePast(pastItemsObj);
+    } 
+    
     emptyListFill();
 	}, false);
 	
