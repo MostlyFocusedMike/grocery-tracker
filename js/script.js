@@ -113,6 +113,28 @@
     localStorage.groceryList = (JSON.stringify(groceryListObj));
 		groceryList.removeChild(item);
 	}
+  
+  function pastToGrocery(e, groceryList, groceryListObj, pastItems, pastItemsObj) {
+    var item = e.target,
+      pastItemsList = document.getElementsByClassName("pastItem"),
+      arrayItems = Array.prototype.slice.call(pastItemsList),
+      indexNum = arrayItems.indexOf(item), 
+      newLi = document.createElement("li"),
+      name = pastItemsObj[indexNum],
+      text;
+    
+    //add item to grocery list obj and the HTML UL
+    groceryListObj.push(name);
+    localStorage.groceryList = JSON.stringify(groceryListObj);
+    text = document.createTextNode(name);
+    newLi.appendChild(text);
+    newLi.className = "groceryItem";
+    groceryList.appendChild(newLi);
+    
+    //remove item from past items obj and the HTML UL
+    pastItemsObj.splice(indexNum, 1);
+    pastItems.removeChild(item); 
+  }
 	
 	function addInputsCart(e, cartObj) {
 		var li = e.target,
@@ -453,6 +475,10 @@
 		groceryList = document.getElementById("groceryList"),
 		cartWrapper = document.getElementById("cartWrapper"),	
 		cart = document.getElementById("shoppingCart"),
+    pastWrapper = document.getElementById("pastWrapper"),
+      
+    pastItems = document.getElementById("past"),
+    pastX = document.getElementById("pastX"),
 		rejects = document.getElementById("rejects"),
 		rejectsWrapper = document.getElementById("rejectsWrapper"),
 		switchVisibility = document.getElementById('switchButton'),
@@ -498,6 +524,15 @@
 				emptyListFill();
 			}
 		}
+	}, false);
+  
+  pastWrapper.addEventListener("click", function (e) {
+		if (e.target.className === "pastItem") {
+			if (pastItemsObj.length > 0) {
+        pastToGrocery(e, groceryList, groceryListObj, pastItems, pastItemsObj);
+			}
+    }
+    emptyListFill();
 	}, false);
 	
 	cartWrapper.addEventListener("click", function (e) {
