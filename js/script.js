@@ -113,6 +113,25 @@
 		groceryList.removeChild(item);
 	}
   
+  function groceryToPast(e, groceryList, groceryListObj, pastItems, pastItemsObj) {
+    var item = e.target.parentElement.parentElement,
+			name = item.textContent.slice(0, -38),
+			newLi = document.createElement("li"),
+      indexNum = groceryListObj.indexOf(name);
+
+    //adds item to pastItems list and object, updates storage
+    newLi.innerHTML = '<span id="pastLi">' + name + ' </span><button class="pastX">x</button>';
+    newLi.className = "pastItem";
+    pastItems.appendChild(newLi);
+    pastItemsObj.push(name);
+    localStorage.pastItems = (JSON.stringify(pastItemsObj));
+    
+    //removes item from grocery list and it's object, updates storage
+    groceryListObj.splice(indexNum, 1);
+    localStorage.groceryList = (JSON.stringify(groceryListObj));
+		groceryList.removeChild(item);
+  }
+  
   function pastToGrocery(e, groceryList, groceryListObj, pastItems, pastItemsObj) {
     var item = e.target,
       pastItemsList = document.getElementsByClassName("pastItem"),
@@ -563,9 +582,11 @@
 			if (checkInputs(document.getElementById("popUpList"))) {
 				addToCart(e, groceryListObj, pastItemsObj, cartObj);
 				calculateTotal(cartObj);
-				emptyListFill();
-			}
-		}
+			} 
+		} else if (e.target.id === "removeItemButton") {
+      groceryToPast(e, groceryList, groceryListObj, pastItems, pastItemsObj);
+    }
+    emptyListFill();
 	}, false);
   
   pastWrapper.addEventListener("click", function (e) {
@@ -579,8 +600,7 @@
         deletePast(pastItemsObj);
     } else if (e.target.id === "moveGroceryItems") {
         moveGroceryList(groceryListObj, pastItemsObj);
-    }
-    
+    } 
     emptyListFill();
 	}, false);
 	
