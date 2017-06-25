@@ -231,6 +231,7 @@ div#pastWrapper > p {
 }
 #pastWrapper li {
 	border-top: solid 1px red;
+  margin: 
 }
 #pastButton {
 background-color: #A62CFF;
@@ -244,7 +245,19 @@ background-color: #A62CFF;
 	font-size: 16px;
 	width: 170px;
 }
-
+button.pastX {
+  width: 35px;
+  float: right;
+  margin: -6px -10px 0px 10px;
+  color: white;
+  background-color: darkred;
+  border: 1px solid red;
+}
+span#pastLi {
+  width: 200px;
+  display: inline-block;
+  margin: 0;
+}
 /*Shopping cart and reject list section ////////////////////////////////////*/
 #cartAndRejects {
 	margin-bottom: 45px;

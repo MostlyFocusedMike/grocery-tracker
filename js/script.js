@@ -102,7 +102,7 @@
     
     //adds item to pastItems list and object, updates storage
     newLi = document.createElement("li");
-    newLi.innerHTML = name + ' <button class="pastX">x</button>';
+    newLi.innerHTML = '<span id="pastLi">' + name + ' </span><button class="pastX">x</button>';
     newLi.className = "pastItem";
     pastItems.appendChild(newLi);
     pastItemsObj.push(name);
@@ -438,7 +438,7 @@
     if (piStored) {
       for (i = 0; i < piStored.length; i++) {
         newLi = document.createElement("li");
-        newLi.innerHTML = piStored[i] + ' <button class="pastX">x</button>';
+        newLi.innerHTML ='<span id="pastLi">' + piStored[i] + ' </span><button class="pastX">x</button>';
         newLi.className = "pastItem";
         document.getElementById("past").appendChild(newLi);
       } 
