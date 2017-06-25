@@ -15,7 +15,6 @@
 			document.getElementById("groceryList").appendChild(newLi);
       groceryListObj.push(nameInput.value);
       localStorage.groceryList = JSON.stringify(groceryListObj);
-      window.alert(JSON.parse(localStorage.groceryList));
       nameInput.value = "Type item name here";
 		}
 	}
@@ -135,6 +134,19 @@
     pastItemsObj.splice(indexNum, 1);
     pastItems.removeChild(item); 
   }
+  
+  function xPast(e, pastItemsObj) {
+    var xButton = e.target,
+      item = xButton.parentElement,
+      pastItemsList = document.getElementsByClassName("pastItem"),
+      pastItems = document.getElementById("past"),
+      arrayItems = Array.prototype.slice.call(pastItemsList),
+      indexNum = arrayItems.indexOf(item); 
+    
+    pastItems.removeChild(item);
+    pastItemsObj.splice(indexNum, 1);
+    localStorage.pastItems = JSON.stringify(pastItemsObj);
+  }
 	
 	function addInputsCart(e, cartObj) {
 		var li = e.target,
@@ -209,8 +221,6 @@
 		newLi.className = "rejectsItem";
 		rejects.appendChild(newLi);
 		cart.removeChild(item);
-//    window.alert(JSON.stringify(cartObj));
-//    window.alert(JSON.stringify(rejectsObj));
 	}
 	
 	function updateItemPrice(e, cart, rejects, cartObj, rejectsObj) {
@@ -230,7 +240,7 @@
 		//if the user updates an amount to 0 in their cart, the item is removed
 		if (itemAmount === "0") {
 			cartToRejects(e, cart, rejects, cartObj, rejectsObj);
-      //window.alert(JSON.stringify(rejectsObj));
+
 			
 		} else {
 			//finds which item was edited, then places the new values into their indexes	
@@ -240,7 +250,6 @@
 			cartObj.amounts[indexNum] = itemAmount;
 			item.textContent = name + ': $' + finalPrice.toFixed(2);
       localStorage.cart = JSON.stringify(cartObj);
-      window.alert(JSON.stringify(cartObj));
 		}
 	}
 		
@@ -278,8 +287,6 @@
 		newLi.className = "cartItem";
 		cart.appendChild(newLi);
 		rejects.removeChild(item);
-//    window.alert(JSON.stringify(cartObj));
-//    window.alert(JSON.stringify(rejectsObj));
 	}
 	
 	function switchCartRejects(visible) {
@@ -478,7 +485,6 @@
     pastWrapper = document.getElementById("pastWrapper"),
       
     pastItems = document.getElementById("past"),
-    pastX = document.getElementById("pastX"),
 		rejects = document.getElementById("rejects"),
 		rejectsWrapper = document.getElementById("rejectsWrapper"),
 		switchVisibility = document.getElementById('switchButton'),
@@ -530,8 +536,10 @@
 		if (e.target.className === "pastItem") {
 			if (pastItemsObj.length > 0) {
         pastToGrocery(e, groceryList, groceryListObj, pastItems, pastItemsObj);
-			}
-    }
+			} 
+    } else if (e.target.className === "pastX") {
+        xPast(e, pastItemsObj);
+      }
     emptyListFill();
 	}, false);
 	
