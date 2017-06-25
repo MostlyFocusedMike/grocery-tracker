@@ -386,15 +386,19 @@
   
   function checkStorage() {
     var groceryListObj, pastItemsObj, cartObj, rejectsObj;
+    
     if (localStorage.groceryList) {
       groceryListObj = JSON.parse(localStorage.groceryList);
     } else {
       groceryListObj = [];
+      localStorage.groceryList = JSON.stringify(groceryListObj);
     }
+     
     if (localStorage.pastItems) {
       pastItemsObj = JSON.parse(localStorage.pastItems);
     } else {
       pastItemsObj = [];
+      localStorage.pastItems = JSON.stringify(pastItemsObj);
     }
     if (localStorage.cart) {
       cartObj = JSON.parse(localStorage.cart);
@@ -405,6 +409,7 @@
 			sales: [],
 			amounts: []
 		  };
+      localStorage.cart = JSON.stringify(cartObj);
     }
     if (localStorage.rejects) {
       rejectsObj = JSON.parse(localStorage.rejects);
@@ -415,6 +420,7 @@
 			sales: [],
 			amounts: []
 		  };
+      localStorage.rejects = JSON.stringify(rejectsObj);
     }
     return [groceryListObj, pastItemsObj, cartObj, rejectsObj];
   }
@@ -483,7 +489,6 @@
 		cartWrapper = document.getElementById("cartWrapper"),	
 		cart = document.getElementById("shoppingCart"),
     pastWrapper = document.getElementById("pastWrapper"),
-      
     pastItems = document.getElementById("past"),
 		rejects = document.getElementById("rejects"),
 		rejectsWrapper = document.getElementById("rejectsWrapper"),
@@ -497,6 +502,7 @@
   
 	(function () {
     setUpLists();
+
 //    localStorage.clear(); //DON'T FORGET TO REMOVE THIS ONCE THEY LIST PROPERLY
 		emptyListFill(); //runs immediately so when the page opens, the warnings are up
     calculateTotal(cartObj);
