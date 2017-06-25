@@ -156,6 +156,28 @@
     localStorage.pastItems = JSON.stringify(pastItemsObj);
   }
   
+  function moveGroceryList(groceryListObj, pastItemsObj) {
+    var groceryList = document.getElementById("groceryList"),
+      pastItems = document.getElementById("past"),
+      newLi, text, i;
+    
+    //copy each grocery item into past item UL
+    for (i = 0; i < groceryListObj.length; i++) {
+      newLi = document.createElement("li");
+      newLi.innerHTML = '<span id="pastLi">' + groceryListObj[i] + ' </span><button class="pastX">x</button>'; 
+      newLi.className = "pastItem";
+      pastItems.appendChild(newLi);
+      pastItemsObj.push(groceryListObj[i]);
+    }
+    localStorage.pastItems = JSON.stringify(pastItemsObj); //updates storage once at the end
+    
+    //clean out the grocerylist and its obj
+    groceryList.innerHTML = '<li id=groceryWarning class="warning">Your grocery list is empty</li>';
+    groceryListObj = [];
+    localStorage.groceryList = JSON.stringify(groceryListObj);
+
+  }
+  
 	function addInputsCart(e, cartObj) {
 		var li = e.target,
 			liText = li.textContent,
@@ -555,7 +577,9 @@
         xPast(e, pastItemsObj);
     } else if (e.target.id === "deletePastItems") {
         deletePast(pastItemsObj);
-    } 
+    } else if (e.target.id === "moveGroceryItems") {
+        moveGroceryList(groceryListObj, pastItemsObj);
+    }
     
     emptyListFill();
 	}, false);
