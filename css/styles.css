@@ -356,7 +356,7 @@ p#percentCart {
 #popUpCart input#itemAmountCart {
 	width: 28px;
 }
-button#removalButton, #updateButton {
+button#rejectItemButton, #updateButton {
 	font-size: 16px;
 	margin: 0px;
 	padding: 5px;

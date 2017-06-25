@@ -24,11 +24,11 @@
 			liText = li.textContent,
 			liItems = document.getElementsByClassName("groceryItem"),
 			arrayItems = Array.prototype.slice.call(liItems),
-			inputs = '<div id="popUpList"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="0" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="1" id="itemAmount"><p>Amount</p></div></div><button id="addToCart">Add Item To Cart</button>',
+			inputs = '<div id="popUpList"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="0" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="1" id="itemAmount"><p>Amount</p></div></div><div id="buttons"><button id="addToCart">Add Item</button><button id="removeItemButton">Remove Item</button></div>',
 			i, el, elText, arr;
 		
 		if (liText.includes("x$Price")) {
-			liText = liText.slice(0, -35);
+			liText = liText.slice(0, -38);
 		}
 			li.innerHTML = liText + inputs;
 		
@@ -36,7 +36,7 @@
 			el = arrayItems[i];
 			elText = el.textContent;
 			if (elText.includes("x$Price")) { //finds the actual text of the grocery item 
-				elText = elText.slice(0, -35);  
+				elText = elText.slice(0, -38);  
 			}
 			if (arrayItems[i] !== e.target) {  //if the clicked item does not match
 				el.innerHTML = elText;           //the event object, then the popup menu
@@ -71,13 +71,13 @@
 
 	function xMenu(e) {
 		var li = e.target.parentElement.parentElement,
-			liText = li.textContent.slice(0, -35);
+			liText = li.textContent.slice(0, -38);
 		li.innerHTML = liText;
 	}
 
 	function addToCart(e, groceryListObj, pastItemsObj, cartObj) {
-		var item = e.target.parentElement,
-			name = item.textContent.slice(0, -35),
+		var item = e.target.parentElement.parentElement,
+			name = item.textContent.slice(0, -38),
 			price = document.getElementById("itemPrice").value,
 			sale = document.getElementById("itemSale").value,
 			amount = document.getElementById("itemAmount").value,
@@ -191,7 +191,7 @@
 		price = cartObj.prices[index];
 		sale = cartObj.sales[index];
 		amount = cartObj.amounts[index];
-		inputs = '<div id="popUpCart"><button id="xCart">x</button><div><p id="dollarCart">$</p><input type="text" value="' + price + '" id="itemPriceCart"><p>Price</p></div><div><p id="percentCart">%</p><input type="text" value="' + sale + '" id="itemSaleCart"><p>Sale</p></div><div><p id="hashCart">#</p><input type="text" value="' + amount + '" id="itemAmountCart"><p>Amount</p></div></div><div id="buttons"><button id="updateButton">Update Item</button><button id="removalButton">Remove Item</button></div>';
+		inputs = '<div id="popUpCart"><button id="xCart">x</button><div><p id="dollarCart">$</p><input type="text" value="' + price + '" id="itemPriceCart"><p>Price</p></div><div><p id="percentCart">%</p><input type="text" value="' + sale + '" id="itemSaleCart"><p>Sale</p></div><div><p id="hashCart">#</p><input type="text" value="' + amount + '" id="itemAmountCart"><p>Amount</p></div></div><div id="buttons"><button id="updateButton">Update Item</button><button id="rejectItemButton">Reject Item</button></div>';
 		
 		//formatting liText to remove the popUp text from its textContent		
 		if (liText.includes("x$Price")) {
@@ -594,7 +594,7 @@
 			xMenuCart(e);
 		} else if (e.target.id === "cartButton") {
 			visible = switchCartRejects(visible);
-		} else if (e.target.id === "removalButton") {
+		} else if (e.target.id === "rejectItemButton") {
 			cartToRejects(e, cart, rejects, cartObj, rejectsObj);
 			calculateTotal(cartObj);
 		} else if (e.target.id === "updateButton") {
