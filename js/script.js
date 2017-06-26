@@ -337,6 +337,30 @@
 		cart.appendChild(newLi);
 		rejects.removeChild(item);
 	}
+  
+  function deleteCartRejects(cartObj, rejectsObj) {
+    var cart = document.getElementById("shoppingCart"),
+      rejects = document.getElementById("rejects");
+    
+    cart.innerHTML = '<li id=cartWarning class="warning">Your grocery cart is empty</li>';
+    rejects.innerHTML = '<li id=rejectsWarning class="warning">You have no rejects</li>';
+    alert("hey");
+    cartObj = {
+			names: [],
+			prices: [],
+			sales: [],
+			amounts: []
+		  };
+    rejectsObj = {
+			names: [],
+			prices: [],
+			sales: [],
+			amounts: []
+		  };
+    localStorage.cart = JSON.stringify(cartObj);
+    localStorage.rejects = JSON.stringify(rejectsObj);
+    
+  }
 	
 	function switchCartRejects(visible) {
 		var cart = document.getElementById("cartWrapper"),
@@ -635,7 +659,10 @@
 			}
 		} else if (e.target.id === "rejectsButton") {
 			visible = switchCartRejects(visible);
-		}
+		} else if (e.target.id === "deleteCartRejects") {
+
+        deleteCartRejects(cartObj, rejectsObj);
+    }
 	}, false);
 	
 }());
