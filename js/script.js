@@ -172,7 +172,7 @@
     var pastItems = document.getElementById("past");
     
     pastItems.innerHTML = '<li id=pastWarning class="warning">You have no past items</li>';
-    pastItemsObj = [];
+    pastItemsObj.length = 0;
     localStorage.pastItems = JSON.stringify(pastItemsObj);
   }
   
@@ -193,7 +193,7 @@
     
     //clean out the grocerylist and its obj
     groceryList.innerHTML = '<li id=groceryWarning class="warning">Your grocery list is empty</li>';
-    groceryListObj = [];
+    groceryListObj.length = 0;
     localStorage.groceryList = JSON.stringify(groceryListObj);
 
   }
@@ -346,18 +346,15 @@
     cart.innerHTML = '<li id=cartWarning class="warning">Your grocery cart is empty</li>';
     rejects.innerHTML = '<li id=rejectsWarning class="warning">You have no rejects</li>';
     alert("hey");
-    cartObj = {
-			names: [],
-			prices: [],
-			sales: [],
-			amounts: []
-		  };
-    rejectsObj = {
-			names: [],
-			prices: [],
-			sales: [],
-			amounts: []
-		  };
+    cartObj.names.length = 0;
+    cartObj.prices.length = 0;
+    cartObj.sales.length = 0;
+    cartObj.amounts.length =0;
+    rejectsObj.names.length = 0;
+    rejectsObj.prices.length = 0;
+    rejectsObj.sales.length = 0;
+    rejectsObj.amounts.length = 0;
+
     localStorage.cart = JSON.stringify(cartObj);
     localStorage.rejects = JSON.stringify(rejectsObj);
     
@@ -625,6 +622,7 @@
         deletePast(pastItemsObj);
     } else if (e.target.id === "moveGroceryItems") {
         moveGroceryList(groceryListObj, pastItemsObj);
+        alert(groceryListObj);
     } 
     emptyListFill();
 	}, false);
