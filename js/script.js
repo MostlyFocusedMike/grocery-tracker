@@ -101,7 +101,7 @@
     
     //adds item to pastItems list and object, updates storage
     newLi = document.createElement("li");
-    newLi.innerHTML = '<span id="pastLi">' + name + ' </span><button class="pastX">x</button>';
+    newLi.innerHTML = '<span class="pastLi">' + name + ' </span><button class="pastX">x</button>';
     newLi.className = "pastItem";
     pastItems.appendChild(newLi);
     pastItemsObj.push(name);
@@ -120,7 +120,7 @@
       indexNum = groceryListObj.indexOf(name);
 
     //adds item to pastItems list and object, updates storage
-    newLi.innerHTML = '<span id="pastLi">' + name + ' </span><button class="pastX">x</button>';
+    newLi.innerHTML = '<span class="pastLi">' + name + ' </span><button class="pastX">x</button>';
     newLi.className = "pastItem";
     pastItems.appendChild(newLi);
     pastItemsObj.push(name);
@@ -133,7 +133,8 @@
   }
   
   function pastToGrocery(e, groceryList, groceryListObj, pastItems, pastItemsObj) {
-    var item = e.target,
+    var span = e.target,
+      item = span.parentElement,
       pastItemsList = document.getElementsByClassName("pastItem"),
       arrayItems = Array.prototype.slice.call(pastItemsList),
       indexNum = arrayItems.indexOf(item), 
@@ -614,7 +615,7 @@
 	}, false);
   
   pastWrapper.addEventListener("click", function (e) {
-		if (e.target.className === "pastItem") {
+		if (e.target.className === "pastLi") {
 			if (pastItemsObj.length > 0) {
         pastToGrocery(e, groceryList, groceryListObj, pastItems, pastItemsObj);
 			} 
