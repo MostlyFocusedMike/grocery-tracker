@@ -345,7 +345,6 @@
     
     cart.innerHTML = '<li id=cartWarning class="warning">Your grocery cart is empty</li>';
     rejects.innerHTML = '<li id=rejectsWarning class="warning">You have no rejects</li>';
-    alert("hey");
     cartObj.names.length = 0;
     cartObj.prices.length = 0;
     cartObj.sales.length = 0;
@@ -360,20 +359,35 @@
     
   }
 	
-	function switchCartRejects(visible) {
+	function switchCartRejects(visibleCR) {
 		var cart = document.getElementById("cartWrapper"),
 			rejects = document.getElementById("rejectsWrapper");
-		if (visible === "cart") {
-			visible = "rejects";
+		if (visibleCR === "cart") {
+			visibleCR = "rejects";
 			cart.style.display = "none";
 			rejects.style.display = "block";
 		} else {
-			visible = "cart";
+			visibleCR = "cart";
 			cart.style.display = "block";
 			rejects.style.display = "none";
 		}
 		window.scrollBy(0, 150);
-		return visible;
+		return visibleCR;
+	}
+  
+  function switchGroceryPast(visibleGP) {
+		var groceryList = document.getElementById("listWrapper"),
+			pastItems = document.getElementById("pastWrapper");
+		if (visibleGP === "groceryList") {
+			visibleGP = "pastItems";
+			groceryList.style.display = "none";
+			pastItems.style.display = "block";
+		} else {
+			visibleGP = "groceryList";
+			groceryList.style.display = "block";
+			pastItems.style.display = "none";
+		}
+    return visibleGP;
 	}
 	
 	function emptyListFill() {
@@ -382,7 +396,7 @@
 			scItems = document.getElementsByClassName("cartItem"),
 			rItems = document.getElementsByClassName("rejectsItem");
 		
-		//if a list is empty, the warning li will become visible
+		//if a list is empty, the warning li will become visibleCR
 		if (glItems.length === 0) {
 			document.getElementById("groceryWarning").style.display = "block";
 		} else {
@@ -557,6 +571,7 @@
 		background = document.getElementById("background"),
 		addButton = document.getElementById("addItem"),
 		groceryList = document.getElementById("groceryList"),
+    groceryWrapper = document.getElementById("listWrapper"),
 		cartWrapper = document.getElementById("cartWrapper"),	
 		cart = document.getElementById("shoppingCart"),
     pastWrapper = document.getElementById("pastWrapper"),
@@ -564,7 +579,8 @@
 		rejects = document.getElementById("rejects"),
 		rejectsWrapper = document.getElementById("rejectsWrapper"),
 		switchVisibility = document.getElementById('switchButton'),
-		visible = "cart",
+		visibleCR = "cart",              //used to decide if cart or rejects is visible
+    visibleGP = "groceryList",     //used to decide if groceries or past is visible
     storageObjs = checkStorage(),
     groceryListObj = storageObjs[0],
     pastItemsObj = storageObjs[1],
@@ -594,7 +610,7 @@
 		document.getElementById("bkgHead").style.visibility = 'visible';
 	}, false);
 	
-	groceryList.addEventListener("click", function (e) {
+	groceryWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "groceryItem") {
 			addInputsList(e);
 			centerMenu(document.getElementById("popUpList"));
@@ -605,6 +621,8 @@
 				addToCart(e, groceryListObj, pastItemsObj, cartObj);
 				calculateTotal(cartObj);
 			} 
+		} else if (e.target.id === "groceryButton") {
+		    visibleGP = switchGroceryPast(visibleGP);
 		} else if (e.target.id === "removeItemButton") {
       groceryToPast(e, groceryList, groceryListObj, pastItems, pastItemsObj);
     }
@@ -622,8 +640,9 @@
         deletePast(pastItemsObj);
     } else if (e.target.id === "moveGroceryItems") {
         moveGroceryList(groceryListObj, pastItemsObj);
-        alert(groceryListObj);
-    } 
+    } else if (e.target.id === "pastButton") {
+		    visibleGP = switchGroceryPast(visibleGP);
+    }
     emptyListFill();
 	}, false);
 	
@@ -636,7 +655,7 @@
 		} else if (e.target.id === "xCart") {
 			xMenuCart(e);
 		} else if (e.target.id === "cartButton") {
-			visible = switchCartRejects(visible);
+			visibleCR = switchCartRejects(visibleCR);
 		} else if (e.target.id === "rejectItemButton") {
 			cartToRejects(e, cart, rejects, cartObj, rejectsObj);
 			calculateTotal(cartObj);
@@ -657,7 +676,7 @@
 				emptyListFill();
 			}
 		} else if (e.target.id === "rejectsButton") {
-			visible = switchCartRejects(visible);
+			visibleCR = switchCartRejects(visibleCR);
 		} else if (e.target.id === "deleteCartRejects") {
 
         deleteCartRejects(cartObj, rejectsObj);
