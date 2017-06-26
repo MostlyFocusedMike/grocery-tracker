@@ -184,7 +184,7 @@
     //copy each grocery item into past item UL
     for (i = 0; i < groceryListObj.length; i++) {
       newLi = document.createElement("li");
-      newLi.innerHTML = '<span id="pastLi">' + groceryListObj[i] + ' </span><button class="pastX">x</button>'; 
+      newLi.innerHTML = '<span class="pastLi">' + groceryListObj[i] + ' </span><button class="pastX">x</button>'; 
       newLi.className = "pastItem";
       pastItems.appendChild(newLi);
       pastItemsObj.push(groceryListObj[i]);
