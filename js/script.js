@@ -678,8 +678,8 @@
 		} else if (e.target.id === "rejectsButton") {
 			visibleCR = switchCartRejects(visibleCR);
 		} else if (e.target.id === "deleteCartRejects") {
-
         deleteCartRejects(cartObj, rejectsObj);
+        calculateTotal(cartObj);
     }
 	}, false);
 	
