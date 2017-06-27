@@ -143,16 +143,18 @@
       text;
     
     //add item to grocery list obj and the HTML UL
-    groceryListObj.push(name);
-    localStorage.groceryList = JSON.stringify(groceryListObj);
+   
     text = document.createTextNode(name);
     newLi.appendChild(text);
     newLi.className = "groceryItem";
     groceryList.appendChild(newLi);
+    groceryListObj.push(name);
+    localStorage.groceryList = JSON.stringify(groceryListObj);
     
     //remove item from past items obj and the HTML UL
     pastItemsObj.splice(indexNum, 1);
     pastItems.removeChild(item); 
+    localStorage.pastItems = JSON.stringify(pastItemsObj);
   }
   
   function xPast(e, pastItemsObj) {
