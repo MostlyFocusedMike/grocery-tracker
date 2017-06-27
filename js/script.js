@@ -536,7 +536,7 @@
     if (piStored) {
       for (i = 0; i < piStored.length; i++) {
         newLi = document.createElement("li");
-        newLi.innerHTML ='<span id="pastLi">' + piStored[i] + ' </span><button class="pastX">x</button>';
+        newLi.innerHTML ='<span class="pastLi">' + piStored[i] + ' </span><button class="pastX">x</button>';
         newLi.className = "pastItem";
         document.getElementById("past").appendChild(newLi);
       } 
