@@ -9,6 +9,7 @@ div#content {
 	padding: 0px;
 	margin: 0 auto;
 	display: block;
+
 }
 h2 {
 	padding-left: 10px;
@@ -109,7 +110,7 @@ div#mainInput {
 	height: 40px;
 }
 div#listWrapper > p {
-	color: #0077C6;
+	color: black;
 	text-align: center;
 }
 div#mainInput input {
@@ -201,10 +202,11 @@ li input {
 input#itemAmount {
 	width: 32px;
 }
-li button#addToCart {
-	padding: 5px;
-	width: 150px;
+button#addToCart, #removeItemButton {
 	font-size: 16px;
+	margin: 0px;
+	padding: 5px;
+	width: 125px;
 	background-color: #0077C6;
 	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
@@ -213,32 +215,38 @@ li button#addToCart {
 	display: block;
 }
 
+button#addToCart {
+  float: right;
+}
+
 /*Past Items //////////////////////////////////////////////////////////////*/
 div#pastWrapper {
-	border-top: solid 5px red;
+	border-top: solid 5px #84cfff;
 	margin-top: 10px;
+  margin-bottom: 20px;
+  display: none;
 }
 div#pastWrapper h2 {
-	color: darkred;
+	color: black;
 }
 div#pastWrapper > p {
-	color: red;
+	color: black;
 	text-align: center;
 }
 #pastWrapper ul {
-	border-bottom: solid 2px red;
-	border-top: solid 2px red;
+	border-bottom: solid 2px #84cfff;
+	border-top: solid 2px #84cfff;
 }
 #pastWrapper li {
-	border-top: solid 1px red;
+	border-top: solid 1px #84cfff;
   margin: 
 }
 #pastButton {
-background-color: #A62CFF;
-	background: -webkit-linear-gradient(gray, darkred); 
-  background: -o-linear-gradient(gray, darkred);
-  background: -moz-linear-gradient(gray, darkred); 
-  background: linear-gradient(gray, darkred); 
+  background-color: #67ADFF;
+	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#84cfff, #1ca6ff); /* Standard syntax */
 	border: none;
 	position: absolute;
 	margin: -48px 0px 0px 190px;
@@ -250,13 +258,32 @@ button.pastX {
   float: right;
   margin: -6px -10px 0px 10px;
   color: white;
-  background-color: darkred;
-  border: 1px solid red;
+  background-color: #84cfff;
+  font-size: 20px;
+  border-radius: 20px
 }
-span#pastLi {
-  width: 200px;
+span.pastLi {
+  width: 225px;
   display: inline-block;
-  margin: 0;
+  margin: 0px 0px 0px -20px;
+  padding-left: 20px;
+}
+
+#moveGroceryItems, #deletePastItems {
+  width: 210px;
+  margin: 5px auto;
+  display: block;
+  background-color: #67ADFF;
+	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#84cfff, #1ca6ff); /* Standard syntax */
+}
+
+#moveGroceryItems {
+  width: 190px;
+  margin: 10px auto;
+
 }
 /*Shopping cart and reject list section ////////////////////////////////////*/
 #cartAndRejects {
@@ -388,9 +415,7 @@ button#rejectItemButton, #updateButton {
 	border-top: solid 5px #A62CFF;
 	display: none;
 }
-#rejectsWrapper p {
-	color: #A62CFF;
-}
+
 ul#rejects {
 	border-top: solid 2px #A62CFF;
 	border-bottom: solid 2px #A62CFF;
@@ -398,6 +423,16 @@ ul#rejects {
 li.rejectsItem {
 	border-top:solid 1px #A62CFF;
 	color: black;
+}
+button#deleteCartRejects {
+  
+  display: block;
+  margin: 10px auto;
+	background-color: black;
+	background: -webkit-linear-gradient(#777, black); /* Safari 5.1to 6.0 */
+  background: -o-linear-gradient(#777, black); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#777, black); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#777, black); /* Standard syntax */
 }
 
 /*Cart Total section //////////////////////////////////////////*/
