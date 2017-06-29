@@ -41,7 +41,6 @@
 			if (arrayItems[i] !== e.target) {  //if the clicked item does not match
 				el.innerHTML = elText;           //the event object, then the popup menu
 			}                                  //menu is replaced with just the text
-			
 		}
 	}
 	
@@ -70,9 +69,9 @@
 	}
 
 	function xMenu(e) {
-		var li = e.target.parentElement.parentElement,
-			liText = li.textContent.slice(0, -38);
-		li.innerHTML = liText;
+		var li = e.target.parentElement.parentElement;
+    li.innerHTML = li.textContent.slice(0, -38);
+    if (li.className === "cartItem") {li.innerHTML = li.textContent.slice(0, -3);}
 	}
 
 	function addToCart(e, groceryListObj, pastItemsObj, cartObj) {
@@ -231,12 +230,6 @@
 				el.innerHTML = elText;           //the event object, then the popup menu
 			}                                  //is replaced with the item text
 		}
-	}
-	
-	function xMenuCart(e) {
-		var li = e.target.parentElement.parentElement,
-			liText = li.textContent.slice(0, -41);
-		li.innerHTML = liText;
 	}
 	
 	function cartToRejects(e, cart, rejects, cartObj, rejectsObj) {
@@ -655,7 +648,7 @@
 				centerMenu(document.getElementById("popUpCart"));
 			}
 		} else if (e.target.id === "xCart") {
-			xMenuCart(e);
+			xMenu(e);
 		} else if (e.target.id === "cartButton") {
 			visibleCR = switchCartRejects(visibleCR);
 		} else if (e.target.id === "rejectItemButton") {
