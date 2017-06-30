@@ -220,41 +220,49 @@
     
 		addPopUp(e, li, liText, liItems, arrayItems, inputs, sliceNum);
 	}
-	
-	function cartToRejects(e, cart, rejects, cartObj, rejectsObj) {
-		var button = e.target,
+	                   
+	function moveCartRejects(e, fList, tList, fObj, tObj, fClass, tClass, fStore, tStore) {
+		//f = from, t = to. as in going fromThisLocation -> toThisLocation
+    var button = e.target,
 			item = button.parentElement.parentElement,
-			cartItems = document.getElementsByClassName("cartItem"),
-			arrayItems = Array.prototype.slice.call(cartItems),
-      indexNum = arrayItems.indexOf(item),
-      name = cartObj.names[indexNum],
-		  price = cartObj.prices[indexNum],
-		  sale = cartObj.sales[indexNum],
-		  amount = cartObj.amounts[indexNum],
-		  textNode, newLi, finalPrice;	
+			fromItems = document.getElementsByClassName(fClass),
+      arrayItems, indexNum, name, price, sale, amount, textNode, newLi, finalPrice;
 		
+    if (fClass === "rejectsItem") {
+      item = e.target; //the rejects list has no button, the target is the list element itself
+    }
+    
+    fromItems = document.getElementsByClassName(fClass);
+    arrayItems = Array.prototype.slice.call(fromItems);
+    indexNum = arrayItems.indexOf(item); // list: UL of cart/rejects, obj: cartObj/rejectObj
+    name = fObj.names[indexNum];      // class: "cartitem"/"rejectsitem", store: "cart"/"rejects"
+    price = fObj.prices[indexNum];    // they're arranged in duos, the first is where the items 
+    sale = fObj.sales[indexNum];      // are going from, and the second is their destination
+    amount = fObj.amounts[indexNum];  
+                                         
+
     //copies the values from cartObj into the rejectsobj
-		rejectsObj.names.push(name);
-		rejectsObj.prices.push(price);
-		rejectsObj.sales.push(sale);
-		rejectsObj.amounts.push(amount);
-    localStorage.rejects = JSON.stringify(rejectsObj);
+		tObj.names.push(name);
+		tObj.prices.push(price);
+		tObj.sales.push(sale);
+		tObj.amounts.push(amount);
+    localStorage.setItem(tStore, JSON.stringify(tObj));
 		
 		//deletes the item from the grocerylist obj
-		cartObj.names.splice(indexNum, 1);
-		cartObj.prices.splice(indexNum, 1);
-		cartObj.sales.splice(indexNum, 1);
-		cartObj.amounts.splice(indexNum, 1);
-    localStorage.cart = JSON.stringify(cartObj);
+		fObj.names.splice(indexNum, 1);
+		fObj.prices.splice(indexNum, 1);
+		fObj.sales.splice(indexNum, 1);
+		fObj.amounts.splice(indexNum, 1);
+    localStorage.setItem(fStore, JSON.stringify(fObj));
 		
 		//adds a <li> to the rejects list and removes it from grocery list
 		finalPrice = (price - (price * (sale / 100))) * amount;
 		textNode = document.createTextNode(name + ": $" + finalPrice.toFixed(2));
 		newLi = document.createElement("li");
 		newLi.appendChild(textNode);
-		newLi.className = "rejectsItem";
-		rejects.appendChild(newLi);
-		cart.removeChild(item);
+		newLi.className = tClass;
+		tList.appendChild(newLi);
+		fList.removeChild(item);
 	}
 	
 	function updateItemPrice(e, cart, rejects, cartObj, rejectsObj) {
@@ -273,7 +281,7 @@
 		
 		//if the user updates an amount to 0 in their cart, the item is removed
 		if (itemAmount === "0") {
-			cartToRejects(e, cart, rejects, cartObj, rejectsObj);
+			moveCartRejects(e, cart, rejects, cartObj, rejectsObj, "cartItem", "rejectsItem", "cart", "rejects"); 
 
 			
 		} else {
@@ -285,42 +293,6 @@
 			item.textContent = name + ': $' + finalPrice.toFixed(2);
       localStorage.cart = JSON.stringify(cartObj);
 		}
-	}
-		
-	function rejectsToCart(e, rejects, cartObj, rejectsObj) {
-		var item = e.target,
-			cart = document.getElementById("shoppingCart"),
-			rejectsItems = document.getElementsByClassName("rejectsItem"),
-			arrayItems = Array.prototype.slice.call(rejectsItems),
-			indexNum = arrayItems.indexOf(item), 
-      name = rejectsObj.names[indexNum],
-		  price = rejectsObj.prices[indexNum],
-		  sale = rejectsObj.sales[indexNum],
-		  amount = rejectsObj.amounts[indexNum], 
-      textNode, newLi, finalPrice;
-	
-		//copies the values from rejectsobj into the cartObj		
-		cartObj.names.push(name);
-		cartObj.prices.push(price);
-		cartObj.sales.push(sale);
-		cartObj.amounts.push(amount);
-    localStorage.cart = JSON.stringify(cartObj);
-		
-		//deletes the item from the rejectslist obj
-		rejectsObj.names.splice(indexNum, 1);
-		rejectsObj.prices.splice(indexNum, 1);
-		rejectsObj.sales.splice(indexNum, 1);
-		rejectsObj.amounts.splice(indexNum, 1);
-    localStorage.rejects = JSON.stringify(rejectsObj);
-		
-		//adds a <li> to the shopingcart and deletes it from rejects list
-		finalPrice = (price - (price * (sale / 100))) * amount;
-		textNode = document.createTextNode(name + ": $" + finalPrice.toFixed(2));
-		newLi = document.createElement("li");
-		newLi.appendChild(textNode);
-		newLi.className = "cartItem";
-		cart.appendChild(newLi);
-		rejects.removeChild(item);
 	}
   
   function deleteCartRejects(cartObj, rejectsObj) {
@@ -641,7 +613,8 @@
 		} else if (e.target.id === "cartButton") {
 			visibleCR = switchCartRejects(visibleCR);
 		} else if (e.target.id === "rejectItemButton") {
-			cartToRejects(e, cart, rejects, cartObj, rejectsObj);
+       // cart  rejects  cartObj rejectsObj "cartItem" "rejectsItem" cart rejects
+      moveCartRejects(e, cart, rejects, cartObj, rejectsObj, "cartItem", "rejectsItem", "cart", "rejects"); 
 			calculateTotal(cartObj);
 		} else if (e.target.id === "updateButton") {
 			if (checkInputs(document.getElementById("popUpCart"))) {
@@ -655,7 +628,7 @@
 	rejectsWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "rejectsItem") {
 			if (rejectsObj.names.length > 0) {
-				rejectsToCart(e, rejects, cartObj, rejectsObj);
+				moveCartRejects(e, rejects, cart, rejectsObj, cartObj, "rejectsItem", "cartItem", "rejects", "cart"); 
 				calculateTotal(cartObj);
 				emptyListFill();
 			}
