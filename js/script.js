@@ -81,8 +81,7 @@
     pastItemsObj.push(name);
     localStorage.pastItems = (JSON.stringify(pastItemsObj));
     
-    //removes item from grocery list and it's object, updates storage
-    groceryListObj.splice(indexNum, 1);
+    groceryListObj.splice(indexNum, 1);    //removes item from grocery list and it's object, updates storage
     localStorage.groceryList = (JSON.stringify(groceryListObj));
 		groceryList.removeChild(item);
   }
@@ -96,20 +95,16 @@
       indexNum = arrayItems.indexOf(item), 
       newLi = document.createElement("li"),
       name = pastItemsObj[indexNum],
-      text;
+      text = document.createTextNode(name);
     
-    //add item to grocery list obj and the HTML UL
-   
-    text = document.createTextNode(name);
-    newLi.appendChild(text);
+    newLi.appendChild(text);               //add item to grocery list obj and the HTML UL
     newLi.className = "groceryItem";
     groceryList.appendChild(newLi);
     groceryListObj.push(name);
     localStorage.groceryList = JSON.stringify(groceryListObj);
-    
-    //remove item from past items obj and the HTML UL
-    pastItemsObj.splice(indexNum, 1);
-    pastItems.removeChild(item); 
+
+    pastItemsObj.splice(indexNum, 1);     //remove item from past items obj and the HTML UL
+    pastItems.removeChild(item);
     localStorage.pastItems = JSON.stringify(pastItemsObj);
   }
   
@@ -137,10 +132,9 @@
   function moveGroceryList(groceryListObj, pastItemsObj) {
     var groceryList = document.getElementById("groceryList"),
       pastItems = document.getElementById("past"),
-      newLi, text, i;
+      newLi, i;
     
-    //copy each grocery item into past item UL
-    for (i = 0; i < groceryListObj.length; i++) {
+    for (i = 0; i < groceryListObj.length; i++) {        //copy each grocery item into past item UL
       newLi = document.createElement("li");
       newLi.innerHTML = '<span class="pastLi">' + groceryListObj[i] + ' </span><button class="pastX">x</button>'; 
       newLi.className = "pastItem";
@@ -184,20 +178,15 @@
 			cartItems = document.getElementsByClassName("cartItem"),
 			arrayItems = Array.prototype.slice.call(cartItems),
 		  indexNum = arrayItems.indexOf(item),
-      name;
-		
-		//if the user updates an amount to 0 in their cart, the item is removed
-		if (itemAmount === "0") {
-			moveCartRejects(e, cart, rejects, cartObj, rejectsObj, "cartItem", "rejectsItem", "cart", "rejects"); 
-
-			
-		} else {
-			//finds which item was edited, then places the new values into their indexes	
       name = cartObj.names[indexNum];
-			cartObj.prices[indexNum] = itemPrice;
-			cartObj.sales[indexNum] = itemSale;
+		
+		if (itemAmount === "0") {      //if the user updates an amount to 0 in their cart, the item is removed
+			moveCartRejects(e, cart, rejects, cartObj, rejectsObj, "cartItem", "rejectsItem", "cart", "rejects");
+    } else {
+			cartObj.prices[indexNum] = itemPrice;    //finds which item was edited
+			cartObj.sales[indexNum] = itemSale;      //then places the new values into their indexes
 			cartObj.amounts[indexNum] = itemAmount;
-			item.textContent = name + ': $' + finalPrice.toFixed(2);
+      item.textContent = name + ': $' + finalPrice.toFixed(2);
       localStorage.cart = JSON.stringify(cartObj);
 		}
 	}
@@ -212,7 +201,6 @@
     if (fClass === "rejectsItem") {
       item = e.target; //the rejects list has no button, the target is the list element itself
     }
-    
     fromItems = document.getElementsByClassName(fClass);
     arrayItems = Array.prototype.slice.call(fromItems);
     indexNum = arrayItems.indexOf(item); // list: UL of cart/rejects, obj: cartObj/rejectObj
@@ -221,27 +209,23 @@
     sale = fObj.sales[indexNum];      // are going from, and the second is their destination
     amount = fObj.amounts[indexNum];  
                                          
-
-    //copies the values from cartObj into the rejectsobj
 		tObj.names.push(name);
 		tObj.prices.push(price);
-		tObj.sales.push(sale);
+		tObj.sales.push(sale);            //copies the values from cartObj into the rejectsobj
 		tObj.amounts.push(amount);
     localStorage.setItem(tStore, JSON.stringify(tObj));
 		
-		//deletes the item from the grocerylist obj
 		fObj.names.splice(indexNum, 1);
 		fObj.prices.splice(indexNum, 1);
-		fObj.sales.splice(indexNum, 1);
+		fObj.sales.splice(indexNum, 1);     //deletes the item from the grocerylist obj
 		fObj.amounts.splice(indexNum, 1);
     localStorage.setItem(fStore, JSON.stringify(fObj));
 		
-		//adds a <li> to the rejects list and removes it from grocery list
 		finalPrice = (price - (price * (sale / 100))) * amount;
 		textNode = document.createTextNode(name + ": $" + finalPrice.toFixed(2));
 		newLi = document.createElement("li");
 		newLi.appendChild(textNode);
-		newLi.className = tClass;
+		newLi.className = tClass;          //adds a <li> to the rejectslist, removes from grocerylist
 		tList.appendChild(newLi);
 		fList.removeChild(item);
 	}
@@ -260,10 +244,8 @@
     rejectsObj.prices.length = 0;
     rejectsObj.sales.length = 0;
     rejectsObj.amounts.length = 0;
-
     localStorage.cart = JSON.stringify(cartObj);
-    localStorage.rejects = JSON.stringify(rejectsObj);
-    
+    localStorage.rejects = JSON.stringify(rejectsObj); 
   }
 	
   //multi-area functions///////////////////////////////////////////////////////////////
@@ -277,7 +259,6 @@
       groceryListObj = [];
       localStorage.groceryList = JSON.stringify(groceryListObj);
     }
-     
     if (localStorage.pastItems) {
       pastItemsObj = JSON.parse(localStorage.pastItems);
     } else {
@@ -310,20 +291,13 @@
   }
           //checks if theres any data in storage, then adds them to the appropriate list
   function setUpLists() {
-   
-    
     var glStored = JSON.parse(localStorage.groceryList),
       piStored = JSON.parse(localStorage.pastItems),
       scStored = JSON.parse(localStorage.cart),
       rStored = JSON.parse(localStorage.rejects),
-      i,
-			newLi,
-			newLiText,
-      discount,
-      finalPrice,
-      text;
+      i, newLi, newLiText, discount, finalPrice, text;
     
-    if (glStored) {
+    if (glStored) {  //fills in groceryList
       for (i = 0; i < glStored.length; i++) {
         newLi = document.createElement("li");
         newLiText = document.createTextNode(glStored[i]);
@@ -332,7 +306,7 @@
 		    document.getElementById("groceryList").appendChild(newLi);
       }
     }
-    if (piStored) {
+    if (piStored) { //fills in pastItems 
       for (i = 0; i < piStored.length; i++) {
         newLi = document.createElement("li");
         newLi.innerHTML ='<span class="pastLi">' + piStored[i] + ' </span><button class="pastX">x</button>';
@@ -340,7 +314,7 @@
         document.getElementById("past").appendChild(newLi);
       } 
     }
-    if (scStored) {
+    if (scStored) { //fills in shoppingCart
       for (i = 0; i < scStored.names.length; i++) {
         discount = scStored.prices[i] * (scStored.sales[i] / 100);
 		    finalPrice = ((scStored.prices[i] - discount) * scStored.amounts[i]).toFixed(2);
@@ -351,7 +325,7 @@
 		    document.getElementById("shoppingCart").appendChild(newLi);
       } 
     }
-    if (rStored) {
+    if (rStored) { //fills in rejects
       for (i = 0; i < rStored.names.length; i++) {
         discount = rStored.prices[i] * (rStored.sales[i] / 100);
 		    finalPrice = ((rStored.prices[i] - discount) * rStored.amounts[i]).toFixed(2);
@@ -362,12 +336,11 @@
 		    document.getElementById("rejects").appendChild(newLi);
       } 
     }
-    
   }
          
           //these next 3 apply to popUp menus in the grocery list and shopping cart
   function addPopUp(e, li, liText, liItems, arrayItems, inputs, sliceNum) {
-      var i, el, elText, arr;
+      var i, el, elText;
     
       if (liText.includes("x$Price")) {     //if menu text content has already been added 
         liText = liText.slice(0, sliceNum); //it removes it, before adding it back
@@ -448,7 +421,7 @@
 			scItems = document.getElementsByClassName("cartItem"),
 			rItems = document.getElementsByClassName("rejectsItem");
 		
-		//if a list is empty, the warning li will become visibleCR
+		//if a list is empty, the warning li will become visible
 		if (glItems.length === 0) {
 			document.getElementById("groceryWarning").style.display = "block";
 		} else {
@@ -473,20 +446,20 @@
 
 	function checkInputs(popUpMenu) {
 		var inputs = document.getElementsByTagName("input"),
-				glAmount = document.getElementById("itemAmount"),
-				glList = document.getElementById("groceryList"), i, inputLocation;
+        glList = document.getElementById("groceryList"),
+				glAmount = document.getElementById("itemAmount"), i, inputLocation;
 		
 		for (i = 0; i < inputs.length; i++) {
-			inputLocation = inputs[i].parentElement.parentElement;
+			inputLocation = inputs[i].parentElement.parentElement;  //find if the menu is in grocerylist or cart
 			if (popUpMenu === inputLocation && inputs[i].value === '') {
 				window.alert("Whoops, you left a box blank!");
 				return false;
 			} else if (popUpMenu === inputLocation && inputs[i].value.includes("%")) {
 				window.alert("You don't need to include the '%' sign, just the sale amount.");
-				inputs[i].value = inputs[i].value.replace("%", "");
-				if (inputs[i].value === "") {
-					return false;
-				}
+				inputs[i].value = inputs[i].value.replace("%", ""); //doesn't fail user, just corrects and passes along
+				if (inputs[i].value === "") { //if they used a % sign, and a blank box, it doesn't warn about the
+					return false;               //blank box, multiple warning are obnoxious. it will catch on next go.
+				}        
 			} else if (popUpMenu === inputLocation && inputs[i].value.includes("$")) {
 				window.alert("You don't need to include the '$' sign, just price itself.");
 				inputs[i].value = inputs[i].value.replace("$", "");
@@ -509,9 +482,7 @@
 	}
 	
 	function calculateTotal(cartObj) {
-		var total = 0,
-			glObj = cartObj,
-			discount, finalPrice, i;
+		var total = 0, glObj = cartObj, discount, finalPrice, i;
 		
 		for (i = 0; i < glObj.prices.length; i++) {
 			discount = (glObj.prices[i] * (glObj.sales[i] / 100));
@@ -526,14 +497,14 @@
 	var body = document.getElementById("content"),
 		background = document.getElementById("background"),
 		addButton = document.getElementById("addItem"),
-		groceryList = document.getElementById("groceryList"),
     groceryWrapper = document.getElementById("listWrapper"),
-		cartWrapper = document.getElementById("cartWrapper"),	
-		cart = document.getElementById("shoppingCart"),
+		groceryList = document.getElementById("groceryList"),
     pastWrapper = document.getElementById("pastWrapper"),
     pastItems = document.getElementById("past"),
+		cartWrapper = document.getElementById("cartWrapper"),	
+		cart = document.getElementById("shoppingCart"),
+    rejectsWrapper = document.getElementById("rejectsWrapper"),
 		rejects = document.getElementById("rejects"),
-		rejectsWrapper = document.getElementById("rejectsWrapper"),
 		switchVisibility = document.getElementById('switchButton'),
 		visibleCR = "cart",              //used to decide if cart or rejects is visible
     visibleGP = "groceryList",       //used to decide if groceries or past is visible
