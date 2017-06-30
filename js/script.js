@@ -3,7 +3,6 @@
 
 (function () {
 	"use strict";
-  
 	function addName(groceryListObj) {
 		var nameInput = document.getElementById("inputName"),
 			newLi = document.createElement("li"),
@@ -315,35 +314,29 @@
     
   }
 	
-	function switchCartRejects(visibleCR) {
-		var cart = document.getElementById("cartWrapper"),
-			rejects = document.getElementById("rejectsWrapper");
-		if (visibleCR === "cart") {
-			visibleCR = "rejects";
-			cart.style.display = "none";
-			rejects.style.display = "block";
-		} else {
-			visibleCR = "cart";
-			cart.style.display = "block";
-			rejects.style.display = "none";
-		}
-		window.scrollBy(0, 150);
-		return visibleCR;
-	}
-  
-  function switchGroceryPast(visible) {
-		var groceryList = document.getElementById("listWrapper"),
-			pastItems = document.getElementById("pastWrapper");
-		if (visible === "groceryList") {
-			visible = "pastItems";
-			groceryList.style.display = "none";
-			pastItems.style.display = "block";
-		} else {
-			visible = "groceryList";
-			groceryList.style.display = "block";
-			pastItems.style.display = "none";
-		}
-    return visible;
+  function switchView(visible, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper) {
+		switch(visible) {
+      case "groceryList":
+        visible = "pastItems";
+        groceryWrapper.style.display = "none";
+        pastWrapper.style.display = "block";
+        return visible;
+      case "pastItems":
+        visible = "groceryList";
+        groceryWrapper.style.display = "block";
+        pastWrapper.style.display = "none";
+        return visible;
+      case "cart":
+        visible = "rejects";
+        cartWrapper.style.display = "none";
+        rejectsWrapper.style.display = "block";
+        return visible;
+      case "rejects":
+        visible = "cart";
+        cartWrapper.style.display = "block";
+        rejectsWrapper.style.display = "none";
+        return visible;
+    }
 	}
 	
 	function emptyListFill() {
@@ -521,7 +514,7 @@
     }
     
   }
-//^ functions   v events////////////////////////////////////////////////////////////////////
+//^ functions   v events///////////////////////////////////////////////////////////
 	
 	var body = document.getElementById("content"),
 		background = document.getElementById("background"),
@@ -536,7 +529,7 @@
 		rejectsWrapper = document.getElementById("rejectsWrapper"),
 		switchVisibility = document.getElementById('switchButton'),
 		visibleCR = "cart",              //used to decide if cart or rejects is visible
-    visibleGP = "groceryList",     //used to decide if groceries or past is visible
+    visibleGP = "groceryList",       //used to decide if groceries or past is visible
     storageObjs = checkStorage(),
     groceryListObj = storageObjs[0],
     pastItemsObj = storageObjs[1],
@@ -578,7 +571,7 @@
 				calculateTotal(cartObj);
 			} 
 		} else if (e.target.id === "groceryButton") {
-		    visibleGP = switchGroceryPast(visibleGP);
+		    visibleGP = switchView(visibleGP, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper);
 		} else if (e.target.id === "removeItemButton") {
       groceryToPast(e, groceryList, groceryListObj, pastItems, pastItemsObj);
     }
@@ -597,7 +590,7 @@
     } else if (e.target.id === "moveGroceryItems") {
         moveGroceryList(groceryListObj, pastItemsObj);
     } else if (e.target.id === "pastButton") {
-		    visibleGP = switchGroceryPast(visibleGP);
+		    visibleGP = switchView(visibleGP, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper);
     }
     emptyListFill();
 	}, false);
@@ -611,9 +604,8 @@
 		} else if (e.target.id === "xCart") {
 			xMenu(e);
 		} else if (e.target.id === "cartButton") {
-			visibleCR = switchCartRejects(visibleCR);
+			visibleCR = switchView(visibleCR, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper);
 		} else if (e.target.id === "rejectItemButton") {
-       // cart  rejects  cartObj rejectsObj "cartItem" "rejectsItem" cart rejects
       moveCartRejects(e, cart, rejects, cartObj, rejectsObj, "cartItem", "rejectsItem", "cart", "rejects"); 
 			calculateTotal(cartObj);
 		} else if (e.target.id === "updateButton") {
@@ -633,11 +625,11 @@
 				emptyListFill();
 			}
 		} else if (e.target.id === "rejectsButton") {
-			visibleCR = switchCartRejects(visibleCR);
+			visibleCR = switchView(visibleCR, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper);
 		} else if (e.target.id === "deleteCartRejects") {
         deleteCartRejects(cartObj, rejectsObj);
         calculateTotal(cartObj);
     }
 	}, false);
-	
+  
 }());
