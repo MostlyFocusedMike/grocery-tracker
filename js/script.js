@@ -562,20 +562,26 @@
 		if (e.target.className === "groceryItem") {
 			createPopUpList(e, addPopUp);
 			centerMenu(document.getElementById("popUpList"));
-		} else if (e.target.id === "addItem") {
-      addName(groceryListObj);
-		  emptyListFill();
-    } else if (e.target.id === "x") {
-			xMenu(e);
-		} else if (e.target.id === "addToCart") {
-			if (checkInputs(document.getElementById("popUpList"))) {
-				addToCart(e, groceryListObj, pastItemsObj, cartObj);
-				calculateTotal(cartObj);
-			} 
-		} else if (e.target.id === "groceryButton") {
-		    visibleGP = switchView(visibleGP, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper);
-		} else if (e.target.id === "removeItemButton") {
-      groceryToPast(e, groceryList, groceryListObj, pastItems, pastItemsObj);
+		} 
+    switch(e.target.id) {
+      case "groceryButton":
+        visibleGP = switchView(visibleGP, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper);
+        break;
+      case "addItem":
+        addName(groceryListObj);
+        break;
+      case "x":
+        xMenu(e);
+        break;
+      case "addToCart":
+        if (checkInputs(document.getElementById("popUpList"))) {
+				  addToCart(e, groceryListObj, pastItemsObj, cartObj);
+				  calculateTotal(cartObj);
+			  }
+        break;
+      case "removeItemButton":
+        groceryToPast(e, groceryList, groceryListObj, pastItems, pastItemsObj);
+        break;
     }
     emptyListFill();
 	}, false);
@@ -585,12 +591,17 @@
         pastToGrocery(e, groceryList, groceryListObj, pastItems, pastItemsObj);
     } else if (e.target.className === "pastX") {
         xPast(e, pastItemsObj);
-    } else if (e.target.id === "deletePastItems") {
+    }
+    switch(e.target.id) {
+      case "deletePastItems":
         deletePast(pastItemsObj);
-    } else if (e.target.id === "moveGroceryItems") {     //I'm leaving an else-if block instead of a switch
-        moveGroceryList(groceryListObj, pastItemsObj);   //statement for these three id's because switches feel
-    } else if (e.target.id === "pastButton") {           //too verbose for such a short number 
-		    visibleGP = switchView(visibleGP, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper);
+        break;
+      case "moveGroceryItems":
+        moveGroceryList(groceryListObj, pastItemsObj);
+        break;
+      case "pastButton":
+        visibleGP = switchView(visibleGP, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper);
+        break;
     }
     emptyListFill();
 	}, false);
@@ -599,19 +610,25 @@
 		if (e.target.className === "cartItem") {
 		  createPopUpCart(e, cartObj, addPopUp);
 		  centerMenu(document.getElementById("popUpCart"));
-		} else if (e.target.id === "xCart") {
-			xMenu(e);
-		} else if (e.target.id === "cartButton") {
-			visibleCR = switchView(visibleCR, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper);
-		} else if (e.target.id === "rejectItemButton") {
-      moveCartRejects(e, cart, rejects, cartObj, rejectsObj, "cartItem", "rejectsItem", "cart", "rejects"); 
-			calculateTotal(cartObj);
-		} else if (e.target.id === "updateButton") {
-			if (checkInputs(document.getElementById("popUpCart"))) {
-				updateItemPrice(e, cart, rejects, cartObj, rejectsObj, moveCartRejects);
-				calculateTotal(cartObj);
-			}
 		}
+    switch(e.target.id) {
+      case "xCart":
+		    xMenu(e);
+        break;
+      case "cartButton":
+        visibleCR = switchView(visibleCR, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper);
+        break;
+      case "rejectItemButton":
+        moveCartRejects(e, cart, rejects, cartObj, rejectsObj, "cartItem", "rejectsItem", "cart", "rejects"); 
+        calculateTotal(cartObj);
+        break;
+      case "updateButton":
+        if (checkInputs(document.getElementById("popUpCart"))) {
+				  updateItemPrice(e, cart, rejects, cartObj, rejectsObj, moveCartRejects);
+				  calculateTotal(cartObj);
+        }
+        break;
+    }
 		emptyListFill();
 	}, false);
 	
@@ -623,8 +640,8 @@
 		} else if (e.target.id === "rejectsButton") {
 			visibleCR = switchView(visibleCR, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper);
 		} else if (e.target.id === "deleteCartRejects") {
-        deleteCartRejects(cartObj, rejectsObj);
-        calculateTotal(cartObj);
+      deleteCartRejects(cartObj, rejectsObj);
+      calculateTotal(cartObj);
     }
 	}, false);
   
