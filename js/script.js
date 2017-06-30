@@ -19,30 +19,37 @@
 		}
 	}
 	
-	function addInputsList(e) {
+  function createPopUpList(e, addPopUp) {
 		var li = e.target,
 			liText = li.textContent,
 			liItems = document.getElementsByClassName("groceryItem"),
 			arrayItems = Array.prototype.slice.call(liItems),
 			inputs = '<div id="popUpList"><button id="x">x</button><div><p id="dollar">$</p><input type="text" value="0.00" id="itemPrice"><p>Price</p></div><div><p id="percent">%</p><input type="text" value="0" id="itemSale"><p>Sale</p></div><div><p id="hash">#</p><input type="text" value="1" id="itemAmount"><p>Amount</p></div></div><div id="buttons"><button id="addToCart">Add Item</button><button id="removeItemButton">Remove Item</button></div>',
-			i, el, elText, arr;
-		
-		if (liText.includes("x$Price")) {
-			liText = liText.slice(0, -38);
-		}
-			li.innerHTML = liText + inputs;
-		
-		for (i = 0; i < liItems.length; i++) {
-			el = arrayItems[i];
-			elText = el.textContent;
-			if (elText.includes("x$Price")) { //finds the actual text of the grocery item 
-				elText = elText.slice(0, -38);  
-			}
-			if (arrayItems[i] !== e.target) {  //if the clicked item does not match
-				el.innerHTML = elText;           //the event object, then the popup menu
-			}                                  //menu is replaced with just the text
-		}
+      sliceNum = -38; //the two pop ups have a different amount of extra text to remove
+    
+    addPopUp(e, li, liText, liItems, arrayItems, inputs, sliceNum);  
 	}
+  
+  //addPopUp goes into the 2 different createPopUp functions
+  function addPopUp(e, li, liText, liItems, arrayItems, inputs, sliceNum) {
+      var i, el, elText, arr;
+    
+      if (liText.includes("x$Price")) {     //if menu text content has already been added 
+        liText = liText.slice(0, sliceNum); //it removes it, before adding it back
+      }                                     //Meaning, multiple clicks can never pile on
+        li.innerHTML = liText + inputs;     //multiple menues //remove it to see what i mean
+
+      for (i = 0; i < liItems.length; i++) {
+        el = arrayItems[i];
+        elText = el.textContent;
+        if (elText.includes("x$Price")) { //finds the actual text of the grocery item 
+          elText = elText.slice(0, sliceNum);  
+        }
+        if (arrayItems[i] !== e.target) {  //if the clicked item does not match
+          el.innerHTML = elText;           //the event object, then the popup menu
+        }                                  // is removed
+      }
+    }
 	
 	function centerMenu(popUpMenu) {
 		var rect = popUpMenu.getBoundingClientRect();
@@ -199,37 +206,19 @@
 
   }
   
-	function addInputsCart(e, cartObj) {
+	function createPopUpCart(e, cartObj) {
 		var li = e.target,
 			liText = li.textContent,
 			liItems = document.getElementsByClassName("cartItem"),
 			arrayItems = Array.prototype.slice.call(liItems),
-			price,
-			inputs,
-			i, el, elText, arr, index, sale, amount;
-		
-		index = arrayItems.indexOf(li);
-		price = cartObj.prices[index];
-		sale = cartObj.sales[index];
-		amount = cartObj.amounts[index];
-		inputs = '<div id="popUpCart"><button id="xCart">x</button><div><p id="dollarCart">$</p><input type="text" value="' + price + '" id="itemPriceCart"><p>Price</p></div><div><p id="percentCart">%</p><input type="text" value="' + sale + '" id="itemSaleCart"><p>Sale</p></div><div><p id="hashCart">#</p><input type="text" value="' + amount + '" id="itemAmountCart"><p>Amount</p></div></div><div id="buttons"><button id="updateButton">Update Item</button><button id="rejectItemButton">Reject Item</button></div>';
-		
-		//formatting liText to remove the popUp text from its textContent		
-		if (liText.includes("x$Price")) {
-			liText = liText.slice(0, -41);
-		}
-		li.innerHTML = liText + inputs;
-		
-		for (i = 0; i < liItems.length; i++) {
-			el = arrayItems[i];
-			elText = el.textContent;
-			if (elText.includes("x$Price")) { //finds the actual text of item 
-				elText = elText.slice(0, -41); 
-			}
-			if (arrayItems[i] !== e.target) {  //if the clicked item does not match
-				el.innerHTML = elText;           //the event object, then the popup menu
-			}                                  //is replaced with the item text
-		}
+      index = arrayItems.indexOf(li),
+		  price = cartObj.prices[index],
+		  sale = cartObj.sales[index],
+		  amount = cartObj.amounts[index],
+		  inputs = '<div id="popUpCart"><button id="xCart">x</button><div><p id="dollarCart">$</p><input type="text" value="' + price + '" id="itemPriceCart"><p>Price</p></div><div><p id="percentCart">%</p><input type="text" value="' + sale + '" id="itemSaleCart"><p>Sale</p></div><div><p id="hashCart">#</p><input type="text" value="' + amount + '" id="itemAmountCart"><p>Amount</p></div></div><div id="buttons"><button id="updateButton">Update Item</button><button id="rejectItemButton">Reject Item</button></div>',
+      sliceNum = -41;
+    
+		addPopUp(e, li, liText, liItems, arrayItems, inputs, sliceNum);
 	}
 	
 	function cartToRejects(e, cart, rejects, cartObj, rejectsObj) {
@@ -370,19 +359,19 @@
 		return visibleCR;
 	}
   
-  function switchGroceryPast(visibleGP) {
+  function switchGroceryPast(visible) {
 		var groceryList = document.getElementById("listWrapper"),
 			pastItems = document.getElementById("pastWrapper");
-		if (visibleGP === "groceryList") {
-			visibleGP = "pastItems";
+		if (visible === "groceryList") {
+			visible = "pastItems";
 			groceryList.style.display = "none";
 			pastItems.style.display = "block";
 		} else {
-			visibleGP = "groceryList";
+			visible = "groceryList";
 			groceryList.style.display = "block";
 			pastItems.style.display = "none";
 		}
-    return visibleGP;
+    return visible;
 	}
 	
 	function emptyListFill() {
@@ -607,7 +596,7 @@
 	
 	groceryWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "groceryItem") {
-			addInputsList(e);
+			createPopUpList(e, addPopUp);
 			centerMenu(document.getElementById("popUpList"));
 		} else if (e.target.id === "x") {
 			xMenu(e);
@@ -644,7 +633,7 @@
 	cartWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "cartItem") {
 			if (cartObj.names.length > 0) {
-				addInputsCart(e, cartObj);
+				createPopUpCart(e, cartObj);
 				centerMenu(document.getElementById("popUpCart"));
 			}
 		} else if (e.target.id === "xCart") {
