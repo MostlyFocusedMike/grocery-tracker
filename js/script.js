@@ -3,6 +3,7 @@
 
 (function () {
 	"use strict";
+  //Grocery List functions//////////////////////////////////////////////////////////////
 	function addName(groceryListObj) {
 		var nameInput = document.getElementById("inputName"),
 			newLi = document.createElement("li"),
@@ -27,58 +28,7 @@
       sliceNum = -38; //the two pop ups have a different amount of extra text to remove
     
     addPopUp(e, li, liText, liItems, arrayItems, inputs, sliceNum);  
-	}
-  
-  //addPopUp goes into the 2 different createPopUp functions
-  function addPopUp(e, li, liText, liItems, arrayItems, inputs, sliceNum) {
-      var i, el, elText, arr;
-    
-      if (liText.includes("x$Price")) {     //if menu text content has already been added 
-        liText = liText.slice(0, sliceNum); //it removes it, before adding it back
-      }                                     //Meaning, multiple clicks can never pile on
-        li.innerHTML = liText + inputs;     //multiple menues //remove it to see what i mean
-
-      for (i = 0; i < liItems.length; i++) {
-        el = arrayItems[i];
-        elText = el.textContent;
-        if (elText.includes("x$Price")) { //finds the actual text of the grocery item 
-          elText = elText.slice(0, sliceNum);  
-        }
-        if (arrayItems[i] !== e.target) {  //if the clicked item does not match
-          el.innerHTML = elText;           //the event object, then the popup menu
-        }                                  // is removed
-      }
-    }
-	
-	function centerMenu(popUpMenu) {
-		var rect = popUpMenu.getBoundingClientRect();
-		
-		if (rect.top >= 300 && rect.top < 340) {
-			window.scrollBy(0, 50);
-		} else if (rect.top >= 340 && rect.top < 380) {
-			window.scrollBy(0, 100);
-		} else if (rect.top >= 380 && rect.top < 420) {
-			window.scrollBy(0, 150);
-		} else if (rect.top >= 420 && rect.top < 460) {
-			window.scrollBy(0, 200);
-		} else if (rect.top >= 460 && rect.top < 500) {
-			window.scrollBy(0, 250);
-		} else if (rect.top >= 500 && rect.top < 545) {
-			window.scrollBy(0, 300);
-		} else if (rect.top >= 545 && rect.top < 590) {
-			window.scrollBy(0, 300);
-		} else if (rect.top >= 590 && rect.top < 630) {
-			window.scrollBy(0, 300);
-		} else if (rect.top >= 630 && rect.top < 650) {
-			window.scrollBy(0, 350);
-		}
-	}
-
-	function xMenu(e) {
-		var li = e.target.parentElement.parentElement;
-    li.innerHTML = li.textContent.slice(0, -38);
-    if (li.className === "cartItem") {li.innerHTML = li.textContent.slice(0, -3);}
-	}
+	} 
 
 	function addToCart(e, groceryListObj, pastItemsObj, cartObj) {
 		var item = e.target.parentElement.parentElement,
@@ -137,6 +87,7 @@
 		groceryList.removeChild(item);
   }
   
+  //Past Items functions///////////////////////////////////////////////////////////////
   function pastToGrocery(e, groceryList, groceryListObj, pastItems, pastItemsObj) {
     var span = e.target,
       item = span.parentElement,
@@ -205,7 +156,8 @@
 
   }
   
-	function createPopUpCart(e, cartObj) {
+  //Shopping Cart/rejects functions////////////////////////////////////////////////////
+	function createPopUpCart(e, cartObj, addPopUp) {
 		var li = e.target,
 			liText = li.textContent,
 			liItems = document.getElementsByClassName("cartItem"),
@@ -220,7 +172,37 @@
 		addPopUp(e, li, liText, liItems, arrayItems, inputs, sliceNum);
 	}
 	                   
-	function moveCartRejects(e, fList, tList, fObj, tObj, fClass, tClass, fStore, tStore) {
+	function updateItemPrice(e, cart, rejects, cartObj, rejectsObj, moveCartRejects) {
+		var button = e.target,
+			item = button.parentElement.parentElement,
+			itemPrice = document.getElementById("itemPriceCart").value,
+			itemAmount = document.getElementById("itemAmountCart").value,
+			itemSale = document.getElementById("itemSaleCart").value,
+			itemSaleCalc = itemSale / 100,
+			discount = parseFloat(itemPrice) * (parseFloat(itemSale) / 100),
+			finalPrice = ((parseFloat(itemPrice) - (discount)) * parseFloat(itemAmount)),
+			cartItems = document.getElementsByClassName("cartItem"),
+			arrayItems = Array.prototype.slice.call(cartItems),
+		  indexNum = arrayItems.indexOf(item),
+      name;
+		
+		//if the user updates an amount to 0 in their cart, the item is removed
+		if (itemAmount === "0") {
+			moveCartRejects(e, cart, rejects, cartObj, rejectsObj, "cartItem", "rejectsItem", "cart", "rejects"); 
+
+			
+		} else {
+			//finds which item was edited, then places the new values into their indexes	
+      name = cartObj.names[indexNum];
+			cartObj.prices[indexNum] = itemPrice;
+			cartObj.sales[indexNum] = itemSale;
+			cartObj.amounts[indexNum] = itemAmount;
+			item.textContent = name + ': $' + finalPrice.toFixed(2);
+      localStorage.cart = JSON.stringify(cartObj);
+		}
+	}
+  
+  function moveCartRejects(e, fList, tList, fObj, tObj, fClass, tClass, fStore, tStore) {
 		//f = from, t = to. as in going fromThisLocation -> toThisLocation
     var button = e.target,
 			item = button.parentElement.parentElement,
@@ -264,36 +246,6 @@
 		fList.removeChild(item);
 	}
 	
-	function updateItemPrice(e, cart, rejects, cartObj, rejectsObj) {
-		var button = e.target,
-			item = button.parentElement.parentElement,
-			itemPrice = document.getElementById("itemPriceCart").value,
-			itemAmount = document.getElementById("itemAmountCart").value,
-			itemSale = document.getElementById("itemSaleCart").value,
-			itemSaleCalc = itemSale / 100,
-			discount = parseFloat(itemPrice) * (parseFloat(itemSale) / 100),
-			finalPrice = ((parseFloat(itemPrice) - (discount)) * parseFloat(itemAmount)),
-			cartItems = document.getElementsByClassName("cartItem"),
-			arrayItems = Array.prototype.slice.call(cartItems),
-		  indexNum = arrayItems.indexOf(item),
-      name;
-		
-		//if the user updates an amount to 0 in their cart, the item is removed
-		if (itemAmount === "0") {
-			moveCartRejects(e, cart, rejects, cartObj, rejectsObj, "cartItem", "rejectsItem", "cart", "rejects"); 
-
-			
-		} else {
-			//finds which item was edited, then places the new values into their indexes	
-      name = cartObj.names[indexNum];
-			cartObj.prices[indexNum] = itemPrice;
-			cartObj.sales[indexNum] = itemSale;
-			cartObj.amounts[indexNum] = itemAmount;
-			item.textContent = name + ': $' + finalPrice.toFixed(2);
-      localStorage.cart = JSON.stringify(cartObj);
-		}
-	}
-  
   function deleteCartRejects(cartObj, rejectsObj) {
     var cart = document.getElementById("shoppingCart"),
       rejects = document.getElementById("rejects");
@@ -314,110 +266,8 @@
     
   }
 	
-  function switchView(visible, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper) {
-		switch(visible) {
-      case "groceryList":
-        visible = "pastItems";
-        groceryWrapper.style.display = "none";
-        pastWrapper.style.display = "block";
-        return visible;
-      case "pastItems":
-        visible = "groceryList";
-        groceryWrapper.style.display = "block";
-        pastWrapper.style.display = "none";
-        return visible;
-      case "cart":
-        visible = "rejects";
-        cartWrapper.style.display = "none";
-        rejectsWrapper.style.display = "block";
-        return visible;
-      case "rejects":
-        visible = "cart";
-        cartWrapper.style.display = "block";
-        rejectsWrapper.style.display = "none";
-        return visible;
-    }
-	}
-	
-	function emptyListFill() {
-		var glItems = document.getElementsByClassName("groceryItem"),
-      pItems = document.getElementsByClassName("pastItem"),
-			scItems = document.getElementsByClassName("cartItem"),
-			rItems = document.getElementsByClassName("rejectsItem");
-		
-		//if a list is empty, the warning li will become visibleCR
-		if (glItems.length === 0) {
-			document.getElementById("groceryWarning").style.display = "block";
-		} else {
-			document.getElementById("groceryWarning").style.display = "none";
-		}
-		if (scItems.length === 0) {
-			document.getElementById("cartWarning").style.display = "block";
-		} else {
-			document.getElementById("cartWarning").style.display = "none";
-		}
-		if (rItems.length === 0) {
-			document.getElementById("rejectsWarning").style.display = "block";
-		} else {
-			document.getElementById("rejectsWarning").style.display = "none";
-		}
-    if (pItems.length === 0) {
-			document.getElementById("pastWarning").style.display = "block";
-		} else {
-			document.getElementById("pastWarning").style.display = "none";
-		}
-	}
-	
-	function checkInputs(popUpMenu) {
-		var inputs = document.getElementsByTagName("input"),
-				glAmount = document.getElementById("itemAmount"),
-				glList = document.getElementById("groceryList"), i, inputLocation;
-		
-		for (i = 0; i < inputs.length; i++) {
-			inputLocation = inputs[i].parentElement.parentElement;
-			if (popUpMenu === inputLocation && inputs[i].value === '') {
-				window.alert("Whoops, you left a box blank!");
-				return false;
-			} else if (popUpMenu === inputLocation && inputs[i].value.includes("%")) {
-				window.alert("You don't need to include the '%' sign, just the sale amount.");
-				inputs[i].value = inputs[i].value.replace("%", "");
-				if (inputs[i].value === "") {
-					return false;
-				}
-			} else if (popUpMenu === inputLocation && inputs[i].value.includes("$")) {
-				window.alert("You don't need to include the '$' sign, just price itself.");
-				inputs[i].value = inputs[i].value.replace("$", "");
-				if (inputs[i].value === "") {
-					return false;
-				}
-			} else if (popUpMenu === inputLocation && isNaN(inputs[i].value)) {
-				window.alert("Hey, you can only put numbers in those boxes!");
-				inputs[i].value = "";
-				return false;
-			} else if (popUpMenu === inputLocation && inputs[i].value.includes(".00")) {
-				window.alert("You don't need to put the '.00' if a price doesn't need change.");
-			} else if ( glList === inputLocation && glAmount.value === "0") { //if the grocery list's amount box is 0
-				window.alert("How are you adding 0 of something to your cart?");
-				glAmount.value = 1;
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	function calculateTotal(cartObj) {
-		var total = 0,
-			glObj = cartObj,
-			discount, finalPrice, i;
-		
-		for (i = 0; i < glObj.prices.length; i++) {
-			discount = (glObj.prices[i] * (glObj.sales[i] / 100));
-			finalPrice = (glObj.prices[i] - (discount)) * glObj.amounts[i];
-			total += finalPrice;
-		}
-		document.getElementById("total").textContent = "Cart Total: $" + total.toFixed(2);
-	}
-  
+  //multi-area functions///////////////////////////////////////////////////////////////
+          //updates objects with any data from storage
   function checkStorage() {
     var groceryListObj, pastItemsObj, cartObj, rejectsObj;
     
@@ -458,9 +308,9 @@
     }
     return [groceryListObj, pastItemsObj, cartObj, rejectsObj];
   }
-  
+          //checks if theres any data in storage, then adds them to the appropriate list
   function setUpLists() {
-    //checks if theres any data in storage, then adds them to the appropriate list
+   
     
     var glStored = JSON.parse(localStorage.groceryList),
       piStored = JSON.parse(localStorage.pastItems),
@@ -514,8 +364,165 @@
     }
     
   }
-//^ functions   v events///////////////////////////////////////////////////////////
+         
+          //these next 3 apply to popUp menus in the grocery list and shopping cart
+  function addPopUp(e, li, liText, liItems, arrayItems, inputs, sliceNum) {
+      var i, el, elText, arr;
+    
+      if (liText.includes("x$Price")) {     //if menu text content has already been added 
+        liText = liText.slice(0, sliceNum); //it removes it, before adding it back
+      }                                     //Meaning, multiple clicks can never pile on
+        li.innerHTML = liText + inputs;     //multiple menues //remove it to see what i mean
+
+      for (i = 0; i < liItems.length; i++) {
+        el = arrayItems[i];
+        elText = el.textContent;
+        if (elText.includes("x$Price")) { //finds the actual text of the grocery item 
+          elText = elText.slice(0, sliceNum);  
+        }
+        if (arrayItems[i] !== e.target) {  //if the clicked item does not match
+          el.innerHTML = elText;           //the event object, then the popup menu
+        }                                  // is removed
+      }
+    }
+	       
+	function centerMenu(popUpMenu) {
+		var rect = popUpMenu.getBoundingClientRect();
+		
+		if (rect.top >= 300 && rect.top < 340) {
+			window.scrollBy(0, 50);
+		} else if (rect.top >= 340 && rect.top < 380) {
+			window.scrollBy(0, 100);
+		} else if (rect.top >= 380 && rect.top < 420) {
+			window.scrollBy(0, 150);
+		} else if (rect.top >= 420 && rect.top < 460) {
+			window.scrollBy(0, 200);
+		} else if (rect.top >= 460 && rect.top < 500) {
+			window.scrollBy(0, 250);
+		} else if (rect.top >= 500 && rect.top < 545) {
+			window.scrollBy(0, 300);
+		} else if (rect.top >= 545 && rect.top < 590) {
+			window.scrollBy(0, 300);
+		} else if (rect.top >= 590 && rect.top < 630) {
+			window.scrollBy(0, 300);
+		} else if (rect.top >= 630 && rect.top < 650) {
+			window.scrollBy(0, 350);
+		}
+	}
+         
+	function xMenu(e) {
+		var li = e.target.parentElement.parentElement;
+    li.innerHTML = li.textContent.slice(0, -38);
+    if (li.className === "cartItem") {li.innerHTML = li.textContent.slice(0, -3);}
+	}
+  
+  
+  function switchView(visible, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper) {
+		switch(visible) {
+      case "groceryList":
+        visible = "pastItems";
+        groceryWrapper.style.display = "none";
+        pastWrapper.style.display = "block";
+        return visible;
+      case "pastItems":
+        visible = "groceryList";
+        groceryWrapper.style.display = "block";
+        pastWrapper.style.display = "none";
+        return visible;
+      case "cart":
+        visible = "rejects";
+        cartWrapper.style.display = "none";
+        rejectsWrapper.style.display = "block";
+        return visible;
+      case "rejects":
+        visible = "cart";
+        cartWrapper.style.display = "block";
+        rejectsWrapper.style.display = "none";
+        return visible;
+    }
+	}
+
+	function emptyListFill() {
+		var glItems = document.getElementsByClassName("groceryItem"),
+      pItems = document.getElementsByClassName("pastItem"),
+			scItems = document.getElementsByClassName("cartItem"),
+			rItems = document.getElementsByClassName("rejectsItem");
+		
+		//if a list is empty, the warning li will become visibleCR
+		if (glItems.length === 0) {
+			document.getElementById("groceryWarning").style.display = "block";
+		} else {
+			document.getElementById("groceryWarning").style.display = "none";
+		}
+		if (scItems.length === 0) {
+			document.getElementById("cartWarning").style.display = "block";
+		} else {
+			document.getElementById("cartWarning").style.display = "none";
+		}
+		if (rItems.length === 0) {
+			document.getElementById("rejectsWarning").style.display = "block";
+		} else {
+			document.getElementById("rejectsWarning").style.display = "none";
+		}
+    if (pItems.length === 0) {
+			document.getElementById("pastWarning").style.display = "block";
+		} else {
+			document.getElementById("pastWarning").style.display = "none";
+		}
+	}
+
+	function checkInputs(popUpMenu) {
+		var inputs = document.getElementsByTagName("input"),
+				glAmount = document.getElementById("itemAmount"),
+				glList = document.getElementById("groceryList"), i, inputLocation;
+		
+		for (i = 0; i < inputs.length; i++) {
+			inputLocation = inputs[i].parentElement.parentElement;
+			if (popUpMenu === inputLocation && inputs[i].value === '') {
+				window.alert("Whoops, you left a box blank!");
+				return false;
+			} else if (popUpMenu === inputLocation && inputs[i].value.includes("%")) {
+				window.alert("You don't need to include the '%' sign, just the sale amount.");
+				inputs[i].value = inputs[i].value.replace("%", "");
+				if (inputs[i].value === "") {
+					return false;
+				}
+			} else if (popUpMenu === inputLocation && inputs[i].value.includes("$")) {
+				window.alert("You don't need to include the '$' sign, just price itself.");
+				inputs[i].value = inputs[i].value.replace("$", "");
+				if (inputs[i].value === "") {
+					return false;
+				}
+			} else if (popUpMenu === inputLocation && isNaN(inputs[i].value)) {
+				window.alert("Hey, you can only put numbers in those boxes!");
+				inputs[i].value = "";
+				return false;
+			} else if (popUpMenu === inputLocation && inputs[i].value.includes(".00")) {
+				window.alert("You don't need to put the '.00' if a price doesn't need change.");
+			} else if ( glList === inputLocation && glAmount.value === "0") { //if the grocery list's amount box is 0
+				window.alert("How are you adding 0 of something to your cart?");
+				glAmount.value = 1;
+				return false;
+			}
+		}
+		return true;
+	}
 	
+	function calculateTotal(cartObj) {
+		var total = 0,
+			glObj = cartObj,
+			discount, finalPrice, i;
+		
+		for (i = 0; i < glObj.prices.length; i++) {
+			discount = (glObj.prices[i] * (glObj.sales[i] / 100));
+			finalPrice = (glObj.prices[i] - (discount)) * glObj.amounts[i];
+			total += finalPrice;
+		}
+		document.getElementById("total").textContent = "Cart Total: $" + total.toFixed(2);
+	}
+  
+//^ function definitions/////////////////////////////////////////////////////////////////////   
+//v main code////////////////////////////////////////////////////////////////////////////////
 	var body = document.getElementById("content"),
 		background = document.getElementById("background"),
 		addButton = document.getElementById("addItem"),
@@ -536,34 +543,29 @@
     cartObj = storageObjs[2],
     rejectsObj = storageObjs[3];
   
-	(function () {
+  //initial function to set up the page
+  (function () {
     setUpLists();
-
-//    localStorage.clear(); //DON'T FORGET TO REMOVE THIS ONCE THEY LIST PROPERLY
-		emptyListFill(); //runs immediately so when the page opens, the warnings are up
+		emptyListFill();
     calculateTotal(cartObj);
   }());
-	
+  
 	body.addEventListener("click", function (e) {
 		if (e.target.type === "text") {
 			e.target.value = "";
-		}
-	}, false);
-	
-	addButton.addEventListener("click", function () {
-		addName(groceryListObj);
-		emptyListFill();
-	}, false);
-  
-	background.addEventListener("click", function () {
-		document.getElementById("bkgHead").style.visibility = 'visible';
+		} else if (e.target.id === "background") {
+      document.getElementById("bkgHead").style.visibility = 'visible';
+    }
 	}, false);
 	
 	groceryWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "groceryItem") {
 			createPopUpList(e, addPopUp);
 			centerMenu(document.getElementById("popUpList"));
-		} else if (e.target.id === "x") {
+		} else if (e.target.id === "addItem") {
+      addName(groceryListObj);
+		  emptyListFill();
+    } else if (e.target.id === "x") {
 			xMenu(e);
 		} else if (e.target.id === "addToCart") {
 			if (checkInputs(document.getElementById("popUpList"))) {
@@ -580,16 +582,14 @@
   
   pastWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "pastLi") {
-			if (pastItemsObj.length > 0) {
         pastToGrocery(e, groceryList, groceryListObj, pastItems, pastItemsObj);
-			} 
     } else if (e.target.className === "pastX") {
         xPast(e, pastItemsObj);
     } else if (e.target.id === "deletePastItems") {
         deletePast(pastItemsObj);
-    } else if (e.target.id === "moveGroceryItems") {
-        moveGroceryList(groceryListObj, pastItemsObj);
-    } else if (e.target.id === "pastButton") {
+    } else if (e.target.id === "moveGroceryItems") {     //I'm leaving an else-if block instead of a switch
+        moveGroceryList(groceryListObj, pastItemsObj);   //statement for these three id's because switches feel
+    } else if (e.target.id === "pastButton") {           //too verbose for such a short number 
 		    visibleGP = switchView(visibleGP, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper);
     }
     emptyListFill();
@@ -597,10 +597,8 @@
 	
 	cartWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "cartItem") {
-			if (cartObj.names.length > 0) {
-				createPopUpCart(e, cartObj);
-				centerMenu(document.getElementById("popUpCart"));
-			}
+		  createPopUpCart(e, cartObj, addPopUp);
+		  centerMenu(document.getElementById("popUpCart"));
 		} else if (e.target.id === "xCart") {
 			xMenu(e);
 		} else if (e.target.id === "cartButton") {
@@ -610,7 +608,7 @@
 			calculateTotal(cartObj);
 		} else if (e.target.id === "updateButton") {
 			if (checkInputs(document.getElementById("popUpCart"))) {
-				updateItemPrice(e, cart, rejects, cartObj, rejectsObj);
+				updateItemPrice(e, cart, rejects, cartObj, rejectsObj, moveCartRejects);
 				calculateTotal(cartObj);
 			}
 		}
@@ -619,11 +617,9 @@
 	
 	rejectsWrapper.addEventListener("click", function (e) {
 		if (e.target.className === "rejectsItem") {
-			if (rejectsObj.names.length > 0) {
-				moveCartRejects(e, rejects, cart, rejectsObj, cartObj, "rejectsItem", "cartItem", "rejects", "cart"); 
-				calculateTotal(cartObj);
-				emptyListFill();
-			}
+      moveCartRejects(e, rejects, cart, rejectsObj, cartObj, "rejectsItem", "cartItem", "rejects", "cart"); 
+      calculateTotal(cartObj);
+      emptyListFill();
 		} else if (e.target.id === "rejectsButton") {
 			visibleCR = switchView(visibleCR, groceryWrapper, pastWrapper, cartWrapper, rejectsWrapper);
 		} else if (e.target.id === "deleteCartRejects") {
