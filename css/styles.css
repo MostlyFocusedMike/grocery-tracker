@@ -9,7 +9,6 @@ div#content {
 	padding: 0px;
 	margin: 0 auto;
 	display: block;
-
 }
 h2 {
 	padding-left: 10px;
@@ -23,10 +22,9 @@ ul {
 	padding: 0;
 	border-bottom: solid 2px black;
 	margin: 10px auto;
-	min-height: 45px;
+	min-height: 40px;
 }
 li {
-	border-top: solid 2px black;
 	width: 260px;
 	margin: -2px auto;
 	padding: 10px 20px;
@@ -49,15 +47,14 @@ button {
 li.warning {
 	border: none;
 }
-
 /*Header /////////////////////////////////////////////////////*/
 div#header {
 	padding: 0px;
-	background-color: black;
 	color: white;
 	margin-top: 0px;
 	text-align: center;
-	width: 320px;
+  width: 375;
+  background-color: black;
 }
 h1 {
 	font-family:  Helvetica, sans-serif;	
@@ -74,15 +71,15 @@ img#bkgHead {
 	height: 35px;
 	visibility: hidden;
 	position: absolute;
-	margin-top: -82px;
-	margin-left: 127px;
+	margin-top: 10px;
+  margin-left: -6px;
 }
 #background {
 	width: 40px;
 	height: 40px;
 	position: absolute;
 	margin-top: -70px;
-	margin-left: 145px;
+	margin-left: 175px;
 }
 /* Grocery list ///////////////////////////////////////////// */
 div#listWrapper {
@@ -101,9 +98,9 @@ div#listWrapper h2 {
   background: linear-gradient(#67ADFF, #0077C6); /* Standard syntax */
 	border: none;
 	position: absolute;
-	margin: -48px 0px 0px 205px;
+	margin: -48px 0px 0px 223px;
 	font-size: 16px;
-	width: 150px;
+	width: 135px;
 }
 div#mainInput {
 	width: 322px;
@@ -150,7 +147,6 @@ div#mainInput button {
 #listWrapper li {
 	border-top: solid 1px #0077C6;
 }
-
 											/*Pop up section*/
 #popUpList {
 	padding: 5px 10px;
@@ -214,14 +210,12 @@ button#addToCart, #removeItemButton {
   background: linear-gradient(#67ADFF, #0077C6); /* Standard syntax */
 	display: block;
 }
-
 button#addToCart {
   float: right;
 }
-
 /*Past Items //////////////////////////////////////////////////////////////*/
 div#pastWrapper {
-	border-top: solid 5px #84cfff;
+	border-top: solid 5px #0077C6;
 	margin-top: 10px;
   margin-bottom: 20px;
   display: none;
@@ -234,52 +228,65 @@ div#pastWrapper > p {
 	text-align: center;
 }
 #pastWrapper ul {
-	border-bottom: solid 2px #84cfff;
-	border-top: solid 2px #84cfff;
+	border-bottom: solid 2px #0077C6;
+	border-top: solid 2px #0077C6;
 }
 #pastWrapper li {
-	border-top: solid 1px #84cfff;
-  margin: 
+  width: 280px;
+  margin: 10px auto; 
+  padding: 0px 10px 0px 10px;
 }
-#pastButton {
-  background-color: #67ADFF;
+span.pastLi {
+  width: 230px;
+  display: inline-block;
+  padding: 10px;
+  padding-left: 20px; 
+  background-color: red;
+  margin-left: -10px;
+  background-color: #0077C6;
 	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#84cfff, #1ca6ff); /* Standard syntax */
-	border: none;
-	position: absolute;
-	margin: -48px 0px 0px 190px;
-	font-size: 16px;
-	width: 170px;
+  background: linear-gradient(#67ADFF, #0077C6); /* Standard syntax */
+  color: white;
+  border-radius: 5px;
 }
 button.pastX {
-  width: 35px;
+  width: 30px;
   float: right;
-  margin: -6px -10px 0px 10px;
+  margin: 4px -10px 0px 10px;
   color: white;
-  background-color: #84cfff;
+  background-color: #0077C6;
+	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#67ADFF, #0077C6); /* Standard syntax */
   font-size: 20px;
-  border-radius: 20px
+  border-radius: 0px;
+  border-radius: 5px;
 }
-span.pastLi {
-  width: 225px;
-  display: inline-block;
-  margin: 0px 0px 0px -20px;
-  padding-left: 20px;
+#pastButton {
+	background-color: #0077C6;
+	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#67ADFF, #0077C6); /* Standard syntax */
+	border: none;
+	position: absolute;
+	margin: -48px 0px 0px 210px;
+	font-size: 16px;
+	width: 150px;
 }
-
 #moveGroceryItems, #deletePastItems {
   width: 210px;
   margin: 5px auto;
   display: block;
-  background-color: #67ADFF;
+	background-color: #0077C6;
 	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#84cfff, #1ca6ff); /* Standard syntax */
+  background: linear-gradient(#67ADFF, #0077C6); /* Standard syntax */
 }
-
 #moveGroceryItems {
   width: 190px;
   margin: 10px auto;
@@ -317,8 +324,7 @@ button#cartButton, #rejectsButton {
   background: -moz-linear-gradient(#777, black); /* Firefox 3.6 to 15 */
   background: linear-gradient(#777, black); /* Standard syntax */
 } /* the button that appears in rejects but leads to cart*/
-
-											/*Cart section////////////////*/
+		/*Cart section////////////////*/
 #cartWrapper {
 	border-top: solid 5px black;
 }
@@ -328,9 +334,8 @@ ul#shoppingCart {
 }
 li.cartItem {
 	border-top:solid 1px black;
-}
-											
-											/*PopUpCart Section*/
+}											
+						/*PopUpCart Section*/
 #popUpCart {
 	padding: 5px 10px;
 	text-align: center;
@@ -389,7 +394,7 @@ button#rejectItemButton, #updateButton {
 	padding: 5px;
 	width: 125px;
 	background-color: black;
-	background: -webkit-linear-gradient(#777, black)); /* Safari 5.1to 6.0 */
+	background: -webkit-linear-gradient(#777, black); /* Safari 5.1to 6.0 */
   background: -o-linear-gradient(#777, black); /* Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#777, black); /* Firefox 3.6 to 15 */
   background: linear-gradient(#777, black); /* Standard syntax */
@@ -398,34 +403,32 @@ button#rejectItemButton, #updateButton {
 }
 #updateButton  {
 	float: right;
-	background-color: black;
-	background: -webkit-linear-gradient(#777, black)); /* Safari 5.1to 6.0 */
-  background: -o-linear-gradient(#777, black); /* Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#777, black); /* Firefox 3.6 to 15 */
-  background: linear-gradient(#777, black); /* Standard syntax */
 }
 #buttons {
 	width:260px;
 	margin: 0px auto;
 	padding: 0px;
 }
-
-											/*Rejects section*/
+		/*Rejects section*/
 #rejectsWrapper {
 	border-top: solid 5px #A62CFF;
 	display: none;
 }
-
 ul#rejects {
 	border-top: solid 2px #A62CFF;
 	border-bottom: solid 2px #A62CFF;
 }
 li.rejectsItem {
-	border-top:solid 1px #A62CFF;
-	color: black;
+	background-color: #A62CFF;
+	background: -webkit-linear-gradient(#CA88FA, #A62CFF); 
+  background: -o-linear-gradient(#CA88FA, #A62CFF);
+  background: -moz-linear-gradient(#CA88FA, #A62CFF); 
+  background: linear-gradient(#CA88FA, #A62CFF); 
+	color: white;
+  margin: 10px auto;
+  border-radius: 5px;
 }
 button#deleteCartRejects {
-  
   display: block;
   margin: 10px auto;
 	background-color: black;
@@ -434,22 +437,18 @@ button#deleteCartRejects {
   background: -moz-linear-gradient(#777, black); /* Firefox 3.6 to 15 */
   background: linear-gradient(#777, black); /* Standard syntax */
 }
-
 /*Cart Total section //////////////////////////////////////////*/
 #info {
 	position: fixed;
 	bottom: 0;
-	margin-left: 130px;
+  text-align: right;
 	padding: 0;
-	
+  width: 375px;
 }
 #total {
-	margin-right: 10px;
 	margin-bottom: 0px;
-	color: white;
-	padding: 10px;
+	padding: 5px 30px 10px 10px;
+  color: white;
 	background-color: black;
-	max-width: 230px;
-	text-align: center;
+  border-top: 5px solid black;
 }
-
