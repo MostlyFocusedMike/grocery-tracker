@@ -90,8 +90,7 @@ div#listWrapper h2 {
 	color: black;
 }
 #groceryButton {
-  background-color: #A62CFF;
-	background-color: #67ADFF;
+	background-color: #0077C6;
 	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
@@ -101,6 +100,13 @@ div#listWrapper h2 {
 	margin: -48px 0px 0px 223px;
 	font-size: 16px;
 	width: 135px;
+}
+#groceryButton:active {
+  background-color: #67ADFF;
+	background: -webkit-linear-gradient(#0077C6, #67ADFF); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#0077C6, #67ADFF); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#0077C6, #67ADFF); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#0077C6, #67ADFF); /* Standard syntax */
 }
 div#mainInput {
 	width: 322px;
@@ -128,7 +134,7 @@ div#mainInput button {
 	margin: 0;
 	position: absolute;
 	margin-left: 212px;
-	background-color: #67ADFF;
+	background-color: #0077C6;
 	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
   background: -o-linear-gradient(#67ADFF, #0077C6); /* Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#67ADFF, #0077C6); /* Firefox 3.6 to 15 */
@@ -139,6 +145,13 @@ div#mainInput button {
 	border-top-left-radius: 0px;
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 0px;
+}
+div#mainInput button:active {
+  background-color: #67ADFF;
+	background: -webkit-linear-gradient(#0077C6, #67ADFF); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#0077C6, #67ADFF); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#0077C6, #67ADFF); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#0077C6, #67ADFF); /* Standard syntax */
 }
 #listWrapper ul {
 	border-bottom: solid 2px #0077C6;
@@ -213,6 +226,20 @@ button#addToCart, #removeItemButton {
 button#addToCart {
   float: right;
 }
+button#addToCart:active {
+  background-color: #67ADFF;
+	background: -webkit-linear-gradient(#0077C6, #67ADFF); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#0077C6, #67ADFF); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#0077C6, #67ADFF); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#0077C6, #67ADFF); /* Standard syntax */
+}
+button#removeItemButton:active {
+  background-color: #67ADFF;
+	background: -webkit-linear-gradient(#0077C6, #67ADFF); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#0077C6, #67ADFF); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#0077C6, #67ADFF); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#0077C6, #67ADFF); /* Standard syntax */
+}
 /*Past Items //////////////////////////////////////////////////////////////*/
 div#pastWrapper {
 	border-top: solid 5px #0077C6;
@@ -251,6 +278,13 @@ span.pastLi {
   color: white;
   border-radius: 5px;
 }
+span.pastLi:active {
+  background-color: #67ADFF;
+	background: -webkit-linear-gradient(#0077C6, #67ADFF); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#0077C6, #67ADFF); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#0077C6, #67ADFF); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#0077C6, #67ADFF); /* Standard syntax */
+}
 button.pastX {
   width: 30px;
   float: right;
@@ -265,6 +299,13 @@ button.pastX {
   border-radius: 0px;
   border-radius: 5px;
 }
+button.pastX:active {
+  background-color: #67ADFF;
+	background: -webkit-linear-gradient(#0077C6, #67ADFF); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#0077C6, #67ADFF); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#0077C6, #67ADFF); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#0077C6, #67ADFF); /* Standard syntax */
+}
 #pastButton {
 	background-color: #0077C6;
 	background: -webkit-linear-gradient(#67ADFF, #0077C6); /* Safari 5.1 to 6.0 */
@@ -276,6 +317,13 @@ button.pastX {
 	margin: -48px 0px 0px 210px;
 	font-size: 16px;
 	width: 150px;
+}
+#pastButton:active {
+  background-color: #67ADFF;
+	background: -webkit-linear-gradient(#0077C6, #67ADFF); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#0077C6, #67ADFF); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#0077C6, #67ADFF); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#0077C6, #67ADFF); /* Standard syntax */
 }
 #moveGroceryItems, #deletePastItems {
   width: 210px;
@@ -290,7 +338,20 @@ button.pastX {
 #moveGroceryItems {
   width: 190px;
   margin: 10px auto;
-
+}
+#moveGroceryItems:active {
+  background-color: #67ADFF;
+	background: -webkit-linear-gradient(#0077C6, #67ADFF); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#0077C6, #67ADFF); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#0077C6, #67ADFF); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#0077C6, #67ADFF); /* Standard syntax */
+}
+#deletePastItems:active {
+  background-color: #67ADFF;
+	background: -webkit-linear-gradient(#0077C6, #67ADFF); /* Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#0077C6, #67ADFF); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#0077C6, #67ADFF); /* Firefox 3.6 to 15 */
+  background: linear-gradient(#0077C6, #67ADFF); /* Standard syntax */
 }
 /*Shopping cart and reject list section ////////////////////////////////////*/
 #cartAndRejects {
@@ -317,6 +378,13 @@ button#cartButton, #rejectsButton {
 	font-size: 16px;
 	width: 170px;
 }
+button#cartButton:active {
+	background-color: #CA88FA;
+	background: -webkit-linear-gradient(#A62CFF, #CA88FA); 
+  background: -o-linear-gradient(#A62CFF, #CA88FA);
+  background: -moz-linear-gradient(#A62CFF, #CA88FA); 
+  background: linear-gradient(#A62CFF, #CA88FA);
+}
 #rejectsButton {
 	background-color: black;
 	background: -webkit-linear-gradient(#777, black); /* Safari 5.1to 6.0 */
@@ -324,6 +392,13 @@ button#cartButton, #rejectsButton {
   background: -moz-linear-gradient(#777, black); /* Firefox 3.6 to 15 */
   background: linear-gradient(#777, black); /* Standard syntax */
 } /* the button that appears in rejects but leads to cart*/
+#rejectsButton:active {
+	background-color: #777;
+	background: -webkit-linear-gradient(black, #777); /* Safari 5.1to 6.0 */
+  background: -o-linear-gradient(black, #777); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(black, #777); /* Firefox 3.6 to 15 */
+  background: linear-gradient(black, #777); /* Standard syntax */
+}
 		/*Cart section////////////////*/
 #cartWrapper {
 	border-top: solid 5px black;
@@ -404,6 +479,20 @@ button#rejectItemButton, #updateButton {
 #updateButton  {
 	float: right;
 }
+#updateButton:active {
+	background-color: #777;
+	background: -webkit-linear-gradient(black, #777); /* Safari 5.1to 6.0 */
+  background: -o-linear-gradient(black, #777); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(black, #777); /* Firefox 3.6 to 15 */
+  background: linear-gradient(black, #777); /* Standard syntax */
+}
+button#rejectItemButton:active {
+	background-color: #777;
+	background: -webkit-linear-gradient(black, #777); /* Safari 5.1to 6.0 */
+  background: -o-linear-gradient(black, #777); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(black, #777); /* Firefox 3.6 to 15 */
+  background: linear-gradient(black, #777); /* Standard syntax */
+}
 #buttons {
 	width:260px;
 	margin: 0px auto;
@@ -428,6 +517,13 @@ li.rejectsItem {
   margin: 10px auto;
   border-radius: 5px;
 }
+li.rejectsItem:active {
+	background-color: #CA88FA;
+	background: -webkit-linear-gradient(#A62CFF, #CA88FA); 
+  background: -o-linear-gradient(#A62CFF, #CA88FA);
+  background: -moz-linear-gradient(#A62CFF, #CA88FA); 
+  background: linear-gradient(#A62CFF, #CA88FA);
+}
 button#deleteCartRejects {
   display: block;
   margin: 10px auto;
@@ -436,6 +532,13 @@ button#deleteCartRejects {
   background: -o-linear-gradient(#777, black); /* Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(#777, black); /* Firefox 3.6 to 15 */
   background: linear-gradient(#777, black); /* Standard syntax */
+}
+button#deleteCartRejects:active {
+	background-color: #777;
+	background: -webkit-linear-gradient(black, #777); /* Safari 5.1to 6.0 */
+  background: -o-linear-gradient(black, #777); /* Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(black, #777); /* Firefox 3.6 to 15 */
+  background: linear-gradient(black, #777); /* Standard syntax */
 }
 /*Cart Total section //////////////////////////////////////////*/
 #info {
